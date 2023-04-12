@@ -1,49 +1,10 @@
 import Image from 'next/image';
+import { TopHeader } from './topHeader';
 
 export const Header = () => {
     return (
         <header id="header">
-            <div className="header-top">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-xs-12 col-sm-4">
-                            <div className="header-top-left">
-                                <div className="contact"><span className="hidden-xs hidden-sm hidden-md">Days a week from 9:00 am to 7:00 pm</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-xs-12 col-sm-8">
-                            <ul className="header-top-right text-right">
-                                <li className="account"><a href="https://html.lionode.com/darklook/login.html">My
-                                    Account</a>
-                                </li>
-                                <li className="language dropdown"><span className="dropdown-toggle" id="dropdownMenu1"
-                                                                        data-toggle="dropdown" aria-haspopup="true"
-                                                                        aria-expanded="false"
-                                                                        role="button">Language <span
-                                    className="caret"></span> </span>
-                                    <ul className="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                        <li><a href="https://html.lionode.com/darklook/#">English</a></li>
-                                        <li><a href="https://html.lionode.com/darklook/#">French</a></li>
-                                        <li><a href="https://html.lionode.com/darklook/#">German</a></li>
-                                    </ul>
-                                </li>
-                                <li className="currency dropdown"><span className="dropdown-toggle" id="dropdownMenu12"
-                                                                        data-toggle="dropdown" aria-haspopup="true"
-                                                                        aria-expanded="false"
-                                                                        role="button">Currency <span
-                                    className="caret"></span> </span>
-                                    <ul className="dropdown-menu" aria-labelledby="dropdownMenu12">
-                                        <li><a href="https://html.lionode.com/darklook/#">€ Euro</a></li>
-                                        <li><a href="https://html.lionode.com/darklook/#">£ Pound Sterling</a></li>
-                                        <li><a href="https://html.lionode.com/darklook/#">$ US Dollar</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <TopHeader />
             <div className="header">
                 <div className="container">
                     <div className="row">
@@ -68,9 +29,8 @@ export const Header = () => {
                         </div>
                         <div className="navbar-header col-xs-6 col-sm-4">
                             <a className="navbar-brand" href="https://html.lionode.com/darklook/index.html">
-                            {/*<img alt="themini" src="./logo.png"/> */}
-                            <Image src="/assets/images/logo.png" alt="image" width={233} height={57}/>
-                        </a>
+                                <Image src="/assets/images/logo.png" alt="image" width={233} height={57}/>
+                            </a>
                         </div>
                         <div className="col-xs-6 col-sm-4 shopcart">
                             <div id="cart" className="btn-group btn-block mtb_40">
@@ -147,10 +107,12 @@ export const Header = () => {
                                     </li>
                                     <li>
                                         <form action="https://html.lionode.com/darklook/cart_page.html">
-                                            <input className="btn pull-left mt_10" value="View cart" type="submit" onChange={(e) => console.log(e.target.value)}/>
+                                            <input className="btn pull-left mt_10" value="View cart" type="submit"
+                                                   onChange={(e) => console.log(e.target.value)}/>
                                         </form>
                                         <form action="https://html.lionode.com/darklook/checkout_page.html">
-                                            <input className="btn pull-right mt_10" value="Checkout" type="submit" onChange={(e) => console.log(e.target.value)}/>
+                                            <input className="btn pull-right mt_10" value="Checkout" type="submit"
+                                                   onChange={(e) => console.log(e.target.value)}/>
                                         </form>
                                     </li>
                                 </ul>
@@ -223,17 +185,20 @@ export const Header = () => {
                                                     <div className="carousel-inner">
                                                         <div className="item active">
                                                             <a
-                                                            href="https://html.lionode.com/darklook/#">
-                                                                <Image src="/assets/images/menu-banner1.jpg" alt="menu-banner" width={295} height={320}/>
+                                                                href="https://html.lionode.com/darklook/#">
+                                                                <Image src="/assets/images/menu-banner1.jpg"
+                                                                       alt="menu-banner" width={295} height={320}/>
                                                             </a>
                                                         </div>
                                                         <div className="item">
                                                             <a href="https://html.lionode.com/darklook/#"/>
-                                                            <Image src="/assets/images/menu-banner2.jpg" alt="menu-banner2.jpg" width={295} height={320}/>
+                                                            <Image src="/assets/images/menu-banner2.jpg"
+                                                                   alt="menu-banner2.jpg" width={295} height={320}/>
                                                         </div>
                                                         <div className="item">
                                                             <a href="https://html.lionode.com/darklook/#">
-                                                                <Image src="/assets/images/menu-banner3.jpg" alt="menu-banner2.jpg" width={295} height={320}/>
+                                                                <Image src="/assets/images/menu-banner3.jpg"
+                                                                       alt="menu-banner2.jpg" width={295} height={320}/>
                                                             </a>
                                                         </div>
                                                     </div>

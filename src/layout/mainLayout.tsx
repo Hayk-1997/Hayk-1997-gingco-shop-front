@@ -15,13 +15,13 @@ export default function MainLayout({children, title}: ILayout) {
             </Head>
             <Header/>
             <main>{children}</main>
+            <script src="/assets/scripts/jQuery_v3.1.1.min.js" lang="JavaScript"/>
+            <script src="/assets/scripts/bootstrap.min.js" lang="JavaScript"/>
             {/*@TODO need to resolve later*/}
-            {/*<Script src="/assets/scripts/jQuery_v3.1.1.min.js" />*/}
-            {/*<Script src="/assets/scripts/owl.carousel.min.js" />*/}
-            {/*<Script src="/assets/scripts/bootstrap.min.js" />*/}
-            {/*<Script src="/assets/scripts/jquery.magnific-popup.js" />*/}
-            {/*<Script src="/assets/scripts/jquery.firstVisitPopup.js" />*/}
-            {/*<Script src="/assets/scripts/custom.js" />*/}
+            {/*<script src="/assets/scripts/owl.carousel.min.js" lang="JavaScript"/>*/}
+            {/*<script src="/assets/scripts/jquery.magnific-popup.js" lang="JavaScript"/>*/}
+            {/*<script src="/assets/scripts/jquery.firstVisitPopup.js" lang="JavaScript"/>*/}
+            {/*<script src="/assets/scripts/custom.js" lang="JavaScript"/>*/}
         </>
     )
 }
