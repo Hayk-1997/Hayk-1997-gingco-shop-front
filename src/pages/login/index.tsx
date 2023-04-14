@@ -1,10 +1,17 @@
-import { lazy, Suspense, useState, createElement } from 'react';
+import { lazy, Suspense, useState, createElement, useRef } from 'react';
 const LoginForm = lazy(() => import(/* webpackChunkName: "login-form" */'./loginForm'));
+
+import cn from'classnames';
+import styles from'./styles.module.scss';
+
 
 const Login = () => {
     const [currentForm, setCurrentForm] = useState<JSX.Element | null>(null);
+    const formName = useRef('loginForm');
 
     const openCurrentForm = (value: string) => {
+        formName.current = value;
+
         import(`./${value}`)
             .then((module) => module.default)
             .then((element) => {
@@ -19,11 +26,20 @@ const Login = () => {
                     <div className="panel-login panel">
                         <div className="panel-heading">
                             <div className="row mb_20">
-                                <div className="col-xs-6" onClick={() => openCurrentForm('loginForm')}>
-                                    <a href="#" id="login-form-link">Login</a>
+                                <div
+                                    className={cn("col-xs-6", {
+                                        [styles.active]: formName?.current === 'loginForm'
+                                    })}
+                                    onClick={() => openCurrentForm('loginForm')}
+                                >
+                                   <span className={styles.item}>Login</span>
                                 </div>
-                                <div className="col-xs-6" onClick={() => openCurrentForm('registerForm')}>
-                                    <a href="#" id="register-form-link">Register</a>
+                                <div
+                                    className={cn("col-xs-6", {
+                                        [styles.active]: formName?.current === 'registerForm'
+                                    })}
+                                    onClick={() => openCurrentForm('registerForm')}>
+                                    <span className={styles.item}>Register</span>
                                 </div>
                             </div>
                             <hr />

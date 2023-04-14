@@ -1,24 +1,72 @@
 import { memo } from 'react';
+import Input from '../../../formElements/input';
+import { useForm } from 'react-hook-form';
+
+type FormValues = {
+    username: string;
+    password: string;
+    email: string;
+    confirmPassword: string;
+};
 
 const RegisterForm = () => {
+    const { handleSubmit, control } = useForm<FormValues>({
+        defaultValues: {
+            username: "",
+            password: "",
+            email: "",
+            confirmPassword: ""
+        },
+        mode: "onChange"
+    });
+
+    const onSubmit = (data: FormValues) => console.log(data);
+
+
     return (
-        <form action="#" method="post">
+        <form onSubmit={handleSubmit(onSubmit)}>
             <div className="form-group">
-                <input type="text" name="username" id="username" tabIndex={1} className="form-control" placeholder="Username" />
+                <Input
+                    control={control}
+                    name="username"
+                    rules={{ required: true }}
+                    type="text"
+                    placeholder="username"
+                />
             </div>
             <div className="form-group">
-                <input type="email" name="email" id="email" tabIndex={1} className="form-control" placeholder="Email Address" />
+                <Input
+                    control={control}
+                    name="email"
+                    rules={{ required: true }}
+                    type="text"
+                    placeholder="email"
+                />
             </div>
             <div className="form-group">
-                <input type="password" name="password" id="password2" tabIndex={2} className="form-control" placeholder="Password" />
+                <Input
+                    control={control}
+                    name="password"
+                    rules={{ required: true }}
+                    type="password"
+                    placeholder="password"
+                />
             </div>
             <div className="form-group">
-                <input type="password" name="confirm-password" id="confirm-password" tabIndex={2} className="form-control" placeholder="Confirm Password" />
+                <Input
+                    control={control}
+                    name="confirmPassword"
+                    rules={{ required: true }}
+                    type="password"
+                    placeholder="confirmPassword"
+                />
             </div>
             <div className="form-group">
                 <div className="row">
                     <div className="col-sm-6 col-sm-offset-3">
-                        <input type="submit" name="register-submit" id="register-submit" tabIndex={4} className="form-control btn btn-register" defaultValue="Register Now" />
+                        <button className="form-control btn btn-login">
+                            Register Now
+                        </button>
                     </div>
                 </div>
             </div>
