@@ -1,7 +1,8 @@
-import { Suspense, useState, createElement } from 'react';
+import { lazy, Suspense, useState, createElement } from 'react';
+const LoginForm = lazy(() => import(/* webpackChunkName: "login-form" */'./loginForm'));
 
 const Login = () => {
-    const [currentForm, setCurrentForm] = useState<any>(null);
+    const [currentForm, setCurrentForm] = useState<JSX.Element | null>(null);
 
     const openCurrentForm = (value: string) => {
         import(`./${value}`)
@@ -31,7 +32,7 @@ const Login = () => {
                             <div className="row">
                                 <div className="col-lg-12">
                                     <Suspense fallback={<div>Loading...</div>}>
-                                        {currentForm}
+                                        {currentForm ?? <LoginForm />}
                                     </Suspense>
                                 </div>
                             </div>
