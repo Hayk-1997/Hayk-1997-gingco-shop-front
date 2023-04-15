@@ -1,3 +1,4 @@
+import Link from 'next/link';
 
 export const TopHeader = (): JSX.Element => {
     return (
@@ -6,16 +7,20 @@ export const TopHeader = (): JSX.Element => {
                 <div className="row">
                     <div className="col-xs-12 col-sm-4">
                         <div className="header-top-left">
-                            <div className="contact"><span className="hidden-xs hidden-sm hidden-md">Days a week from 9:00 am to 7:00 pm</span>
+                            <div className="contact">
+                                <span className="hidden-xs hidden-sm hidden-md">Days a week from 9:00 am to 7:00 pm</span>
                             </div>
                         </div>
                     </div>
                     <div className="col-xs-12 col-sm-8">
                         <ul className="header-top-right text-right">
                             <li className="account">
-                                <a href="https://html.lionode.com/darklook/login.html">
-                                    My Account
-                                </a>
+                                <Link href="/login">
+                                    Login
+                                </Link>
+                                {/*<a href="https://html.lionode.com/darklook/login.html">*/}
+                                {/*    */}
+                                {/*</a>*/}
                             </li>
                             <li className="language dropdown">
                                 <span
@@ -28,7 +33,7 @@ export const TopHeader = (): JSX.Element => {
                                 >
                                     Language
                                 <span
-                                className="caret"></span> </span>
+                                    className="caret"></span> </span>
                                 <ul className="dropdown-menu" aria-labelledby="dropdownMenu1">
                                     <li><a href="https://html.lionode.com/darklook/#">English</a></li>
                                     <li><a href="https://html.lionode.com/darklook/#">French</a></li>
