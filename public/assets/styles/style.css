@@ -1,68 +1,6 @@
-/*------------------------------------------------------------------
-
-Project:		Darklook E-Commerce Bootsrap Responsive Template
-Version:		1.1
-Last change:	20/12/17
-Created by: 	Lionode
-
--------------------------------------------------------------------*/
-/* -----  Google Font  -----*/
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700');
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,600,700');
 
-/* -----  ionicons Font  -----*/
-/*@import url("ionicons.min.css");*/
-/* -----  font awesome Font  -----*/
-/*@import url("styles/font-awesome.min.css");*/
-/* =====  INDEX OF STYLES ===== 
-01 ===== BASIC  =====
-  1.1 General
-  1.2 Typography  
-  1.3 Spacing    
-  1.4 Button
-  1.5 Elements
-  1.6 Accordions
-  1.7 Tabs
-  1.8 Progress Bars
-  1.9 Inputs
-  1.10 Newslatter popup 
-  
-02 ===== HEADER ===== 
-  2.1 Header
-  2.2 Navbar
-  2.3 Megamenu
-  2.4 Search
-  2.5 Cart
-  2.6 Header bottom
-  
-03 ===== CONTANT =====
-  3.1 Left column
-  3.2 Right column
-  	3.2.1 main banner
-  	3.2.2 CMS-Banner
-  	3.2.3 Home product
-  	3.2.4 Breadcrumb
-  	3.2.5 Blog
-  	3.2.6 Single Blog
-  	3.2.7 Product + Category Page 
-  	3.2.8 Client
-  	3.2.9 Owl nav
-  	3.2.10 About
-  	3.2.11 Team
-  	3.2.12 Contact
-  	3.2.13 Shop Page
-  	3.2.14 Login & register
-  	3.2.15 Map
-  	3.2.16 Brand
-  
-04 ===== FOOTER =====
-	4.1 Footer General
-	4.2 Scrollup
-
-----------------------------------------------
-	BASIC
-	1.1 General  
------------------------------------------------ */
 body, html {
     height: 100%;
     margin: 0;
@@ -79,8 +17,8 @@ body {
 }
 .loder {
     position: fixed;
-    left: 0px;
-    top: 0px;
+    left: 0;
+    top: 0;
     width: 100%;
     height: 100%;
     z-index: 9999;
@@ -112,8 +50,8 @@ br {
     line-height: 0;
 }
 hr {
-    margin-bottom: 0px;
-    margin-top: 0px;
+    margin-bottom: 0;
+    margin-top: 0;
     border-top: 1px solid #424242;
     border-bottom: none;
     border-left: none;
@@ -123,7 +61,7 @@ hr {
     background-clip: padding-box;
     background-color: #424242;
     border: none;
-    border-radius: 0px;
+    border-radius: 0;
     box-shadow: none;
     margin: 11px 0 0;
     padding: 15px;
@@ -138,7 +76,7 @@ hr {
 }
 ul {
     list-style: none;
-    padding-left: 0px;
+    padding-left: 0;
     margin-bottom: 0;
 }
 .bg-gray {
@@ -166,7 +104,7 @@ ul {
 }
 
 /* ----------------------------------------------
-	1.2 Typography 
+	1.2 Typography
 ----------------------------------------------- */
 
 a {
@@ -200,8 +138,8 @@ p {
 h1, h2, h3, h4, h5, h6, h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
     font-family: 'Poppins', sans-serif;
     font-weight: 400;
-    margin-top: 0px;
-    margin-bottom: 0px;
+    margin-top: 0;
+    margin-bottom: 0;
 }
 h1 {
     font-size: 36px;
@@ -238,7 +176,7 @@ h6 {
 }
 
 /* ----------------------------------------------
-	1.3 Spacing 
+	1.3 Spacing
 ----------------------------------------------- */
 
 .box {
@@ -489,7 +427,7 @@ h6 {
 }
 
 /* ----------------------------------------------
-	1.4 Button 
+	1.4 Button
 ----------------------------------------------- */
 
 .btn {
@@ -535,11 +473,11 @@ h6 {
 }
 
 /* ----------------------------------------------
-	1.5 Elements 
+	1.5 Elements
 ----------------------------------------------- */
 
 .alert {
-    border-radius: 0px;
+    border-radius: 0;
     padding: 10px 15px;
 }
 .alert-dismissable .close, .alert-dismissible .close {
@@ -584,7 +522,7 @@ i.right {
 }
 
 /* ----------------------------------------------
-	1.6 Accordian 
+	1.6 Accordian
 ----------------------------------------------- */
 
 .panel-default {
@@ -602,7 +540,7 @@ i.right {
 }
 
 /* ----------------------------------------------
-	1.7 Tabs 
+	1.7 Tabs
 ----------------------------------------------- */
 
 .nav>li>a {
@@ -718,14 +656,14 @@ i.right {
 }
 #p_line .progress>.progress-type {
     position: absolute;
-    left: 0px;
-    padding: 0px 10px;
+    left: 0;
+    padding: 0 10px;
     color: rgb(255, 255, 255);
 }
 #p_line .progress>.progress-completed {
     position: absolute;
-    right: 0px;
-    padding: 0px 10px;
+    right: 0;
+    padding: 0 10px;
     color: #000;
 }
 
@@ -798,7 +736,7 @@ input:focus, textarea:focus {
 /* =====  Select  =====*/
 
 .form-control {
-    border-radius: 0px;
+    border-radius: 0;
     box-shadow: none;
     max-width: 100%;
 }
@@ -860,13 +798,13 @@ input:focus, textarea:focus {
     color: #000000;
 }
 .newsletter-popup .popup-title {
-    font-family: "Open Sans";
+    font-family: "Open Sans", serif;
     font-size: 80px;
     line-height: 60px;
     text-transform: capitalize;
     color: #000000;
     font-weight: 700;
-    padding-bottom: 0px;
+    padding-bottom: 0;
     float: left;
 }
 .newsletter-popup .popup-title span {
@@ -901,7 +839,7 @@ input:focus, textarea:focus {
 }
 .newsletter-popup-top .popup-desc {
     padding: 20px 20px;
-    margin: 0px;
+    margin: 0;
     color: #000000;
     font-weight: normal;
     font-size: 14px;
@@ -1005,7 +943,7 @@ label.checkme {
 
 .header-top-left .contact>a::before {
     content: "\f025";
-    font-family: fontawesome;
+    font-family: fontawesome, serif;
     font-size: 18px;
     padding-right: 9px;
     vertical-align: -1px;
@@ -1068,7 +1006,7 @@ label.checkme {
     display: block;
 }
 .mega-dropdown-menu {
-    padding: 40px 0px;
+    padding: 40px 0;
     width: 100%;
     box-shadow: none;
     -webkit-box-shadow: none;
@@ -1178,7 +1116,6 @@ label.checkme {
     height: 40px;
     line-height: 20px;
     padding: 0 40px 0 10px;
-    border: none;
     border-radius: 0;
     border: 1px solid #424242;
     background-color: #000;
@@ -1214,7 +1151,7 @@ label.checkme {
     .search-overlay form input {
         height: 60px;
         font-size: 30px;
-        padding: 10px 45px 10px 0px;
+        padding: 10px 45px 10px 0;
     }
     .search-overlay form {
         margin-top: -47px;
@@ -1339,7 +1276,7 @@ label.checkme {
     z-index: 1;
 }
 .offers {
-    padding: 12px 0px 12px 0;
+    padding: 12px 0;
     letter-spacing: 0;
     font-style: italic;
     color: #cbccc7;
@@ -1392,7 +1329,7 @@ label.checkme {
     padding: 6px 0;
 }
 #category-menu-responsive .nav>li>a, #column-left .nav>li>a {
-    padding: 10px 0px;
+    padding: 10px 0;
 }
 #category-menu-responsive .nav>li, #column-left .nav>li {
     border-bottom: 1px dashed #424242;
@@ -1437,7 +1374,7 @@ input#amount {
     width: 140px;
 }
 .Shipping, .Order, .Save, .Safe {
-    background: transparent url("../images/icon.png") no-repeat scroll 16px 0px;
+    background: transparent url("../images/icon.png") no-repeat scroll 16px 0;
     overflow: hidden;
     height: 50px;
     width: 70px;
@@ -1456,7 +1393,7 @@ input#amount {
     background-position: 16px -240px
 }
 .feature-i-left:hover .Shipping {
-    background-position: 16px 0px
+    background-position: 16px 0;
 }
 .feature-i-left:hover .Order {
     background-position: 16px -80px
@@ -1608,7 +1545,7 @@ input#amount {
 #product-tab .owl-nav, .blog .owl-nav, .latest_pro .owl-nav {
     right: 10px;
 }
-#product-thumbnail .owl-nav .owl-prev, {
+#product-thumbnail .owl-nav .owl-prev {
     left: 0;
 }
 
@@ -1617,7 +1554,7 @@ input#amount {
 ----------------------------------------------- */
 
 .breadcrumb {
-    background-image: url("../images/breadcrumb.jpg");
+    background-color: transparent;
     border-radius: 0;
     display: inline-block;
     padding-left: 20px;
@@ -1627,7 +1564,7 @@ input#amount {
 .breadcrumb li {
     display: inline-block;
 }
-.breadcrumb li.active {
+.breadcrumb li:last-child {
     color: #fff;
 }
 .breadcrumb h1 {
@@ -1679,7 +1616,7 @@ input#amount {
 }
 .blog .day {
     color: #000;
-    font-family: "Roboto";
+    font-family: "Roboto", serif;
     font-size: 40px;
     font-weight: bold;
     line-height: 40px;
@@ -1713,7 +1650,7 @@ input#amount {
     font-size: 16px;
     letter-spacing: 1px;
 }
-#Blog .post-info h6 a:hover {    
+#Blog .post-info h6 a:hover {
     color: #fa4251;
 }
 #Blog .post-img:hover>a {
@@ -1775,11 +1712,11 @@ blockquote {
 }
 
 /* ----------------------------------------------
-	3.2.7 Product + Category Page 
+	3.2.7 Product + Category Page
 ----------------------------------------------- */
 
 #product-tab .product-thumb, .latest .product-thumb {
-    margin: 0px 10px 10px;
+    margin: 0 10px 10px;
 }
 .product-thumb {
     overflow: hidden;
@@ -1859,7 +1796,7 @@ blockquote {
     left: 0;
 }
 .prodetail.product-thumb:hover .button-group  {
-    left: 0px;
+    left: 0;
 
 }
 .product-thumb:hover .button-group {
@@ -1910,7 +1847,7 @@ blockquote {
 }
 .product-list .product-thumb .caption {
     float: left;
-    margin: 0 0 0 15 px;
+    margin: 0 0 0 15px;
     padding: 0;
     text-align: left;
     width: 65%;
@@ -1927,7 +1864,7 @@ blockquote {
 .product-list .product-thumb .button-group {
     display: block;
     transition: all 0.6s ease 0s;
-    bottom: 0px;
+    bottom: 0;
     text-align: left;
 }
 .product-list .product-desc {
@@ -1961,7 +1898,7 @@ blockquote {
     border: 0 none;
     box-shadow: none;
     height: auto;
-    padding: 0px;
+    padding: 0;
 }
 .pagination-nav ul li a {
     background-color: #f7f7f7;
@@ -2013,7 +1950,7 @@ blockquote {
     border: 0 none;
     border-radius: 0;
     overflow: hidden;
-    padding: 0px;
+    padding: 0;
 }
 
 /* ----------------------------------------------
@@ -2067,7 +2004,7 @@ blockquote {
 
 .offers .owl-nav {
     position: absolute;
-    right: 0px;
+    right: 0;
     top: 11px;
     width: 100%;
 }
@@ -2082,7 +2019,7 @@ blockquote {
     background: rgba(0,0,0,0) url("../images/sprite.png") no-repeat scroll -34px -374px;
     height: 23px;
     width: 17px;
-    font-size: 0px;
+    font-size: 0;
     position: absolute;
     transition: 0.5s;
 }
@@ -2214,7 +2151,7 @@ a.thumbnails {
     display: block;
 }
 a.thumbnail {
-    border: 0px;
+    border: 0;
     background: #000;
 }
 a.thumbnail:hover, a.thumbnail:focus, a.thumbnail.active {
@@ -2370,7 +2307,7 @@ a.thumbnail:hover, a.thumbnail:focus, a.thumbnail.active {
     bottom: 20px;
     color: #fff;
     content: "\f106";
-    font-family: fontawesome;
+    font-family: fontawesome, serif;
     font-size: 25px;
     height: 40px;
     padding: 6px 12px;
@@ -2429,7 +2366,7 @@ a.thumbnail:hover, a.thumbnail:focus, a.thumbnail.active {
     .toggle.active .toggle_div::before {
         color: #fff;
         content: "\f055";
-        font-family: "FontAwesome";
+        font-family: "FontAwesome", serif;
         font-size: 22px;
         padding: 0;
         position: absolute;
@@ -2438,7 +2375,7 @@ a.thumbnail:hover, a.thumbnail:focus, a.thumbnail.active {
     .toggle .toggle_div::before {
         color: #fff;
         content: "\f056";
-        font-family: "FontAwesome";
+        font-family: "FontAwesome", serif;
         font-size: 22px;
         padding: 0;
         position: absolute;
@@ -2488,7 +2425,6 @@ a.thumbnail:hover, a.thumbnail:focus, a.thumbnail.active {
 /*-----------------------------------*/
 
 @media (max-width: 767px) {
-    
     .header-top-left, .header-top-right {
         text-align: center;
     }
@@ -2599,7 +2535,7 @@ a.thumbnail:hover, a.thumbnail:focus, a.thumbnail.active {
         background:transparent;
     }
     .view-blog{
-        border-color: #ccc; 
+        border-color: #ccc;
     }
     .newsletter-popup-top {
         width: 50%;
@@ -2736,7 +2672,7 @@ a.thumbnail:hover, a.thumbnail:focus, a.thumbnail.active {
         padding: 0 10px;
     }
     .product-layout.product-grid, .related-pro .product-thumb  {
-        margin:0; 
+        margin:0;
         padding: 0 5px;
     }
     .nav>li>a {
