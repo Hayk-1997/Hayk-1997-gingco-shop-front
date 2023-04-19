@@ -20,7 +20,22 @@ const RegisterForm = () => {
         mode: "onChange"
     });
 
-    const onSubmit = (data: FormValues) => console.log(data);
+    const onSubmit = (data: FormValues) => {
+        console.log('data', data);
+        fetch("http://localhost:3000/api/auth/register", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+        }).then(async (res) => {
+            if (res.status === 200) {
+              console.log('OK!!!')
+            } else {
+                console.log('ERROR!!!')
+            }
+        });
+    };
 
 
     return (
