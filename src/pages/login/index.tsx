@@ -1,8 +1,9 @@
-import { lazy, Suspense, useState, createElement, useRef, useCallback } from 'react';
+import { lazy, Suspense, useState, createElement, useRef, useCallback, ReactElement } from 'react';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import type { GetServerSideProps } from 'next';
 const LoginForm = lazy(() => import(/* webpackChunkName: "login-form" */'./loginForm'));
+import AuthLayout from '../../layout/web/authLayout';
 
 import cn from'classnames';
 import styles from'./styles.module.scss';
@@ -66,6 +67,14 @@ const Login = () => {
                 </div>
             </div>
         </div>
+    )
+}
+
+Login.getLayout = function getLayout(page: ReactElement) {
+    return (
+        <AuthLayout title="Login">
+            {page}
+        </AuthLayout>
     )
 }
 

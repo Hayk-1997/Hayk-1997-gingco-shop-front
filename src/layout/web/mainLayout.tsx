@@ -1,7 +1,7 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Head from 'next/head';
-import { Header } from '../features/header';
-import { Footer } from '../features/footer';
+import { Header } from '../../features/header';
+import { Footer } from '../../features/footer';
 
 interface ILayout {
     title: string,
@@ -9,11 +9,17 @@ interface ILayout {
 }
 
 export default function MainLayout({children, title}: ILayout) {
+
     return (
         <>
             <Head>
                 <title>{title}</title>
             </Head>
+            <link rel="stylesheet" type="text/css" href="/assets/styles/font-awesome.min.css"/>
+            <link rel="stylesheet" type="text/css" href="/assets/styles/bootstrap.css"/>
+            <link rel="stylesheet" type="text/css" href="/assets/styles/style.css"/>
+            <link rel="stylesheet" type="text/css" href="/assets/styles/magnific-popup.css"/>
+            <link rel="stylesheet" type="text/css" href="/assets/styles/owl.carousel.css"/>
             <Header />
             <main>{children}</main>
             <Footer />
