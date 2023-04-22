@@ -631,8 +631,13 @@ const Cart = () => {
                                             <td className="text-left">product 11</td>
                                             <td className="text-left">
                                                 <div style={{ maxWidth: 200 }} className="input-group btn-block">
-                                                    <input type="text" className="form-control quantity" size={1}
-                                                           value="1" name="quantity" />
+                                                    <input
+                                                        type="text"
+                                                        className="form-control quantity"
+                                                        size={1}
+                                                        value="1" name="quantity"
+                                                        onChange={() => {}}
+                                                    />
                         <span className="input-group-btn">
                       <button className="btn" title="" data-toggle="tooltip" type="submit" data-original-title="Update">
                           <i className="fa fa-refresh" />
