@@ -9,7 +9,7 @@ type FormValues = {
   confirmPassword: string;
 };
 
-const RegisterForm = () => {
+const RegisterForm = (): JSX.Element => {
   const { handleSubmit, control } = useForm<FormValues>({
     defaultValues: {
       username: '',
@@ -20,7 +20,7 @@ const RegisterForm = () => {
     mode: 'onChange',
   });
 
-  const onSubmit = (data: FormValues) => console.log(data);
+  const onSubmit = (data: FormValues): void => console.log(data);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

@@ -1,32 +1,46 @@
-import { memo } from 'react';
+import { memo, useCallback } from 'react';
 import { useForm } from 'react-hook-form';
 import Input from '../../../formElements/input';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  userLoginRequest,
+  useSelectLoginError,
+  useSelectLoginSuccess,
+} from '../../../slices/web/authSlice';
+import { TUserLogin } from '../../../type/web/auth';
+import ErrorMessage from '../../../formElements/errorMessage';
 
 type FormValues = {
-  username: string;
+  email: string;
   password: string;
 };
 
-const LoginForm = () => {
+const LoginForm = (): JSX.Element => {
+  const loginSuccess = useSelector(useSelectLoginSuccess);
+  const loginError = useSelector(useSelectLoginError);
+
+  const dispatch = useDispatch();
   const { handleSubmit, control } = useForm<FormValues>({
     defaultValues: {
-      username: '',
+      email: '',
       password: '',
     },
     mode: 'onChange',
   });
 
-  const onSubmit = (data: FormValues) => console.log(data);
+  const onSubmit = useCallback((data: FormValues): void => {
+    dispatch(userLoginRequest(data as TUserLogin));
+  }, []);
 
   return (
     <form id="login-form" onSubmit={handleSubmit(onSubmit)}>
       <div className="form-group">
         <Input
           control={control}
-          name="username"
+          name="email"
           rules={{ required: true }}
           type="text"
-          placeholder="username"
+          placeholder="email"
         />
       </div>
       <div className="form-group">
@@ -39,7 +53,12 @@ const LoginForm = () => {
         />
       </div>
       <div className="form-group text-center">
-        <input type="checkbox" tabIndex={3} name="remember" id="remember" />
+        {!loginSuccess && loginError && (
+          <ErrorMessage message="Something went wrong!" />
+        )}
+      </div>
+      <div className="form-group text-center">
+        <input type="checkbox" name="remember" />
         <label htmlFor="remember"> Remember Me</label>
       </div>
       <div className="form-group">
@@ -53,7 +72,7 @@ const LoginForm = () => {
         <div className="row">
           <div className="col-lg-12">
             <div className="text-center">
-              <a href="#" tabIndex={5} className="forgot-password">
+              <a href="#" className="forgot-password">
                 Forgot Password?
               </a>
             </div>

@@ -1,38 +1,24 @@
+import { useAuth } from '../../hooks/useAuth';
 import React from 'react';
-import Head from 'next/head';
 
 interface ILayout {
   title: string;
   children: React.ReactElement;
 }
-export default function AuthLayout({ children, title }: ILayout) {
+
+const AuthLayout = ({ title, children }: ILayout): JSX.Element => {
+  const { user } = useAuth({ middleware: 'auth' });
+
   return (
-    <>
-      <Head>
-        <title>{title}</title>
-      </Head>
-      <link
-        rel="stylesheet"
-        type="text/css"
-        href="/assets/styles/font-awesome.min.css"
-      />
-      <link
-        rel="stylesheet"
-        type="text/css"
-        href="/assets/styles/bootstrap.css"
-      />
-      <link rel="stylesheet" type="text/css" href="/assets/styles/style.css" />
-      <link
-        rel="stylesheet"
-        type="text/css"
-        href="/assets/styles/magnific-popup.css"
-      />
-      <link
-        rel="stylesheet"
-        type="text/css"
-        href="/assets/styles/owl.carousel.css"
-      />
+    <div className="min-h-screen bg-gray-100">
+      <header className="bg-white shadow">
+        <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+          {title}
+        </div>
+      </header>
       <main>{children}</main>
-    </>
+    </div>
   );
-}
+};
+
+export default AuthLayout;

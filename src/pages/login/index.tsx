@@ -13,7 +13,7 @@ import type { GetServerSideProps } from 'next';
 const LoginForm = lazy(
   () => import(/* webpackChunkName: "login-form" */ './loginForm')
 );
-import AuthLayout from '../../layout/web/authLayout';
+import AuthPagesLayout from '../../layout/web/authPagesLayout';
 
 import cn from 'classnames';
 import styles from './styles.module.scss';
@@ -26,7 +26,7 @@ export const getServerSideProps: GetServerSideProps<any> = async ({
   },
 });
 
-const Login = () => {
+const Login = (): JSX.Element => {
   const { t } = useTranslation('common');
 
   const [currentForm, setCurrentForm] = useState<JSX.Element | null>(null);
@@ -87,7 +87,7 @@ const Login = () => {
 };
 
 Login.getLayout = function getLayout(page: ReactElement) {
-  return <AuthLayout title="Login">{page}</AuthLayout>;
+  return <AuthPagesLayout title="Login">{page}</AuthPagesLayout>;
 };
 
 export default Login;

@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { useController, UseControllerProps } from 'react-hook-form';
 
 interface InputProps extends UseControllerProps<any> {
@@ -5,7 +6,7 @@ interface InputProps extends UseControllerProps<any> {
   placeholder: string;
 }
 
-const Input = (props: InputProps) => {
+const Input = (props: InputProps): JSX.Element => {
   const { field, fieldState } = useController(props);
 
   return (
@@ -23,4 +24,4 @@ const Input = (props: InputProps) => {
   );
 };
 
-export default Input;
+export default memo(Input);
