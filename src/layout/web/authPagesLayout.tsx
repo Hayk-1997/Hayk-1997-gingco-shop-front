@@ -55,6 +55,7 @@ export default function AuthPagesLayout({
                         [styles.active]: router.pathname.search('/login') > -1,
                       })}
                       onClick={() => router.push('login')}
+                      role="presentation"
                     >
                       <span className={styles.item}>Login</span>
                     </div>
@@ -64,6 +65,7 @@ export default function AuthPagesLayout({
                         [styles.active]:
                           router.pathname.search('/register') > -1,
                       })}
+                      role="presentation"
                     >
                       <span className={styles.item}>{t('REGISTER.NAME')}</span>
                     </div>

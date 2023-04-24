@@ -9,6 +9,7 @@ interface ILayout {
 const AuthorizedLayout = ({ title, children }: ILayout): JSX.Element => {
   const { user } = useAuth({ middleware: 'auth' });
 
+  console.log('user', user);
   return (
     <div className="min-h-screen bg-gray-100">
       <header className="bg-white shadow">

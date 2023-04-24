@@ -13,8 +13,8 @@ const Breadcrumb: NextPage<Props> = (props) => {
       <div className="breadcrumb ptb_20">
         <h1>{title}</h1>
         <ul>
-          {breadcrumbs.map((item) => (
-            <li>{item}</li>
+          {breadcrumbs.map((item, index) => (
+            <li key={index}>{item}</li>
           ))}
         </ul>
       </div>

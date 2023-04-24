@@ -2,7 +2,7 @@ import { lazy, Suspense, ReactElement } from 'react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import type { GetServerSideProps } from 'next';
 const RegisterForm = lazy(
-  () => import(/* webpackChunkName: "login-form" */ './registerForm'),
+  () => import(/* webpackChunkName: "login-form" */ './registerForm')
 );
 import AuthPagesLayout from '../../layout/web/authPagesLayout';
 
