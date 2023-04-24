@@ -32,7 +32,7 @@ export const authSlice = createSlice({
     },
     setLoginRequestSuccess: (
       state,
-      action: { payload: { token: string; user: TUser } },
+      action: { payload: { token: string; user: TUser } }
     ) => {
       const { token, user } = action.payload;
       setUserToken(token);
