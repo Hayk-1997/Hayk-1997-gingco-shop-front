@@ -1,8 +1,8 @@
 import { lazy, Suspense, ReactElement } from 'react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import type { GetServerSideProps } from 'next';
-const LoginForm = lazy(
-  () => import(/* webpackChunkName: "login-form" */ './loginForm'),
+const RegisterForm = lazy(
+  () => import(/* webpackChunkName: "login-form" */ './registerForm'),
 );
 import AuthPagesLayout from '../../layout/web/authPagesLayout';
 
@@ -14,16 +14,16 @@ export const getServerSideProps: GetServerSideProps<any> = async ({
   },
 });
 
-const Login = (): JSX.Element => {
+const Register = (): JSX.Element => {
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <LoginForm />
+      <RegisterForm />
     </Suspense>
   );
 };
 
-Login.getLayout = function getLayout(page: ReactElement) {
-  return <AuthPagesLayout title="Login">{page}</AuthPagesLayout>;
+Register.getLayout = function getLayout(page: ReactElement) {
+  return <AuthPagesLayout title="Register">{page}</AuthPagesLayout>;
 };
 
-export default Login;
+export default Register;

@@ -3,6 +3,15 @@ export type TUserLogin = {
   password: string;
 };
 
+export type TUserRegistration = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  mobilePhone: string;
+  phone: string;
+  password: string;
+};
+
 export type TUser = {
   firstName: string;
   lastName: string;
@@ -11,5 +20,4 @@ export type TUser = {
   companyName: string;
   email: string;
   role: string;
-  password: string;
 };

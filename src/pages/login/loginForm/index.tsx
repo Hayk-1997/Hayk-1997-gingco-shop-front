@@ -1,14 +1,16 @@
-import { memo, useCallback } from 'react';
+import { memo, useCallback, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import Input from '../../../formElements/input';
 import { useDispatch, useSelector } from 'react-redux';
 import {
+  clearLoginRequestStatus,
   userLoginRequest,
   useSelectLoginError,
   useSelectLoginSuccess,
 } from '../../../slices/web/authSlice';
 import { TUserLogin } from '../../../type/web/auth';
 import ErrorMessage from '../../../formElements/errorMessage';
+import { useRouter } from 'next/router';
 
 type FormValues = {
   email: string;
@@ -16,6 +18,7 @@ type FormValues = {
 };
 
 const LoginForm = (): JSX.Element => {
+  const router = useRouter();
   const loginSuccess = useSelector(useSelectLoginSuccess);
   const loginError = useSelector(useSelectLoginError);
 
@@ -27,6 +30,18 @@ const LoginForm = (): JSX.Element => {
     },
     mode: 'onChange',
   });
+
+  useEffect(() => {
+    if (loginSuccess && !loginError) {
+      router.push('shop');
+    }
+  }, [loginSuccess, loginError]);
+
+  useEffect(() => {
+    return () => {
+      dispatch(clearLoginRequestStatus());
+    };
+  }, []);
 
   const onSubmit = useCallback((data: FormValues): void => {
     dispatch(userLoginRequest(data as TUserLogin));

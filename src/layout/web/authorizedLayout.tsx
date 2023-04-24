@@ -6,7 +6,7 @@ interface ILayout {
   children: React.ReactElement;
 }
 
-const AuthLayout = ({ title, children }: ILayout): JSX.Element => {
+const AuthorizedLayout = ({ title, children }: ILayout): JSX.Element => {
   const { user } = useAuth({ middleware: 'auth' });
 
   return (
@@ -21,4 +21,4 @@ const AuthLayout = ({ title, children }: ILayout): JSX.Element => {
   );
 };
 
-export default AuthLayout;
+export default AuthorizedLayout;

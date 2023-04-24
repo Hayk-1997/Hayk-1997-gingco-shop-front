@@ -7,7 +7,7 @@ interface InputProps extends UseControllerProps<any> {
 }
 
 const Input = (props: InputProps): JSX.Element => {
-  const { field, fieldState } = useController(props);
+  const { field } = useController(props);
 
   return (
     <div>
@@ -17,9 +17,6 @@ const Input = (props: InputProps): JSX.Element => {
         placeholder={props.placeholder}
         type={props.type}
       />
-      <p>{fieldState.isTouched && 'Touched'}</p>
-      <p>{fieldState.isDirty && 'Dirty'}</p>
-      <p>{fieldState.invalid ? 'invalid' : 'valid'}</p>
     </div>
   );
 };
