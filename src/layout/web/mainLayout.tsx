@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Head from 'next/head';
 import { Header } from '../../features/header';
 import { Footer } from '../../features/footer';
@@ -8,7 +8,7 @@ interface ILayout {
   children: React.ReactElement;
 }
 
-export default function MainLayout({ children, title }: ILayout) {
+export default function MainLayout({ children, title }: ILayout): JSX.Element {
   return (
     <>
       <Head>
