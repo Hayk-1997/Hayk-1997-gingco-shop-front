@@ -1,8 +1,10 @@
+import { ReactElement } from 'react';
 import Breadcrumb from '../../features/breadcrumb';
 import CategoriesNavBar from '../../features/categoriesNavBar';
 import ProductDetail from '../../features/productDetail';
+import MainLayout from '../../layout/web/mainLayout';
 
-const ProductSinglePage = () => {
+const ProductSinglePage = (): JSX.Element => {
   return (
     <div className="container">
       <div className="row ">
@@ -241,8 +243,8 @@ const ProductSinglePage = () => {
                       </div>
                       <div className="form-group required">
                         <div className="col-md-6">
-                          <label className="control-label">Rating</label>
-                          <div className="rates">
+                          <label className="control-label" htmlFor="rates">Rating</label>
+                          <div className="rates" id="rates">
                             <span>Bad</span>
                             <input
                               name="rating"
@@ -1157,6 +1159,10 @@ const ProductSinglePage = () => {
       </div>
     </div>
   );
+};
+
+ProductSinglePage.getLayout = function getLayout(page: ReactElement) {
+  return <MainLayout title="Shop">{page}</MainLayout>;
 };
 
 export default ProductSinglePage;

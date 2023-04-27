@@ -1,12 +1,14 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 
 import webAuthReducer from './slices/web/authSlice';
+import adminAuthSlice from './slices/admin/authSlice';
 import { ToolkitStore } from '@reduxjs/toolkit/src/configureStore';
 
 export function makeStore(): ToolkitStore {
   return configureStore({
     reducer: {
       webAuth: webAuthReducer,
+      adminAuth: adminAuthSlice,
     },
   });
 }

@@ -1,7 +1,7 @@
 import useSWR from 'swr';
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
-import ApiInstance from '../services/axios';
+import ApiInstance from '../../services/axios';
 
 interface IUseAuth {
   middleware: string;

@@ -1,4 +1,4 @@
-import { useAuth } from '../../hooks/useAuth';
+import { useAuth } from '../../hooks/web/useAuth';
 import React from 'react';
 
 interface ILayout {

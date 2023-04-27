@@ -35,17 +35,20 @@ const LoginForm = (): JSX.Element => {
     if (loginSuccess && !loginError) {
       router.push('shop');
     }
-  }, [loginSuccess, loginError]);
+  }, [loginSuccess, loginError, router]);
 
   useEffect(() => {
     return () => {
       dispatch(clearLoginRequestStatus());
     };
-  }, []);
+  }, [dispatch]);
 
-  const onSubmit = useCallback((data: FormValues): void => {
-    dispatch(userLoginRequest(data as TUserLogin));
-  }, []);
+  const onSubmit = useCallback(
+    (data: FormValues): void => {
+      dispatch(userLoginRequest(data as TUserLogin));
+    },
+    [dispatch]
+  );
 
   return (
     <form id="login-form" onSubmit={handleSubmit(onSubmit)}>

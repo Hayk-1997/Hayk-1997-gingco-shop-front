@@ -1,23 +1,25 @@
 import React, { useEffect } from 'react';
-import Head from 'next/head';
+import { useAdminAuth } from '../../hooks/admin/useAdminAuth';
+import SideBar from '../../features/admin/sideBar';
+import Header from '../../features/admin/header';
 
 interface ILayout {
-  title: string;
   children: React.ReactElement;
   className: string;
 }
+const AuthorizedAdminLayout = ({
+  children,
+  className,
+}: ILayout): JSX.Element => {
+  useAdminAuth({ middleware: 'auth' });
 
-export default function AdminLayout({ children, title, className }: ILayout) {
   useEffect(() => {
     document.body.classList.add('hold-transition');
     document.body.classList.add(className);
-  }, []);
+  }, [className]);
 
   return (
     <>
-      <Head>
-        <title>{title}</title>
-      </Head>
       <link
         rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback"
@@ -32,7 +34,19 @@ export default function AdminLayout({ children, title, className }: ILayout) {
         href="/assets/admin/icheck-bootstrap/icheck-bootstrap.min.css"
       />
       <link rel="stylesheet" href="/assets/admin/dist/css/adminlte.min.css" />
-      <main>{children}</main>
+
+      <link rel="stylesheet" href="/assets/admin/jsgrid/jsgrid.min.css" />
+      <link rel="stylesheet" href="/assets/admin/jsgrid/jsgrid-theme.min.css" />
+
+      <main>
+        <div className="wrapper">
+          <Header />
+          <SideBar />
+          {children}
+        </div>
+      </main>
     </>
   );
-}
+};
+
+export default AuthorizedAdminLayout;
