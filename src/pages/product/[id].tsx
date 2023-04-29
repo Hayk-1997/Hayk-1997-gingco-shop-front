@@ -227,6 +227,9 @@ const ProductSinglePage = (): JSX.Element => {
                             id="input-name"
                             className="form-control"
                             type="text"
+                            onChange={(e) => {
+                              console.log(e.target.value);
+                            }}
                           />
                         </div>
                       </div>
@@ -262,26 +265,41 @@ const ProductSinglePage = (): JSX.Element => {
                               name="rating"
                               defaultValue={1}
                               type="radio"
+                              onChange={(e) => {
+                                console.log(e.target.value);
+                              }}
                             />
                             <input
                               name="rating"
                               defaultValue={2}
                               type="radio"
+                              onChange={(e) => {
+                                console.log(e.target.value);
+                              }}
                             />
                             <input
                               name="rating"
                               defaultValue={3}
                               type="radio"
+                              onChange={(e) => {
+                                console.log(e.target.value);
+                              }}
                             />
                             <input
                               name="rating"
                               defaultValue={4}
                               type="radio"
+                              onChange={(e) => {
+                                console.log(e.target.value);
+                              }}
                             />
                             <input
                               name="rating"
                               defaultValue={5}
                               type="radio"
+                              onChange={(e) => {
+                                console.log(e.target.value);
+                              }}
                             />
                             <span>Good</span>
                           </div>
