@@ -8,3 +8,5 @@ export const setAdminToken = (token: string): void =>
 
 export const getAdminToken = (): string | null =>
   localStorage.getItem(ADMIN_TOKEN_KEY);
+
+export const clearAdminToken = (): void => localStorage.clear();

@@ -1,7 +1,7 @@
 import useSWR from 'swr';
 import { useRouter } from 'next/router';
 import ApiInstance from '../../services/axios';
-import { getAdminToken } from '../../helpers/auth';
+import { clearAdminToken, getAdminToken } from '../../helpers/auth';
 
 interface IUseAuth {
   middleware: string;
@@ -22,10 +22,9 @@ export const useAdminAuth = ({
       headers: { Authorization: 'Bearer ' + getAdminToken() },
     })
       .then((res) => res.data)
-      .catch((error) => {
-        if (error.response.status === 401) {
-          router.push('/admin/login');
-        }
+      .catch(() => {
+        clearAdminToken();
+        router.push('/admin/login');
       })
   );
 

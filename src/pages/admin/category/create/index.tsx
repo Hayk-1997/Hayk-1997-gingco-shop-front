@@ -28,32 +28,40 @@ const CreateCategory = (): JSX.Element => {
               <div className="card card-primary">
                 <form>
                   <div className="card-body">
-                    <div className="form-group">
-                      <label htmlFor="nameHy">Name Hy</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="nameHy"
-                        placeholder="Name Hy"
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="nameRu">Name Ru</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="nameRu"
-                        placeholder="Name Ru"
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="nameEn">Name En</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="nameEn"
-                        placeholder="Name En"
-                      />
+                    <div className="row">
+                      <div className="col-md-6">
+                        <div className="form-group">
+                          <label htmlFor="nameHy">Name Hy</label>
+                          <input
+                            type="text"
+                            className="form-control"
+                            id="nameHy"
+                            placeholder="Name Hy"
+                          />
+                        </div>
+                      </div>
+                      <div className="col-md-6">
+                        <div className="form-group">
+                          <label htmlFor="nameRu">Name Ru</label>
+                          <input
+                            type="text"
+                            className="form-control"
+                            id="nameRu"
+                            placeholder="Name Ru"
+                          />
+                        </div>
+                      </div>
+                      <div className="col-md-12">
+                        <div className="form-group">
+                          <label htmlFor="nameHy">Name En</label>
+                          <input
+                            type="text"
+                            className="form-control"
+                            id="nameEn"
+                            placeholder="Name En"
+                          />
+                        </div>
+                      </div>
                     </div>
                   </div>
                   <div className="card-footer">

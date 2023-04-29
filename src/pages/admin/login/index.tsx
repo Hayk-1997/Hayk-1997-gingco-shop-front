@@ -33,7 +33,7 @@ const LoginPage = (): JSX.Element => {
 
   useEffect(() => {
     if (loginSuccess && !loginError) {
-      router.push('category/create');
+      router.push('/admin');
     }
   }, [loginSuccess, loginError, router]);
 
