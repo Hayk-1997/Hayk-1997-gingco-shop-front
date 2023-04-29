@@ -3,6 +3,16 @@ import Breadcrumb from '../../features/breadcrumb';
 import CategoriesNavBar from '../../features/categoriesNavBar';
 import ProductDetail from '../../features/productDetail';
 import MainLayout from '../../layout/web/mainLayout';
+import { GetServerSideProps } from 'next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+
+export const getServerSideProps: GetServerSideProps<any> = async ({
+  locale,
+}) => ({
+  props: {
+    ...(await serverSideTranslations(locale ?? 'en')),
+  },
+});
 
 const ProductSinglePage = (): JSX.Element => {
   return (
@@ -243,7 +253,9 @@ const ProductSinglePage = (): JSX.Element => {
                       </div>
                       <div className="form-group required">
                         <div className="col-md-6">
-                          <label className="control-label" htmlFor="rates">Rating</label>
+                          <label className="control-label" htmlFor="rates">
+                            Rating
+                          </label>
                           <div className="rates" id="rates">
                             <span>Bad</span>
                             <input
