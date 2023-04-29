@@ -2,6 +2,7 @@ import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 
 import webAuthReducer from './slices/web/authSlice';
 import adminAuthSlice from './slices/admin/authSlice';
+import adminCategorySlice from './slices/admin/category';
 import { ToolkitStore } from '@reduxjs/toolkit/src/configureStore';
 
 export function makeStore(): ToolkitStore {
@@ -9,6 +10,7 @@ export function makeStore(): ToolkitStore {
     reducer: {
       webAuth: webAuthReducer,
       adminAuth: adminAuthSlice,
+      adminCategory: adminCategorySlice,
     },
   });
 }

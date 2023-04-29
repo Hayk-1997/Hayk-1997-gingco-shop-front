@@ -1,7 +1,20 @@
-import { ReactElement } from 'react';
+import { ReactElement, useEffect } from 'react';
 import AuthorizedAdminLayout from '../../../../layout/admin/authorizedAdminLayout';
+import {
+  getCategories,
+  useSelectCategories,
+} from '../../../../slices/admin/category';
+import { useDispatch, useSelector } from 'react-redux';
 
 const CategoryList = (): JSX.Element => {
+  const dispatch = useDispatch();
+
+  const categories = useSelector(useSelectCategories);
+
+  useEffect(() => {
+    dispatch(getCategories());
+  }, [dispatch]);
+
   return (
     <div className="content-wrapper" style={{ minHeight: '1302.12px' }}>
       <section className="content-header">
@@ -134,28 +147,31 @@ const CategoryList = (): JSX.Element => {
               </div>
               <div className="jsgrid-grid-body" style={{ height: 821 }}>
                 <table className="jsgrid-table">
-                  <tbody>
-                    <tr className="jsgrid-row">
-                      <td className="jsgrid-cell" style={{ width: 150 }}>
-                        Otto Clay
-                      </td>
-                      <td
-                        className="jsgrid-cell jsgrid-align-right"
-                        style={{ width: 50 }}
-                      >
-                        61
-                      </td>
-                      <td className="jsgrid-cell" style={{ width: 200 }}>
-                        Ap #897-1459 Quam Avenue
-                      </td>
-                      <td
-                        className="jsgrid-cell jsgrid-align-center"
-                        style={{ width: 50 }}
-                      >
-                        <input type="checkbox" />
-                      </td>
-                    </tr>
-                  </tbody>
+                  {/*@TODO need to create types*/}
+                  {categories?.map((category: any, index: number) => (
+                    <tbody key={index}>
+                      <tr className="jsgrid-row">
+                        <td className="jsgrid-cell" style={{ width: 150 }}>
+                          {category.translations[0].name}
+                        </td>
+                        <td
+                          className="jsgrid-cell jsgrid-align-right"
+                          style={{ width: 50 }}
+                        >
+                          {category.translations[1].name}
+                        </td>
+                        <td className="jsgrid-cell" style={{ width: 200 }}>
+                          {category.translations[2].name}
+                        </td>
+                        <td
+                          className="jsgrid-cell jsgrid-align-center"
+                          style={{ width: 50 }}
+                        >
+                          <input type="checkbox" />
+                        </td>
+                      </tr>
+                    </tbody>
+                  ))}
                 </table>
               </div>
               <div className="jsgrid-pager-container">

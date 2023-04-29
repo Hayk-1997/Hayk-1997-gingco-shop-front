@@ -1,7 +1,34 @@
-import { ReactElement } from 'react';
+import { ReactElement, useCallback } from 'react';
 import AuthorizedAdminLayout from '../../../../layout/admin/authorizedAdminLayout';
+import { useForm } from 'react-hook-form';
+import { TCreateCategory } from '../../../../type/category';
+import { useDispatch } from 'react-redux';
+import Input from '../../../../formElements/input';
+import { createCategoryRequest } from '../../../../slices/admin/category';
 
 const CreateCategory = (): JSX.Element => {
+  const dispatch = useDispatch();
+  const { handleSubmit, control, register } = useForm<TCreateCategory>({
+    defaultValues: {
+      parentId: null,
+      name: {
+        am: '',
+        ru: '',
+        en: '',
+      },
+    },
+    mode: 'onChange',
+  });
+
+  const onSubmit = useCallback(
+    (data: TCreateCategory): void => {
+      dispatch(
+        createCategoryRequest({ ...data, parentId: Number(data.parentId) })
+      );
+    },
+    [dispatch]
+  );
+
   return (
     <div className="content-wrapper" style={{ minHeight: '1302.12px' }}>
       <section className="content-header">
@@ -26,40 +53,65 @@ const CreateCategory = (): JSX.Element => {
           <div className="row">
             <div className="col-md-12">
               <div className="card card-primary">
-                <form>
+                <form onSubmit={handleSubmit(onSubmit)}>
                   <div className="card-body">
                     <div className="row">
                       <div className="col-md-6">
                         <div className="form-group">
-                          <label htmlFor="nameHy">Name Hy</label>
-                          <input
+                          <label htmlFor="nameAM">Name Hy</label>
+                          <Input
+                            control={control}
+                            id="nameAM"
+                            name="name.am"
+                            rules={{ required: true }}
                             type="text"
-                            className="form-control"
-                            id="nameHy"
-                            placeholder="Name Hy"
+                            placeholder="Name Am"
+                            withError={true}
                           />
                         </div>
                       </div>
                       <div className="col-md-6">
                         <div className="form-group">
                           <label htmlFor="nameRu">Name Ru</label>
-                          <input
-                            type="text"
-                            className="form-control"
+                          <Input
+                            control={control}
                             id="nameRu"
+                            name="name.ru"
+                            rules={{ required: true }}
+                            type="text"
                             placeholder="Name Ru"
+                            withError={true}
                           />
                         </div>
                       </div>
                       <div className="col-md-12">
                         <div className="form-group">
-                          <label htmlFor="nameHy">Name En</label>
-                          <input
-                            type="text"
-                            className="form-control"
+                          <label htmlFor="nameEn">Name En</label>
+                          <Input
+                            control={control}
                             id="nameEn"
+                            name="name.en"
+                            rules={{ required: true }}
+                            type="text"
                             placeholder="Name En"
+                            withError={true}
                           />
+                        </div>
+                      </div>
+                      <div className="col-md-12">
+                        <div className="form-group">
+                          <label htmlFor="parentCategory">
+                            Parent Category
+                          </label>
+                          <select
+                            className="custom-select rounded-0"
+                            id="parentCategory"
+                            {...register('parentId')}
+                          >
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                          </select>
                         </div>
                       </div>
                     </div>
