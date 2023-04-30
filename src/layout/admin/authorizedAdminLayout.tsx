@@ -5,7 +5,7 @@ import Header from '../../features/admin/header';
 
 interface ILayout {
   children: React.ReactElement;
-  className: string;
+  className?: string;
 }
 const AuthorizedAdminLayout = ({
   children,
@@ -14,8 +14,10 @@ const AuthorizedAdminLayout = ({
   useAdminAuth({ middleware: 'auth' });
 
   useEffect(() => {
-    document.body.classList.add('hold-transition');
-    document.body.classList.add(className);
+    if (className) {
+      document.body.classList.add('hold-transition');
+      document.body.classList.add(className);
+    }
   }, [className]);
 
   return (
@@ -33,7 +35,7 @@ const AuthorizedAdminLayout = ({
         rel="stylesheet"
         href="/assets/admin/icheck-bootstrap/icheck-bootstrap.min.css"
       />
-      <link rel="stylesheet" href="/assets/admin/dist/css/adminlte.min.css" />
+      <link rel="stylesheet" href="/assets/admin/dist/css/adminlte.css" />
 
       <link rel="stylesheet" href="/assets/admin/jsgrid/jsgrid.min.css" />
       <link rel="stylesheet" href="/assets/admin/jsgrid/jsgrid-theme.min.css" />

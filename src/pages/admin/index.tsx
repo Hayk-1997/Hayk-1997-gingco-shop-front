@@ -10,9 +10,7 @@ const Dashboard = (): JSX.Element => {
 };
 
 Dashboard.getLayout = function getLayout(page: ReactElement) {
-  return (
-    <AuthorizedAdminLayout className={'asd'}>{page}</AuthorizedAdminLayout>
-  );
+  return <AuthorizedAdminLayout>{page}</AuthorizedAdminLayout>;
 };
 
 export default Dashboard;

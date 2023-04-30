@@ -1,7 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { AppDispatch, AppState } from '../../store';
 import ApiInstance from '../../services/axios';
-import { getAdminToken } from '../../helpers/auth';
 import { TCreateCategory } from '../../type/category';
 
 type TInitialState = {
@@ -63,15 +62,9 @@ export const createCategoryRequest = (data: TCreateCategory) => {
   return async (dispatch: AppDispatch) => {
     try {
       dispatch(setCreateCategoryRequest());
-      const response = await ApiInstance.post(
-        'categories',
-        {
-          ...data,
-        },
-        {
-          headers: { Authorization: 'Bearer ' + getAdminToken() },
-        }
-      );
+      const response = await ApiInstance.post('categories', {
+        ...data,
+      });
       dispatch(setCreateCategorySuccess(response.data));
     } catch (e) {
       dispatch(setCreateCategoryError());
@@ -83,9 +76,7 @@ export const getCategories = () => {
   return async (dispatch: AppDispatch) => {
     try {
       dispatch(setGetCategoriesRequest());
-      const response = await ApiInstance.get('categories', {
-        headers: { Authorization: 'Bearer ' + getAdminToken() },
-      });
+      const response = await ApiInstance.get('categories');
       dispatch(setGetCategoriesSuccess(response.data.categories));
     } catch (e) {
       dispatch(setGetCategoriesError());

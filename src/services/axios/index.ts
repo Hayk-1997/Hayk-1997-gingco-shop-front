@@ -1,15 +1,24 @@
 import axios, { AxiosInstance } from 'axios';
+import { getUserToken } from '../../helpers/auth';
 
 const ApiInstance: AxiosInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_BACKEND_URL,
   timeout: 5000,
-  headers: { Authorization: 'Bearer ' + 'token' },
 });
 
 // Add a request interceptor
 ApiInstance.interceptors.request.use(
   function (config) {
-    // Do something before request is sent
+    if (typeof window !== 'undefined') {
+      const token = getUserToken();
+
+      if (token) {
+        return {
+          ...config,
+          Authorization: `Bearer ${token}`,
+        };
+      }
+    }
     return config;
   },
   function (error) {

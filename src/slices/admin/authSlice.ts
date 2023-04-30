@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { AppDispatch, AppState } from '../../store';
 import ApiInstance from '../../services/axios';
 import { TUser, TUserLogin } from '../../type/web/auth';
-import { setAdminToken } from '../../helpers/auth';
+import { setUserToken } from '../../helpers/auth';
 
 type TInitialState = {
   user: TUser;
@@ -29,7 +29,7 @@ export const adminAuthSlice = createSlice({
       action: { payload: { token: string; user: TUser } }
     ) => {
       const { token, user } = action.payload;
-      setAdminToken(token);
+      setUserToken(token);
       state.user = user;
       state.loginSuccess = true;
       state.loginError = false;

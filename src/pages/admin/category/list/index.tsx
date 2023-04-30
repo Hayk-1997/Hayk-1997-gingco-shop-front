@@ -3,7 +3,7 @@ import AuthorizedAdminLayout from '../../../../layout/admin/authorizedAdminLayou
 import {
   getCategories,
   useSelectCategories,
-} from '../../../../slices/admin/category';
+} from '../../../../slices/admin/categorySlice';
 import { useDispatch, useSelector } from 'react-redux';
 
 const CategoryList = (): JSX.Element => {
@@ -16,7 +16,7 @@ const CategoryList = (): JSX.Element => {
   }, [dispatch]);
 
   return (
-    <div className="content-wrapper" style={{ minHeight: '1302.12px' }}>
+    <div className="content-wrapper">
       <section className="content-header">
         <div className="container-fluid">
           <div className="row mb-2">
@@ -145,7 +145,7 @@ const CategoryList = (): JSX.Element => {
                   </tbody>
                 </table>
               </div>
-              <div className="jsgrid-grid-body" style={{ height: 821 }}>
+              <div className="jsgrid-grid-body">
                 <table className="jsgrid-table">
                   {/*@TODO need to create types*/}
                   {categories?.map((category: any, index: number) => (
@@ -237,9 +237,7 @@ const CategoryList = (): JSX.Element => {
 };
 
 CategoryList.getLayout = function getLayout(page: ReactElement) {
-  return (
-    <AuthorizedAdminLayout className={'asd'}>{page}</AuthorizedAdminLayout>
-  );
+  return <AuthorizedAdminLayout>{page}</AuthorizedAdminLayout>;
 };
 
 export default CategoryList;

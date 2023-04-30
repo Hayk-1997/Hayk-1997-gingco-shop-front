@@ -1,13 +1,24 @@
-import { ReactElement, useCallback } from 'react';
+import { ReactElement, useCallback, useEffect } from 'react';
 import AuthorizedAdminLayout from '../../../../layout/admin/authorizedAdminLayout';
 import { useForm } from 'react-hook-form';
 import { TCreateCategory } from '../../../../type/category';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Input from '../../../../formElements/input';
-import { createCategoryRequest } from '../../../../slices/admin/category';
+import {
+  createCategoryRequest,
+  getCategories,
+  useSelectCategories,
+} from '../../../../slices/admin/categorySlice';
 
 const CreateCategory = (): JSX.Element => {
   const dispatch = useDispatch();
+
+  const categories = useSelector(useSelectCategories);
+
+  useEffect(() => {
+    dispatch(getCategories());
+  }, [dispatch]);
+
   const { handleSubmit, control, register } = useForm<TCreateCategory>({
     defaultValues: {
       parentId: null,
@@ -30,7 +41,7 @@ const CreateCategory = (): JSX.Element => {
   );
 
   return (
-    <div className="content-wrapper" style={{ minHeight: '1302.12px' }}>
+    <div className="content-wrapper">
       <section className="content-header">
         <div className="container-fluid">
           <div className="row mb-2">
@@ -108,9 +119,12 @@ const CreateCategory = (): JSX.Element => {
                             id="parentCategory"
                             {...register('parentId')}
                           >
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
+                            {/*@TODO add category types*/}
+                            {categories?.map((category: any, index: number) => (
+                              <option key={index} value={category.id}>
+                                {category.translations[0].name}
+                              </option>
+                            ))}
                           </select>
                         </div>
                       </div>
@@ -132,9 +146,7 @@ const CreateCategory = (): JSX.Element => {
 };
 
 CreateCategory.getLayout = function getLayout(page: ReactElement) {
-  return (
-    <AuthorizedAdminLayout className={'asd'}>{page}</AuthorizedAdminLayout>
-  );
+  return <AuthorizedAdminLayout>{page}</AuthorizedAdminLayout>;
 };
 
 export default CreateCategory;
