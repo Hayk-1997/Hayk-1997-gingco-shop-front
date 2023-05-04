@@ -2,13 +2,14 @@ import { createSlice } from '@reduxjs/toolkit';
 import { AppDispatch, AppState } from '../../store';
 import ApiInstance from '../../services/axios';
 import { TProduct, TProductsState } from '../../type/web/products';
-import { catchApiError } from "../../helpers/index.";
+import { catchApiError } from '../../helpers';
 
 const initialState: TProductsState = {
   products: [] as TProduct[],
   isGettingProduct: false,
   isGetProductSuccess: false,
   isGetProductFailure: false,
+
   product: {} as TProduct,
   isGettingProducts: false,
   isGetProductsSuccess: false,
@@ -38,8 +39,8 @@ export const productsSlice = createSlice({
     },
     setGetProductRequestFailure: (
       state,
-      action: { payload: { message: string }
-      }) => {
+      action: { payload: { message: string } }
+    ) => {
       state.isGettingProduct = false;
       state.isGetProductFailure = true;
       state.errorMessage = action.payload.message;
@@ -60,6 +61,17 @@ export const {
 } = productsSlice.actions;
 
 export default productsSlice.reducer;
+
+export const useSelectProducts = (state: AppState): TProduct[] =>
+  state.webProducts.products;
+export const useSelectProduct = (state: AppState): TProduct[] =>
+  state.webProducts.product;
+export const useSelectGetProductSuccess = (state: AppState): boolean =>
+  state.webProducts.isGetProductSuccess;
+
+export const useSelectGetProductFailure = (state: AppState): boolean =>
+  state.webProducts.isGetProductFailure;
+
 
 export const getProductRequest = (id: number) => {
   return async (dispatch: AppDispatch) => {

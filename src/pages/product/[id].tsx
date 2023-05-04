@@ -3,36 +3,44 @@ import CategoriesNavBar from '../../features/categoriesNavBar';
 import ProductDetails from '../../features/products/details';
 import { ReactElement, useEffect } from 'react';
 import MainLayout from '../../layout/web/mainLayout';
-import { getProductRequest } from '../../slices/web/productsSlice';
+import {
+  getProductRequest,
+  useSelectGetProductFailure,
+  useSelectGetProductSuccess,
+  useSelectProduct,
+} from '../../slices/web/productsSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
-import { ParsedUrlQuery } from 'querystring';
+import { GetServerSideProps } from 'next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 export const getServerSideProps: GetServerSideProps<any> = async ({
+  locale,
+  params,
+}) => ({
   props: {
     ...(await serverSideTranslations(locale ?? 'en')),
+    params,
   },
 });
 
-const ProductPage = () => {
+//@TODO put compatible types and change data getting logic to server side
+const ProductPage = (props: any): JSX.Element => {
   const dispatch = useDispatch();
   const router = useRouter();
-
-  const { id: productId }: ParsedUrlQuery = router.query;
-
-  const { product = null, isGetProductSuccess, isGetProductFailure } = useSelector((store) => store.webProducts);
+  const product = useSelector(useSelectProduct);
+  const isGetProductSuccess = useSelector(useSelectGetProductSuccess);
+  const isGetProductFailure = useSelector(useSelectGetProductFailure);
 
   useEffect(() => {
-    if (productId) {
-      dispatch(getProductRequest(Number(productId)));
-    }
-  }, [productId]);
+    props.params.id && dispatch(getProductRequest(Number(props.params.id)));
+  }, [dispatch, props.params.id]);
 
   useEffect(() => {
     if (isGetProductFailure) {
       router.push('/404');
     }
-  }, [isGetProductFailure]);
+  }, [isGetProductFailure, router]);
 
   return (
     <div className="container">
@@ -42,7 +50,9 @@ const ProductPage = () => {
           breadcrumbs={['Home', 'Product Details']}
         />
         <CategoriesNavBar />
-        { isGetProductSuccess && <ProductDetails product={product} lang={router.locale} />}
+        {isGetProductSuccess && (
+          <ProductDetails product={product} lang={router.locale} />
+        )}
       </div>
     </div>
   );
