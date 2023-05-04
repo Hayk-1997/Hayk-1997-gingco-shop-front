@@ -55,7 +55,8 @@ const CategoriesNavBar = (): JSX.Element => {
           </ul>
         </div>
       </div>
-      <div className="left_banner left-sidebar-widget mt_30 mb_40">
+      {/* TODO: Can be used for example as special product */}
+      {/*<div className="left_banner left-sidebar-widget mt_30 mb_40">
         {' '}
         <a href="#">
           <img
@@ -64,9 +65,10 @@ const CategoriesNavBar = (): JSX.Element => {
             className="img-responsive"
           />
         </a>{' '}
-      </div>
+      </div>*/}
       <div className="left-special left-sidebar-widget mb_50">
-        <div className="heading-part mb_10 ">
+        {/* TODO: Move separate component as <TopProducts /> */}
+        {/*<div className="heading-part mb_10 ">
           <h2 className="main_title">Top Products</h2>
         </div>
         <div id="left-special" className="owl-carousel owl-loaded owl-drag">
@@ -811,7 +813,7 @@ const CategoriesNavBar = (): JSX.Element => {
               <span />
             </div>
           </div>
-        </div>
+        </div>*/}
       </div>
     </div>
   );
