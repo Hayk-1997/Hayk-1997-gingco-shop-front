@@ -1,11 +1,14 @@
 import { useMemo } from 'react';
 import { TProductImage } from '../../../type/web/products';
+import Image from 'next/image';
 
+//@TODO need to separate this component
 const ProductDetails = (props: any): JSX.Element => {
-  const { product, lang = 'en' } = props;
+  const { product, lang } = props;
 
+  //@TODO need to check product exist above and check in parent component
   const getMainPhoto = useMemo(() => {
-    const main = product?.images?.find((img: TProductImage) => img.main)
+    const main = product?.images?.find((img: TProductImage) => img.main);
     return main?.url || '';
   }, [product.images]);
 
@@ -15,10 +18,19 @@ const ProductDetails = (props: any): JSX.Element => {
         <div className="col-md-6">
           <div>
             <a className="thumbnails">
-              <img data-name="product_image" src={getMainPhoto} />
+              <Image
+                src={getMainPhoto}
+                alt="main_banner"
+                width={1903}
+                height={650}
+                data-name="product_image"
+              />
             </a>
           </div>
-          <div id="product-thumbnail" className="owl-carousel owl-loaded owl-drag">
+          <div
+            id="product-thumbnail"
+            className="owl-carousel owl-loaded owl-drag"
+          >
             <div className="owl-stage-outer">
               <div
                 className="owl-stage"
@@ -30,7 +42,11 @@ const ProductDetails = (props: any): JSX.Element => {
               >
                 {product?.images?.map((image: TProductImage) => {
                   return (
-                    <div className="owl-item active" key={image.url} style={{ width: '85.25px' }}>
+                    <div
+                      className="owl-item active"
+                      key={image.url}
+                      style={{ width: '85.25px' }}
+                    >
                       <div className="item">
                         <div className="image-additional">
                           <a
@@ -38,12 +54,17 @@ const ProductDetails = (props: any): JSX.Element => {
                             href={image.url}
                             data-fancybox="group1"
                           >
-                            <img src={image.url} alt="" />
+                            <Image
+                              src={image.url}
+                              alt="main_banner"
+                              width={1903}
+                              height={1903}
+                            />
                           </a>
                         </div>
                       </div>
                     </div>
-                  )
+                  );
                 })}
               </div>
             </div>
@@ -55,15 +76,14 @@ const ProductDetails = (props: any): JSX.Element => {
               {product?.translations?.[lang].title}
             </a>
           </h4>
-          <div className="rating">
-          </div>
+          <div className="rating"></div>
           <span className="price mb_20">
-        <span className="amount">
-          ֏‎{product.price}
-        </span>
-      </span>
+            <span className="amount">֏‎{product.price}</span>
+          </span>
           <hr />
-          <p className="product-desc mtb_30">{product.translations[lang].description}</p>
+          <p className="product-desc mtb_30">
+            {product.translations[lang].description}
+          </p>
           <div id="product">
             <div className="form-group">
               <div className="row">
@@ -92,7 +112,7 @@ const ProductDetails = (props: any): JSX.Element => {
               />
             </div>
             <div className="button-group mt_30">
-                <button>Add to cart</button>
+              <button>Add to cart</button>
               <div className="wishlist">
                 <a href="#">
                   <span>wishlist</span>

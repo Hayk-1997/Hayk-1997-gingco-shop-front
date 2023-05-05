@@ -40,11 +40,11 @@ export default function MainLayout({ children, title }: ILayout): JSX.Element {
       <main>{children}</main>
       <Footer />
       <Script src="/assets/scripts/jQuery_v3.1.1.min.js" />
+      <Script src="/assets/scripts/owl.carousel.min.js" />
       <Script src="/assets/scripts/bootstrap.min.js" />
       <Script src="/assets/scripts/jquery.magnific-popup.js" />
       {/*@TODO need to resolve later*/}
       <Script src="/assets/scripts/jquery.firstVisitPopup.js" />
-      <Script src="/assets/scripts/owl.carousel.min.js" />
       <Script src="/assets/scripts/custom.js" />
       {/*<link rel="stylesheet" href="owl-carousel/owl.carousel.css" />*/}
       {/*<link rel="stylesheet" href="owl-carousel/owl.theme.css" />*/}
