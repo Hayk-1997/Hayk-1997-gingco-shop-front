@@ -1,35 +1,41 @@
+import { TEntityLanguage } from '../../language';
+
 export type TProduct = {
-  id: number,
-  countInStock: number,
-  price: number
-  categoryId: number
-  colorId: number,
-  translations: TProductTranslations,
-  images: TProductImage[],
-  createdAt: string
-  updatedAt: string
+  id: number;
+  countInStock: number;
+  price: number;
+  categoryId: number;
+  colorId: number;
+  translations: TProductTranslations;
+  images: TProductImage[];
+  createdAt: string;
+  updatedAt: string;
+};
+
+type TTranslation = {
+  name: string;
+  title: string;
+  description: string;
 };
 
 export type TProductTranslations = {
-  en: { name: string, title: string, description: string },
-  ru: { name: string, title: string, description: string },
-  am: { name: string, title: string, description: string },
+  [key in TEntityLanguage]: TTranslation;
 };
 
 export type TProductImage = {
-  url: string,
-  main: boolean,
+  url: string;
+  main: boolean;
 };
 
 export type TProductsState = {
   products: TProduct[];
-  isGettingProduct: boolean,
-  isGetProductSuccess: boolean,
-  isGetProductFailure: boolean,
+  isGettingProduct: boolean;
+  isGetProductSuccess: boolean;
+  isGetProductFailure: boolean;
   product: TProduct;
-  isGettingProducts: boolean,
-  isGetProductsSuccess: boolean,
-  isGetProductsFailure: boolean,
+  isGettingProducts: boolean;
+  isGetProductsSuccess: boolean;
+  isGetProductsFailure: boolean;
 
   successMessage: string;
   errorMessage: string;
