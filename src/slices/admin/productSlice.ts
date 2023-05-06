@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { AppDispatch, AppState } from '../../store';
 import ApiInstance from '../../services/axios';
-import { TCreateProduct } from '../../type/product';
+import { TCreateProductForm } from '../../type/product';
+import { TProduct } from '../../type/web/products';
 
 type TInitialState = {
   products: [];
@@ -55,10 +56,10 @@ export const {
 
 export default adminProductSlice.reducer;
 
-export const useSelectProducts = (state: AppState) =>
+export const useSelectProducts = (state: AppState): TProduct[] =>
   state.adminCategory.categories;
 
-export const createProductRequest = (data: TCreateProduct) => {
+export const createProductRequest = (data: TCreateProductForm) => {
   return async (dispatch: AppDispatch) => {
     try {
       dispatch(setCreateProductRequest());

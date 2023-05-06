@@ -3,6 +3,7 @@ import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import webAuthReducer from './slices/web/authSlice';
 import adminAuthSlice from './slices/admin/authSlice';
 import adminCategorySlice from './slices/admin/categorySlice';
+import adminColorSlice from './slices/admin/colorSlice';
 import webProductsReducer from './slices/web/productsSlice';
 import { ToolkitStore } from '@reduxjs/toolkit/src/configureStore';
 
@@ -12,6 +13,7 @@ export function makeStore(): ToolkitStore {
       webAuth: webAuthReducer,
       adminAuth: adminAuthSlice,
       adminCategory: adminCategorySlice,
+      adminColor: adminColorSlice,
       webProducts: webProductsReducer,
     },
   });

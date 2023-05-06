@@ -7,34 +7,42 @@ import { ReactElement, useCallback, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import Input from '../../../../formElements/input';
 import AuthorizedAdminLayout from '../../../../layout/admin/authorizedAdminLayout';
-import { TCreateProduct } from '../../../../type/product';
+import { TCreateProductForm } from '../../../../type/product';
 import { createProductRequest } from '../../../../slices/admin/productSlice';
 import { defaultValue } from './utils';
 import TextArea from '../../../../formElements/textArea';
 import SelectOption from '../../../../formElements/selectOption';
+import {
+  getColors,
+  useSelectColors,
+} from '../../../../slices/admin/colorSlice';
+import { TCategory } from '../../../../type/admin/category';
+import { TColor } from '../../../../type/color';
 
 const CreateProduct = (): JSX.Element => {
   const dispatch = useDispatch();
 
   const categories = useSelector(useSelectCategories);
+  const colors = useSelector(useSelectColors);
 
   useEffect(() => {
     dispatch(getCategories());
+    dispatch(getColors());
   }, [dispatch]);
 
-  const { handleSubmit, control, register, setValue } = useForm<TCreateProduct>(
-    {
+  const { handleSubmit, control, register, setValue } =
+    useForm<TCreateProductForm>({
       defaultValues: { ...defaultValue },
       mode: 'onChange',
-    }
-  );
+    });
 
   useEffect(() => {
     categories.length && setValue('categoryId', categories[0].id);
-  }, [categories]);
+    colors.length && setValue('colorId', colors[0].id);
+  }, [categories, colors, setValue]);
 
   const onSubmit = useCallback(
-    (data: TCreateProduct): void => {
+    (data: TCreateProductForm): void => {
       dispatch(createProductRequest(data));
     },
     [dispatch]
@@ -201,7 +209,17 @@ const CreateProduct = (): JSX.Element => {
                             name="categoryId"
                             id="parentCategory"
                             className="custom-select rounded-0"
-                            options={categories}
+                            options={
+                              <>
+                                {categories?.map(
+                                  (option: TCategory, index: number) => (
+                                    <option key={index} value={option.id}>
+                                      {option.translations.am.name}
+                                    </option>
+                                  )
+                                )}
+                              </>
+                            }
                           />
                         </div>
                       </div>
@@ -215,7 +233,17 @@ const CreateProduct = (): JSX.Element => {
                             name="colorId"
                             id="colorId"
                             className="custom-select rounded-0"
-                            options={categories}
+                            options={
+                              <>
+                                {colors?.map(
+                                  (option: TColor, index: number) => (
+                                    <option key={index} value={option.id}>
+                                      {option.translations.am.name}
+                                    </option>
+                                  )
+                                )}
+                              </>
+                            }
                           />
                         </div>
                       </div>

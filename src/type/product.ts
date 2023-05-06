@@ -1,21 +1,17 @@
-export type TCreateProduct = {
+import { TLanguageKeys } from './language';
+
+export type TCreateProductForm = {
   countInStock: string;
   price: string;
   categoryId: string;
   colorId: string;
   name: {
-    am: string;
-    ru: string;
-    en: string;
+    [key in TLanguageKeys]: string;
   };
   description: {
-    am: string;
-    ru: string;
-    en: string;
+    [key in TLanguageKeys]: string;
   };
   title: {
-    am: string;
-    ru: string;
-    en: string;
+    [key in TLanguageKeys]: string;
   };
 };

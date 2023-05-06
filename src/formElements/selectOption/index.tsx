@@ -4,7 +4,7 @@ import { useController, UseControllerProps } from 'react-hook-form';
 interface ISelectOption extends UseControllerProps<any> {
   withError?: boolean;
   id?: string;
-  options: Array<any>;
+  options: JSX.Element;
   className?: string;
 }
 
@@ -18,12 +18,7 @@ const SelectOption = (props: ISelectOption): JSX.Element => {
         {...(props.id && { id: props.id })}
         className={props.className && props.className}
       >
-        {/*@TODO add types*/}
-        {props.options?.map((option: any, index: number) => (
-          <option key={index} value={option.id}>
-            {option.translations[0].name}
-          </option>
-        ))}
+        {props.options}
       </select>
       {props.withError && <p>{fieldState.error && 'invalid'}</p>}
     </>

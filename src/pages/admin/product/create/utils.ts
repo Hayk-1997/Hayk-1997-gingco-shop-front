@@ -1,6 +1,6 @@
-import { TCreateProduct } from '../../../../type/product';
+import { TCreateProductForm } from '../../../../type/product';
 
-export const defaultValue: TCreateProduct = {
+export const defaultValue: TCreateProductForm = {
   countInStock: '',
   price: '',
   categoryId: '',
