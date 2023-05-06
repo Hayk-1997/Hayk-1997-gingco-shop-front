@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { AppDispatch, AppState } from '../../store';
 import ApiInstance from '../../services/axios';
-import { TCreateCategory } from '../../type/category';
+import { TCreateCategory } from '../../type/admin/category';
 
 type TInitialState = {
   categories: [];

@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import { GetServerSideProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { TLanguageKeys } from '../../type/language';
 
 export const getServerSideProps: GetServerSideProps<any> = async ({
   locale,
@@ -51,7 +52,10 @@ const ProductPage = (props: any): JSX.Element => {
         />
         <CategoriesNavBar />
         {isGetProductSuccess && (
-          <ProductDetails product={product} lang={router.locale} />
+          <ProductDetails
+            product={product}
+            lang={router.locale as TLanguageKeys}
+          />
         )}
       </div>
     </div>

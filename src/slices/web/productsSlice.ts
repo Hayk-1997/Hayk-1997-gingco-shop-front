@@ -64,7 +64,7 @@ export default productsSlice.reducer;
 
 export const useSelectProducts = (state: AppState): TProduct[] =>
   state.webProducts.products;
-export const useSelectProduct = (state: AppState): TProduct[] =>
+export const useSelectProduct = (state: AppState): TProduct =>
   state.webProducts.product;
 export const useSelectGetProductSuccess = (state: AppState): boolean =>
   state.webProducts.isGetProductSuccess;

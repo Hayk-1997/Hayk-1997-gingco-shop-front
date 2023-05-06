@@ -4,5 +4,4 @@ export type TLanguage = {
   hy: string;
 };
 
-
-export type TEntityLanguage = 'en' | 'am' | 'ru';
+export type TLanguageKeys = keyof TLanguage;

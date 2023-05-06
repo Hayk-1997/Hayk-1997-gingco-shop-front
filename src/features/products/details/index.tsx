@@ -1,16 +1,20 @@
-import { useMemo } from 'react';
-import { TProductImage } from '../../../type/web/products';
+import React from 'react';
+import { TProduct, TProductImage } from '../../../type/web/products';
 import Image from 'next/image';
+import { useMainEntityImage } from '../../../hooks/web/useMainEntityImage';
+import { TLanguageKeys } from '../../../type/language';
+
+interface TProductDetails {
+  product: TProduct;
+  lang: TLanguageKeys;
+}
 
 //@TODO need to separate this component
-const ProductDetails = (props: any): JSX.Element => {
-  const { product, lang } = props;
-
-  //@TODO need to check product exist above and check in parent component
-  const getMainPhoto = useMemo(() => {
-    const main = product?.images?.find((img: TProductImage) => img.main);
-    return main?.url || '';
-  }, [product.images]);
+const ProductDetails: React.FC<TProductDetails> = ({
+  product,
+  lang,
+}): JSX.Element => {
+  const getMainPhoto = useMainEntityImage(product.images);
 
   return (
     <div className="col-sm-8 col-lg-9 mtb_20">
@@ -88,7 +92,7 @@ const ProductDetails = (props: any): JSX.Element => {
             <div className="form-group">
               <div className="row">
                 <div className="Color col-md-6">
-                  <label>Color</label>
+                  <label htmlFor="select-by-color">Color</label>
                   <select
                     name="product_color"
                     id="select-by-color"
@@ -103,8 +107,9 @@ const ProductDetails = (props: any): JSX.Element => {
               </div>
             </div>
             <div className="qty mt_30 form-group2">
-              <label>Qty</label>
+              <label htmlFor="quantity">Qty</label>
               <input
+                id="quantity"
                 name="product_quantity"
                 min={1}
                 defaultValue={1}

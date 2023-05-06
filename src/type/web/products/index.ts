@@ -1,4 +1,4 @@
-import { TEntityLanguage } from '../../language';
+import { TLanguageKeys } from '../../language';
 
 export type TProduct = {
   id: number;
@@ -19,7 +19,7 @@ type TTranslation = {
 };
 
 export type TProductTranslations = {
-  [key in TEntityLanguage]: TTranslation;
+  [key in TLanguageKeys]: TTranslation;
 };
 
 export type TProductImage = {

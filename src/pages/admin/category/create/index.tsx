@@ -1,7 +1,7 @@
 import { ReactElement, useCallback, useEffect } from 'react';
 import AuthorizedAdminLayout from '../../../../layout/admin/authorizedAdminLayout';
 import { useForm } from 'react-hook-form';
-import { TCreateCategory } from '../../../../type/category';
+import { TCreateCategory } from '../../../../type/admin/category';
 import { useDispatch, useSelector } from 'react-redux';
 import Input from '../../../../formElements/input';
 import {
