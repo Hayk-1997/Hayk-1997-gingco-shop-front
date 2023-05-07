@@ -48,7 +48,7 @@ export default colorSlice.reducer;
 export const useSelectColors = (state: AppState): TColor[] =>
   state.adminColor.colors;
 
-export const getColors = () => {
+export const getColorsRequest = () => {
   return async (dispatch: AppDispatch) => {
     try {
       dispatch(setGetColorsRequest);

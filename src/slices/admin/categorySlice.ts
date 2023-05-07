@@ -55,7 +55,7 @@ export const {
 
 export default adminCategorySlice.reducer;
 
-export const useSelectCategories = (state: AppState) =>
+export const useSelectCategories = (state: AppState): TCategory[] =>
   state.adminCategory.categories;
 
 export const createCategoryRequest = (data: TCreateCategoryForm) => {
@@ -72,7 +72,7 @@ export const createCategoryRequest = (data: TCreateCategoryForm) => {
   };
 };
 
-export const getCategories = () => {
+export const getCategoriesRequest = () => {
   return async (dispatch: AppDispatch) => {
     try {
       dispatch(setGetCategoriesRequest());

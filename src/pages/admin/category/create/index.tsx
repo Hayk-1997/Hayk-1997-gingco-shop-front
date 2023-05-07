@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Input from '../../../../formElements/input';
 import {
   createCategoryRequest,
-  getCategories,
+  getCategoriesRequest,
   useSelectCategories,
 } from '../../../../slices/admin/categorySlice';
 
@@ -16,7 +16,7 @@ const CreateCategory = (): JSX.Element => {
   const categories = useSelector(useSelectCategories);
 
   useEffect(() => {
-    dispatch(getCategories());
+    dispatch(getCategoriesRequest());
   }, [dispatch]);
 
   const { handleSubmit, control, register } = useForm<TCreateCategoryForm>({

@@ -4,6 +4,7 @@ import webAuthReducer from './slices/web/authSlice';
 import adminAuthSlice from './slices/admin/authSlice';
 import adminCategorySlice from './slices/admin/categorySlice';
 import adminColorSlice from './slices/admin/colorSlice';
+import adminProductSlice from './slices/admin/productSlice';
 import webProductsReducer from './slices/web/productsSlice';
 import { ToolkitStore } from '@reduxjs/toolkit/src/configureStore';
 
@@ -14,6 +15,7 @@ export function makeStore(): ToolkitStore {
       adminAuth: adminAuthSlice,
       adminCategory: adminCategorySlice,
       adminColor: adminColorSlice,
+      adminProduct: adminProductSlice,
       webProducts: webProductsReducer,
     },
   });

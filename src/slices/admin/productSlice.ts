@@ -8,12 +8,14 @@ type TInitialState = {
   products: [];
   createProductSuccess: boolean;
   createProductError: boolean;
+  product: TProduct | null;
 };
 
 const initialState: TInitialState = {
   products: [],
   createProductSuccess: false,
   createProductError: false,
+  product: null,
 };
 
 export const adminProductSlice = createSlice({
@@ -41,6 +43,15 @@ export const adminProductSlice = createSlice({
       state.createProductSuccess = false;
       state.createProductError = true;
     },
+    setGetProductByIdRequest: (state) => {
+      state.product = null;
+    },
+    setGetProductByIdSuccess: (state, action) => {
+      state.product = action.payload;
+    },
+    setGetProductByIdError: (state) => {
+      state.product = null;
+    },
   },
 });
 
@@ -52,12 +63,16 @@ export const {
   setCreateProductRequest,
   setCreateProductSuccess,
   setCreateProductError,
+
+  setGetProductByIdRequest,
+  setGetProductByIdSuccess,
+  setGetProductByIdError,
 } = adminProductSlice.actions;
 
 export default adminProductSlice.reducer;
 
-export const useSelectProducts = (state: AppState): TProduct[] =>
-  state.adminCategory.categories;
+export const useSelectProduct = (state: AppState): TProduct =>
+  state.adminProduct.product;
 
 export const createProductRequest = (data: TCreateProductForm) => {
   return async (dispatch: AppDispatch) => {
@@ -73,12 +88,24 @@ export const createProductRequest = (data: TCreateProductForm) => {
   };
 };
 
-export const getProducts = () => {
+export const getProductsByIdRequest = (id: string) => {
+  return async (dispatch: AppDispatch) => {
+    try {
+      dispatch(setGetProductByIdRequest());
+      const response = await ApiInstance.get(`products/${id}`);
+      dispatch(setGetProductByIdSuccess(response.data.product));
+    } catch (e) {
+      dispatch(setGetProductByIdError());
+    }
+  };
+};
+
+export const getProductsRequest = () => {
   return async (dispatch: AppDispatch) => {
     try {
       dispatch(setGetProductsRequest());
       const response = await ApiInstance.get('products');
-      dispatch(setGetProductsSuccess(response.data.categories));
+      dispatch(setGetProductsSuccess(response.data.products));
     } catch (e) {
       dispatch(setGetProductsError());
     }

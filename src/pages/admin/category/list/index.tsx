@@ -1,7 +1,7 @@
 import { ReactElement, useEffect } from 'react';
 import AuthorizedAdminLayout from '../../../../layout/admin/authorizedAdminLayout';
 import {
-  getCategories,
+  getCategoriesRequest,
   useSelectCategories,
 } from '../../../../slices/admin/categorySlice';
 import { useDispatch, useSelector } from 'react-redux';
@@ -12,7 +12,7 @@ const CategoryList = (): JSX.Element => {
   const categories = useSelector(useSelectCategories);
 
   useEffect(() => {
-    dispatch(getCategories());
+    dispatch(getCategoriesRequest());
   }, [dispatch]);
 
   return (

@@ -1,10 +1,11 @@
 import { TLanguageKeys } from './language';
+import { TProductImage } from './web/products';
 
 export type TCreateProductForm = {
-  countInStock: string;
-  price: string;
-  categoryId: string;
-  colorId: string;
+  countInStock: number | null;
+  price: number | null;
+  categoryId: number | null;
+  colorId: number | null;
   name: {
     [key in TLanguageKeys]: string;
   };
@@ -15,3 +16,7 @@ export type TCreateProductForm = {
     [key in TLanguageKeys]: string;
   };
 };
+
+export type TUpdateProductForm = {
+  images: TProductImage[];
+} & TCreateProductForm;
