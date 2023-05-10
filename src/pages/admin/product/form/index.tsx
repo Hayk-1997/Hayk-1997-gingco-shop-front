@@ -30,8 +30,6 @@ const Form: React.FC<IForm> = ({
   colors,
   hasFIleUpload = false,
 }) => {
-  console.log(control._defaultValues);
-
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="card-body">
