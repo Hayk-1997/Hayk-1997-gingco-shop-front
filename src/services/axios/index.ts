@@ -11,12 +11,8 @@ ApiInstance.interceptors.request.use(
   function (config) {
     if (typeof window !== 'undefined') {
       const token = getUserToken();
-
       if (token) {
-        return {
-          ...config,
-          Authorization: `Bearer ${token}`,
-        };
+        config.headers['Authorization'] = `Bearer ${token}`;
       }
     }
     return config;

@@ -1,12 +1,12 @@
 import { ReactElement, useCallback, useEffect } from 'react';
 import AuthorizedAdminLayout from '../../../../layout/admin/authorizedAdminLayout';
 import { useForm } from 'react-hook-form';
-import { TCreateCategory } from '../../../../type/admin/category';
+import { TCreateCategoryForm } from '../../../../type/admin/category';
 import { useDispatch, useSelector } from 'react-redux';
 import Input from '../../../../formElements/input';
 import {
   createCategoryRequest,
-  getCategories,
+  getCategoriesRequest,
   useSelectCategories,
 } from '../../../../slices/admin/categorySlice';
 
@@ -16,10 +16,10 @@ const CreateCategory = (): JSX.Element => {
   const categories = useSelector(useSelectCategories);
 
   useEffect(() => {
-    dispatch(getCategories());
+    dispatch(getCategoriesRequest());
   }, [dispatch]);
 
-  const { handleSubmit, control, register } = useForm<TCreateCategory>({
+  const { handleSubmit, control, register } = useForm<TCreateCategoryForm>({
     defaultValues: {
       parentId: null,
       name: {
@@ -32,7 +32,7 @@ const CreateCategory = (): JSX.Element => {
   });
 
   const onSubmit = useCallback(
-    (data: TCreateCategory): void => {
+    (data: TCreateCategoryForm): void => {
       dispatch(
         createCategoryRequest({ ...data, parentId: Number(data.parentId) })
       );
