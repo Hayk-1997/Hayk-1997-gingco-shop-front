@@ -1,8 +1,9 @@
 import React from 'react';
-import { TProduct, TProductImage } from '../../../type/web/products';
+import { TProduct } from '../../../type/web/products';
 import Image from 'next/image';
 import { useMainEntityImage } from '../../../hooks/web/useMainEntityImage';
 import { TLanguageKeys } from '../../../type/language';
+import Thumbnail from '../thumbnail';
 
 interface TProductDetails {
   product: TProduct;
@@ -31,48 +32,7 @@ const ProductDetails: React.FC<TProductDetails> = ({
               />
             </a>
           </div>
-          <div
-            id="product-thumbnail"
-            className="owl-carousel owl-loaded owl-drag"
-          >
-            <div className="owl-stage-outer">
-              <div
-                className="owl-stage"
-                style={{
-                  transform: 'translate3d(0px, 0px, 0px)',
-                  transition: 'all 0s ease 0s',
-                  width: '597px',
-                }}
-              >
-                {product?.images?.map((image: TProductImage) => {
-                  return (
-                    <div
-                      className="owl-item active"
-                      key={image.url}
-                      style={{ width: '85.25px' }}
-                    >
-                      <div className="item">
-                        <div className="image-additional">
-                          <a
-                            className="thumbnail"
-                            href={image.url}
-                            data-fancybox="group1"
-                          >
-                            <Image
-                              src={image.url}
-                              alt="main_banner"
-                              width={1903}
-                              height={1903}
-                            />
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
+          {product?.images && <Thumbnail images={product.images} />}
         </div>
         <div className="col-md-6 prodetail caption product-thumb">
           <h4 data-name="product_name" className="product-name">

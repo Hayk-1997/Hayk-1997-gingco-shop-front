@@ -152,16 +152,16 @@ const CategoryList = (): JSX.Element => {
                     <tbody key={index}>
                       <tr className="jsgrid-row">
                         <td className="jsgrid-cell" style={{ width: 150 }}>
-                          {category.translations[0].name}
+                          {category.translations.am.name}
                         </td>
                         <td
                           className="jsgrid-cell jsgrid-align-right"
                           style={{ width: 50 }}
                         >
-                          {category.translations[1].name}
+                          {category.translations.ru.name}
                         </td>
                         <td className="jsgrid-cell" style={{ width: 200 }}>
-                          {category.translations[2].name}
+                          {category.translations.en.name}
                         </td>
                         <td
                           className="jsgrid-cell jsgrid-align-center"
