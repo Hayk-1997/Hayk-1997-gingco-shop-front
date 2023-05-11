@@ -1,5 +1,5 @@
-import { TProduct } from '../../type/web/products';
-import { TCreateProductForm, TUpdateProductForm } from '../../type/product';
+import { TProduct } from '../../../type/web/products';
+import { TCreateProductForm, TUpdateProductForm } from '../../../type/product';
 
 export const resolveProductFormValues = (
   product: TProduct

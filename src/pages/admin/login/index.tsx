@@ -97,10 +97,6 @@ const LoginPage = (): JSX.Element => {
 };
 
 LoginPage.getLayout = function getLayout(page: ReactElement) {
-  return (
-    <LoginPageLayout title="Login" className="login-page">
-      {page}
-    </LoginPageLayout>
-  );
+  return <LoginPageLayout>{page}</LoginPageLayout>;
 };
 export default LoginPage;

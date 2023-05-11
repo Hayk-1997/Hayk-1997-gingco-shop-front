@@ -11,3 +11,10 @@ export type TColor = {
     };
   };
 };
+
+export type TCreateColorForm = {
+  code: string;
+  name: {
+    [key in TLanguageKeys]: string;
+  };
+};

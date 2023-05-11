@@ -3,11 +3,14 @@ import { useRouter } from 'next/router';
 import ApiInstance from '../../services/axios';
 import { clearToken, getUserToken } from '../../helpers/auth';
 
-// interface IUseAuth {
-//   middleware: string;
-//   redirectIfAuthenticated?: string;
-// }
-export const useAdminAuth = (): any => {
+interface IUseAuth {
+  middleware: string;
+  redirectIfAuthenticated?: string;
+}
+export const useAdminAuth = ({
+  middleware,
+  redirectIfAuthenticated,
+}: IUseAuth): any => {
   const router = useRouter();
 
   const {

@@ -1,4 +1,3 @@
-import Form from '../form';
 import { useForm } from 'react-hook-form';
 import { TUpdateProductForm } from '../../../../type/product';
 import { useDispatch, useSelector } from 'react-redux';
@@ -17,7 +16,8 @@ import {
 } from '../../../../slices/admin/productSlice';
 import AuthorizedAdminLayout from '../../../../layout/admin/authorizedAdminLayout';
 import { useRouter } from 'next/router';
-import { defaultValue, resolveProductFormValues } from '../../utils';
+import { defaultValue, resolveProductFormValues } from '../utils';
+import Form from '../../../../features/admin/product/form';
 
 const EditProduct = (): JSX.Element => {
   const dispatch = useDispatch();
