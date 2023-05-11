@@ -13,8 +13,6 @@ const AuthorizedAdminLayout = ({
 }: ILayout): JSX.Element => {
   const { user } = useAdminAuth({ middleware: 'auth' });
 
-  console.log('user', user);
-
   useEffect(() => {
     if (className) {
       document.body.classList.add('hold-transition');
