@@ -7,12 +7,18 @@ type TInitialState = {
   categories: TCategory[];
   createCategorySuccess: boolean;
   createCategoryError: boolean;
+  isDeletingCategory: boolean,
+  isDeletedCategorySuccess: boolean,
+  isDeletedCategoryFailure: boolean,
 };
 
 const initialState: TInitialState = {
   categories: [],
   createCategorySuccess: false,
   createCategoryError: false,
+  isDeletingCategory: false,
+  isDeletedCategorySuccess: false,
+  isDeletedCategoryFailure: false,
 };
 
 export const adminCategorySlice = createSlice({
@@ -40,6 +46,21 @@ export const adminCategorySlice = createSlice({
       state.createCategorySuccess = false;
       state.createCategoryError = true;
     },
+    setDeleteCategoryRequest: (state) => {
+      state.isDeletingCategory = true;
+      state.isDeletedCategorySuccess = false;
+      state.isDeletedCategoryFailure = false;
+    },
+    setDeleteCategorySuccess: (state) => {
+      state.isDeletingCategory = false;
+      state.isDeletedCategorySuccess = true;
+      state.isDeletedCategoryFailure = false;
+    },
+    setDeleteCategoryError: (state) => {
+      state.isDeletingCategory = false;
+      state.isDeletedCategorySuccess = false;
+      state.isDeletedCategoryFailure = true;
+    },
   },
 });
 
@@ -51,6 +72,10 @@ export const {
   setCreateCategoryRequest,
   setCreateCategorySuccess,
   setCreateCategoryError,
+
+  setDeleteCategoryRequest,
+  setDeleteCategorySuccess,
+  setDeleteCategoryError,
 } = adminCategorySlice.actions;
 
 export default adminCategorySlice.reducer;
@@ -80,6 +105,18 @@ export const getCategoriesRequest = () => {
       dispatch(setGetCategoriesSuccess(response.data.categories));
     } catch (e) {
       dispatch(setGetCategoriesError());
+    }
+  };
+};
+
+export const deleteCategory = (id: number) => {
+  return async (dispatch: AppDispatch) => {
+    try {
+      dispatch(setDeleteCategoryRequest());
+      const response = await ApiInstance.delete(`categories/${id}`);
+      dispatch(setDeleteCategorySuccess(response.data));
+    } catch (e) {
+      dispatch(setDeleteCategoryError());
     }
   };
 };

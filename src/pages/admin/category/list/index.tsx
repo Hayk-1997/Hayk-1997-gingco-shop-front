@@ -3,6 +3,7 @@ import AuthorizedAdminLayout from '../../../../layout/admin/authorizedAdminLayou
 import {
   getCategoriesRequest,
   useSelectCategories,
+  deleteCategory,
 } from '../../../../slices/admin/categorySlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { CustomTable } from '../../../../features/customTable';
@@ -25,7 +26,7 @@ const CategoryList = (): JSX.Element => {
         console.log('edit', id)
       },
       onDelete: (id: number) => {
-        console.log('delete', id)
+        dispatch(deleteCategory(id));
       },
     }
   }
