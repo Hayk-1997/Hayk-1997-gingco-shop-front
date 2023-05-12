@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table, Row, Col, Tooltip, User, Text } from '@nextui-org/react';
+import { Table, Row, Col, Tooltip, Text } from '@nextui-org/react';
 import Swal from 'sweetalert2'
 import { IconButton } from './IconButton';
 import { EditIcon } from './EditIcon';
@@ -70,7 +70,7 @@ export const CustomTable = ({ tableProps }: any) => {
       cancelButtonAriaLabel: 'Thumbs down'
     })
     if (isConfirmed) {
-      actions.onEdit(id)
+      actions.onDelete(id)
     }
   }
 
@@ -107,8 +107,8 @@ export const CustomTable = ({ tableProps }: any) => {
         shadow
         noMargin
         align="center"
-        rowsPerPage={3}
-        onPageChange={(page) => console.log({ page })}
+        rowsPerPage={10}
+        onPageChange={(page) => {}}
       />
     </Table>
   )
