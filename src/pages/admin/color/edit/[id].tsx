@@ -1,27 +1,41 @@
-import { ReactElement, useCallback } from 'react';
+import { ReactElement, useCallback, useEffect } from 'react';
 import AuthorizedAdminLayout from '../../../../layout/admin/authorizedAdminLayout';
 import Form from '../../../../features/admin/color/form';
 import { useForm } from 'react-hook-form';
 import { TCreateColorForm } from '../../../../type/color';
-import { defaultValue } from '../utils';
-import { useDispatch } from 'react-redux';
-import { createColorRequest } from '../../../../slices/admin/colorSlice';
+import { defaultValue, resolveColorFormValues } from '../utils';
+import { useRouter } from 'next/router';
+import {
+  getColorByIdRequest,
+  useSelectColor,
+} from '../../../../slices/admin/colorSlice';
+import { useDispatch, useSelector } from 'react-redux';
 
-const CreateColor = (): JSX.Element => {
+const EditColor = (): JSX.Element => {
+  const router = useRouter();
   const dispatch = useDispatch();
-  const { handleSubmit, control, watch, register } = useForm<TCreateColorForm>({
+  const color = useSelector(useSelectColor);
+
+  const { handleSubmit, control, reset, register } = useForm<TCreateColorForm>({
     defaultValues: { ...defaultValue },
     mode: 'onChange',
   });
 
-  watch(['code']);
+  useEffect(() => {
+    if (router.query.id) {
+      dispatch(getColorByIdRequest(router.query.id as string));
+    }
+  }, [dispatch, router.query.id]);
 
-  const onSubmit = useCallback(
-    (data: TCreateColorForm): void => {
-      dispatch(createColorRequest(data));
-    },
-    [dispatch]
-  );
+  useEffect(() => {
+    if (color) {
+      reset(resolveColorFormValues(color));
+    }
+  }, [color, reset]);
+
+  const onSubmit = useCallback((data: TCreateColorForm): void => {
+    //
+  }, []);
 
   return (
     <div className="content-wrapper">
@@ -46,8 +60,8 @@ const CreateColor = (): JSX.Element => {
   );
 };
 
-CreateColor.getLayout = function getLayout(page: ReactElement) {
+EditColor.getLayout = function getLayout(page: ReactElement) {
   return <AuthorizedAdminLayout>{page}</AuthorizedAdminLayout>;
 };
 
-export default CreateColor;
+export default EditColor;
