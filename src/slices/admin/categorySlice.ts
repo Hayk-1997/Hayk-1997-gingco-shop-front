@@ -76,7 +76,7 @@ export const getCategories = () => {
   return async (dispatch: AppDispatch) => {
     try {
       dispatch(setGetCategoriesRequest());
-      const response = await ApiInstance.get('categories');
+      const response = await ApiInstance.get('categories/list');
       dispatch(setGetCategoriesSuccess(response.data.categories));
     } catch (e) {
       dispatch(setGetCategoriesError());
