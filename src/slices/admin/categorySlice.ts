@@ -10,6 +10,8 @@ type TInitialState = {
   isDeletingCategory: boolean,
   isDeletedCategorySuccess: boolean,
   isDeletedCategoryFailure: boolean,
+  successMessage: string,
+  errorMessage: string,
 };
 
 const initialState: TInitialState = {
@@ -19,6 +21,8 @@ const initialState: TInitialState = {
   isDeletingCategory: false,
   isDeletedCategorySuccess: false,
   isDeletedCategoryFailure: false,
+  successMessage: '',
+  errorMessage: '',
 };
 
 export const adminCategorySlice = createSlice({
@@ -51,10 +55,12 @@ export const adminCategorySlice = createSlice({
       state.isDeletedCategorySuccess = false;
       state.isDeletedCategoryFailure = false;
     },
-    setDeleteCategorySuccess: (state) => {
+    setDeleteCategorySuccess: (state, { payload }) => {
+      state.categories = state.categories.filter(({ id }) => id !== payload.id);
       state.isDeletingCategory = false;
       state.isDeletedCategorySuccess = true;
       state.isDeletedCategoryFailure = false;
+      state.successMessage = payload.message;
     },
     setDeleteCategoryError: (state) => {
       state.isDeletingCategory = false;
@@ -114,7 +120,7 @@ export const deleteCategory = (id: number) => {
     try {
       dispatch(setDeleteCategoryRequest());
       const response = await ApiInstance.delete(`categories/${id}`);
-      dispatch(setDeleteCategorySuccess(response.data));
+      dispatch(setDeleteCategorySuccess({ id, message: response.data.message }));
     } catch (e) {
       dispatch(setDeleteCategoryError());
     }
