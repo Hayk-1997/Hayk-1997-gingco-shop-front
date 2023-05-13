@@ -2,14 +2,15 @@ import { createSlice } from '@reduxjs/toolkit';
 import { AppDispatch, AppState } from '../../store';
 import ApiInstance from '../../services/axios';
 import { TCategory, TCreateCategoryForm } from '../../type/admin/category';
+import { catchApiError, showMessage } from "../../helpers";
 
 type TInitialState = {
   categories: TCategory[];
   createCategorySuccess: boolean;
   createCategoryError: boolean;
   isDeletingCategory: boolean,
-  isDeletedCategorySuccess: boolean,
-  isDeletedCategoryFailure: boolean,
+  isDeleteCategorySuccess: boolean,
+  isDeleteCategoryFailure: boolean,
   successMessage: string,
   errorMessage: string,
 };
@@ -19,8 +20,8 @@ const initialState: TInitialState = {
   createCategorySuccess: false,
   createCategoryError: false,
   isDeletingCategory: false,
-  isDeletedCategorySuccess: false,
-  isDeletedCategoryFailure: false,
+  isDeleteCategorySuccess: false,
+  isDeleteCategoryFailure: false,
   successMessage: '',
   errorMessage: '',
 };
@@ -52,20 +53,23 @@ export const adminCategorySlice = createSlice({
     },
     setDeleteCategoryRequest: (state) => {
       state.isDeletingCategory = true;
-      state.isDeletedCategorySuccess = false;
-      state.isDeletedCategoryFailure = false;
+      state.isDeleteCategorySuccess = false;
+      state.isDeleteCategoryFailure = false;
     },
     setDeleteCategorySuccess: (state, { payload }) => {
       state.categories = state.categories.filter(({ id }) => id !== payload.id);
       state.isDeletingCategory = false;
-      state.isDeletedCategorySuccess = true;
-      state.isDeletedCategoryFailure = false;
+      state.isDeleteCategorySuccess = true;
+      state.isDeleteCategoryFailure = false;
       state.successMessage = payload.message;
+      showMessage(payload.message, 'success')
     },
-    setDeleteCategoryError: (state) => {
+    setDeleteCategoryError: (state, { payload }) => {
       state.isDeletingCategory = false;
-      state.isDeletedCategorySuccess = false;
-      state.isDeletedCategoryFailure = true;
+      state.isDeleteCategorySuccess = false;
+      state.isDeleteCategoryFailure = true;
+
+      showMessage(payload, 'error')
     },
   },
 });
@@ -122,7 +126,8 @@ export const deleteCategory = (id: number) => {
       const response = await ApiInstance.delete(`categories/${id}`);
       dispatch(setDeleteCategorySuccess({ id, message: response.data.message }));
     } catch (e) {
-      dispatch(setDeleteCategoryError());
+      const messages = catchApiError(e);
+      dispatch(setDeleteCategoryError(messages));
     }
   };
 };

@@ -3,6 +3,8 @@ import type { AppProps } from 'next/app';
 import { NextPage } from 'next';
 import { ReactElement, ReactNode } from 'react';
 import { appWithTranslation } from 'next-i18next';
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
 
 import store from '../store';
 
@@ -19,7 +21,10 @@ function MyApp({ Component, pageProps }: MyAppProps) {
   const getLayout = Component.getLayout || ((page) => page);
 
   return (
-    <Provider store={store}>{getLayout(<Component {...pageProps} />)}</Provider>
+    <Provider store={store}>
+      {getLayout(<Component {...pageProps} />)}
+      <ToastContainer newestOnTop />
+    </Provider>
   );
 }
 
