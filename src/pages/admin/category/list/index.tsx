@@ -1,7 +1,7 @@
 import { ReactElement, useEffect } from 'react';
 import AuthorizedAdminLayout from '../../../../layout/admin/authorizedAdminLayout';
 import {
-  getCategories,
+  getCategoriesRequest,
   useSelectCategories,
   deleteCategory,
 } from '../../../../slices/admin/categorySlice';
@@ -15,7 +15,7 @@ const CategoryList = (): JSX.Element => {
   const categories = useSelector(useSelectCategories);
 
   useEffect(() => {
-    dispatch(getCategories());
+    dispatch(getCategoriesRequest());
   }, [dispatch]);
 
   const tableProps = {

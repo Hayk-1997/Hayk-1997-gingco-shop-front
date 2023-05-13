@@ -1,10 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { AppDispatch, AppState } from '../../store';
 import ApiInstance from '../../services/axios';
-import { TCreateCategory } from '../../type/admin/category';
+import { TCategory, TCreateCategoryForm } from '../../type/admin/category';
 
 type TInitialState = {
-  categories: [];
+  categories: TCategory[];
   createCategorySuccess: boolean;
   createCategoryError: boolean;
   isDeletingCategory: boolean,
@@ -28,7 +28,7 @@ export const adminCategorySlice = createSlice({
     setGetCategoriesRequest: (state) => {
       state.categories = [];
     },
-    setGetCategoriesSuccess: (state, action) => {
+    setGetCategoriesSuccess: (state, action: { payload: TCategory[] }) => {
       state.categories = action.payload;
     },
     setGetCategoriesError: (state) => {
@@ -80,10 +80,10 @@ export const {
 
 export default adminCategorySlice.reducer;
 
-export const useSelectCategories = (state: AppState) =>
+export const useSelectCategories = (state: AppState): TCategory[] =>
   state.adminCategory.categories;
 
-export const createCategoryRequest = (data: TCreateCategory) => {
+export const createCategoryRequest = (data: TCreateCategoryForm) => {
   return async (dispatch: AppDispatch) => {
     try {
       dispatch(setCreateCategoryRequest());
@@ -97,7 +97,7 @@ export const createCategoryRequest = (data: TCreateCategory) => {
   };
 };
 
-export const getCategories = () => {
+export const getCategoriesRequest = () => {
   return async (dispatch: AppDispatch) => {
     try {
       dispatch(setGetCategoriesRequest());

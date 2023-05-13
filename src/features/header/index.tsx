@@ -1,7 +1,10 @@
 import Image from 'next/image';
 import { TopHeader } from './topHeader';
+import { useState } from 'react';
 
-export const Header = () => {
+export const Header = (): JSX.Element => {
+  const [value, setValue] = useState<string>('');
+
   return (
     <header id="header">
       <TopHeader />
@@ -9,16 +12,15 @@ export const Header = () => {
         <div className="container">
           <div className="row">
             <div className="col-xs-12 col-sm-4">
-              <div className="main-search mt_40">
+              <div className="main-search">
                 <input
                   id="search-input"
-                  name="search"
-                  value=""
+                  value={value}
                   placeholder="Search"
                   className="form-control input-lg"
                   autoComplete="off"
                   type="text"
-                  onChange={(e) => console.log(e.target.value)}
+                  onChange={(e) => setValue(e.target.value)}
                 />
                 <span className="input-group-btn">
                   <button type="button" className="btn btn-default btn-lg">
@@ -28,17 +30,14 @@ export const Header = () => {
               </div>
             </div>
             <div className="navbar-header col-xs-6 col-sm-4">
-              <a
-                className="navbar-brand"
-                href="https://html.lionode.com/darklook/index.html"
-              >
+              <div className="navbar-brand">
                 <Image
                   src="/assets/images/logo.png"
                   alt="image"
                   width={233}
                   height={57}
                 />
-              </a>
+              </div>
             </div>
             <div className="col-xs-6 col-sm-4 shopcart">
               <div id="cart" className="btn-group btn-block mtb_40">
@@ -59,19 +58,10 @@ export const Header = () => {
                     <table className="table table-striped">
                       <tbody>
                         <tr>
-                          <td className="text-center">
-                            <a href="https://html.lionode.com/darklook/#">
-                              <img
-                                src="./70x84.jpg"
-                                alt="iPod Classic"
-                                title="iPod Classic"
-                              />
-                            </a>
-                          </td>
                           <td className="text-left product-name">
                             <a href="https://html.lionode.com/darklook/#">
                               MacBook Pro
-                            </a>{' '}
+                            </a>
                             <span className="text-left price">$20.00</span>
                             <input
                               className="cart-qty"

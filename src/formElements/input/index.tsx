@@ -1,11 +1,14 @@
 import { memo } from 'react';
 import { useController, UseControllerProps } from 'react-hook-form';
+import { UseFormRegister } from 'react-hook-form/dist/types/form';
 
 interface InputProps extends UseControllerProps<any> {
   type: string;
   placeholder: string;
   withError?: boolean;
   id?: string;
+  register?: UseFormRegister<any>;
+  pattern?: object;
 }
 
 const Input = (props: InputProps): JSX.Element => {
@@ -19,6 +22,12 @@ const Input = (props: InputProps): JSX.Element => {
         placeholder={props.placeholder}
         type={props.type}
         {...(props.id && { id: props.id })}
+        {...(props.register && {
+          ...props.register(field.name, {
+            ...props.pattern,
+          }),
+        })}
+        {...(props.type === 'number' && { min: 0 })}
       />
       {props.withError && <p>{fieldState.error && 'invalid'}</p>}
     </div>
