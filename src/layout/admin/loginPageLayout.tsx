@@ -13,17 +13,16 @@ export default function LoginPageLayout({ children }: ILayout): JSX.Element {
       />
       <link
         rel="stylesheet"
-        type="text/css"
-        href="/assets/admin/fontawesome-free/css/all.min.css"
-      />
-      <link
-        rel="stylesheet"
         href="/assets/admin/icheck-bootstrap/icheck-bootstrap.min.css"
       />
       <link rel="stylesheet" href="/assets/admin/dist/css/adminlte.min.css" />
       <main>
         <div className="hold-transition login-page">{children}</div>
       </main>
+      <script
+        src="https://kit.fontawesome.com/356891cc24.js"
+        crossOrigin="anonymous"
+      />
     </>
   );
 }

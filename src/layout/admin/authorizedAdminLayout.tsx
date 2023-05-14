@@ -28,11 +28,6 @@ const AuthorizedAdminLayout = ({
       />
       <link
         rel="stylesheet"
-        type="text/css"
-        href="/assets/admin/fontawesome-free/css/all.min.css"
-      />
-      <link
-        rel="stylesheet"
         href="/assets/admin/icheck-bootstrap/icheck-bootstrap.min.css"
       />
       <link rel="stylesheet" href="/assets/admin/dist/css/adminlte.css" />
@@ -51,6 +46,10 @@ const AuthorizedAdminLayout = ({
           )}
         </div>
       </main>
+      <script
+        src="https://kit.fontawesome.com/356891cc24.js"
+        crossOrigin="anonymous"
+      />
     </>
   );
 };

@@ -46,6 +46,10 @@ export default function MainLayout({ children, title }: ILayout): JSX.Element {
       {/*@TODO need to resolve later*/}
       <Script src="/assets/scripts/jquery.firstVisitPopup.js" />
       <Script src="/assets/scripts/custom.js" />
+      <script
+        src="https://kit.fontawesome.com/356891cc24.js"
+        crossOrigin="anonymous"
+      />
       {/*<link rel="stylesheet" href="owl-carousel/owl.carousel.css" />*/}
       {/*<link rel="stylesheet" href="owl-carousel/owl.theme.css" />*/}
       {/*<script src="owl-carousel/owl.carousel.js"></script>*/}
