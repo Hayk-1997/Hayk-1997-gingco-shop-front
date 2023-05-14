@@ -11,7 +11,7 @@ const AuthorizedAdminLayout = ({
   children,
   className,
 }: ILayout): JSX.Element => {
-  useAdminAuth({ middleware: 'auth' });
+  const { user } = useAdminAuth({ middleware: 'auth' });
 
   useEffect(() => {
     if (className) {
@@ -42,9 +42,13 @@ const AuthorizedAdminLayout = ({
 
       <main>
         <div className="wrapper">
-          <Header />
-          <SideBar />
-          {children}
+          {user && (
+            <>
+              <Header />
+              <SideBar />
+              {children}
+            </>
+          )}
         </div>
       </main>
     </>

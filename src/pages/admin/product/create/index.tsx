@@ -12,8 +12,8 @@ import {
   getColorsRequest,
   useSelectColors,
 } from '../../../../slices/admin/colorSlice';
-import Form from '../form';
-import { defaultValue } from '../../utils';
+import Form from '../../../../features/admin/product/form';
+import { defaultValue } from '../utils';
 
 const CreateProduct = (): JSX.Element => {
   const dispatch = useDispatch();

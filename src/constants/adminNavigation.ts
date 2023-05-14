@@ -13,4 +13,9 @@ export const AdminNavigation: TAdminNavigation[] = [
     list: '/admin/product/list',
     create: '/admin/product/create',
   },
+  {
+    name: 'Color',
+    list: '/admin/color/list',
+    create: '/admin/color/create',
+  },
 ];

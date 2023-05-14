@@ -122,7 +122,7 @@ const CreateCategory = (): JSX.Element => {
                             {/*@TODO add category types*/}
                             {categories?.map((category: any, index: number) => (
                               <option key={index} value={category.id}>
-                                {category.translations[0].name}
+                                {category.translations.am.name}
                               </option>
                             ))}
                           </select>
