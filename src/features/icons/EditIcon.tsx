@@ -1,3 +1,5 @@
+import React from 'react';
+
 type IconProps = {
   fill?: string;
   size?: string | number;
@@ -7,12 +9,12 @@ type IconProps = {
 }
 
 export const EditIcon: React.FC<IconProps> = ({
-                                                fill,
-                                                size,
-                                                height,
-                                                width,
-                                                ...props
-                                              }) => {
+  fill,
+  size,
+  height,
+  width,
+  ...props
+}) => {
   return (
     <svg
       width={size || width || 24}

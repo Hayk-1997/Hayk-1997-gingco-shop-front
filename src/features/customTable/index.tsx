@@ -1,9 +1,9 @@
 import React from 'react';
 import { Table, Row, Col, Tooltip, Text } from '@nextui-org/react';
 import Swal from 'sweetalert2'
-import { IconButton } from './IconButton';
-import { EditIcon } from './EditIcon';
-import { DeleteIcon } from './DeleteIcon';
+import { IconButton } from '../icons/IconButton';
+import { EditIcon } from '../icons/EditIcon';
+import { DeleteIcon } from '../icons/DeleteIcon';
 
 export const CustomTable = ({ tableProps }: any) => {
   const { data = [], actions, columns } = tableProps;
