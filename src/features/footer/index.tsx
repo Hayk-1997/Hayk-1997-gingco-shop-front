@@ -1,8 +1,8 @@
 export const Footer = () => {
   return (
-    <div className="footer pt_60">
+    <div className="footer pt_10">
       <div className="container">
-        <div className="newsletters mt_30 mb_50">
+        {/*<div className="newsletters mt_30 mb_50">
           <div className="row">
             <div className="col-sm-6">
               <div className="news-head pull-left">
@@ -32,7 +32,7 @@ export const Footer = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div>*/}
         <div className="row">
           <div className="col-md-3 footer-block">
             <h6 className="footer-title ptb_20">Information</h6>
@@ -118,7 +118,7 @@ export const Footer = () => {
           </div>
         </div>
       </div>
-      <div className="footer-bottom mt_60 ptb_20">
+      <div className="footer-bottom mt_10 ptb_20">
         <div className="container">
           <div className="row">
             <div className="col-sm-4">
@@ -131,22 +131,12 @@ export const Footer = () => {
                   </li>
                   <li>
                     <a href="https://html.lionode.com/darklook/#">
-                      <i className="fa fa-google" />
-                    </a>
-                  </li>
-                  <li>
-                    <a href="https://html.lionode.com/darklook/#">
                       <i className="fa fa-linkedin" />
                     </a>
                   </li>
                   <li>
                     <a href="https://html.lionode.com/darklook/#">
                       <i className="fa fa-twitter" />
-                    </a>
-                  </li>
-                  <li>
-                    <a href="https://html.lionode.com/darklook/#">
-                      <i className="fa fa-rss" />
                     </a>
                   </li>
                 </ul>
