@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import { useAdminAuth } from '../../hooks/admin/useAdminAuth';
 import SideBar from '../../features/admin/sideBar';
 import Header from '../../features/admin/header';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 interface ILayout {
   children: React.ReactElement;
@@ -36,6 +38,8 @@ const AuthorizedAdminLayout = ({
       <link rel="stylesheet" href="/assets/admin/jsgrid/jsgrid-theme.min.css" />
 
       <main>
+        <ToastContainer newestOnTop />
+
         <div className="wrapper">
           {user && (
             <>
