@@ -8,12 +8,12 @@ body, html {
 }
 body {
     line-height: 24px;
-    color: #9E9E9E;
+    /*color: #9E9E9E;*/
     font-size: 14px;
     font-family: 'Poppins', sans-serif;
     font-weight: 400;
     letter-spacing: 0.5px;
-    background: #000;
+    background: #fff;
 }
 .loder {
     position: fixed;
@@ -110,7 +110,7 @@ ul {
 a {
     cursor: pointer;
     text-decoration: none;
-    color: #9E9E9E;
+    color: unset;
     transition: all 0.25s ease 0s;
     -moz-transition: all 0.25s ease 0s;
     -webkit-transition: all 0.25s ease 0s;
@@ -546,7 +546,7 @@ i.right {
 .nav>li>a {
     padding: 10px 15px;
     border-radius: 0;
-    color: #fff;
+    /*color: #fff;*/
 }
 .nav>li>a:hover, .nav>li>a:focus {
     background: transparent;
@@ -901,12 +901,12 @@ label.checkme {
 .header-top {
     font-size: 13px;
     border-bottom: 1px solid #424242;
-    color: #ccc;
+    /*color: #ccc;*/
     font-weight: 500;
 }
-.header-top a {
-    color: #ccc;
-}
+/*.header-top a {*/
+/*    color: #ccc;*/
+/*}*/
 .header-top-left, .header-top-right {
     margin: 8px 0;
 }
@@ -957,7 +957,7 @@ label.checkme {
     border-radius: 0;
     border: 0;
     margin: 0;
-    background: #424242;
+    /*background: #424242;*/
 }
 .navbar-header {
     text-align: center;
@@ -1055,7 +1055,7 @@ label.checkme {
     padding: 22px 18px;
     border-radius: 0;
     overflow: hidden;
-    color: #fff;
+    /*color: #fff;*/
     text-transform: uppercase;
 }
 #menu>li>a:hover, #menu>li>a:focus {
@@ -1324,7 +1324,7 @@ label.checkme {
     border-bottom: 1px dashed #ccc;
 }
 #category-menu, .main-navigation {
-    background: #000;
+    /*background: #000;*/
     width: 100%;
     padding: 6px 0;
 }
@@ -1516,7 +1516,7 @@ input#amount {
 .main_title {
     font-size: 20px;
     float: left;
-    color: #fff;
+    /*color: #fff;*/
     font-weight: 600;
     text-transform: uppercase;
 }
@@ -1564,11 +1564,11 @@ input#amount {
 .breadcrumb li {
     display: inline-block;
 }
-.breadcrumb li:last-child {
-    color: #fff;
-}
+/*.breadcrumb li:last-child {*/
+/*    color: #fff;*/
+/*}*/
 .breadcrumb h1 {
-    color: #fff;
+    /*color: #fff;*/
     float: left;
     font-size: 24px;
     font-weight: 500;
@@ -2207,10 +2207,11 @@ a.thumbnail:hover, a.thumbnail:focus, a.thumbnail.active {
 	border-bottom: 1px solid #666;
 }
 .footer {
-    background: #424242;
+    border-top: 1px solid #000;
+/*    background: #424242;*/
 }
 .footer-title, .footer h6 {
-    color: #fff;
+    /*color: #fff;*/
     text-transform: uppercase;
     font-size: 20px;
 }
@@ -2284,8 +2285,9 @@ a.thumbnail:hover, a.thumbnail:focus, a.thumbnail.active {
     color: #fa4251;
 }
 .footer-bottom {
-    background: #000;
-    color: #808080;
+    border-top: 1px solid #000;
+    /*background: #000;*/
+    /*color: #808080;*/
 }
 .copyright-part{
     margin: 6px 0;
