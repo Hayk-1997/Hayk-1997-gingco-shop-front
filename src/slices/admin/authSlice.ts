@@ -64,7 +64,7 @@ export const adminLoginRequest = (data: TUserLogin) => {
   return async (dispatch: AppDispatch) => {
     try {
       dispatch(setAdminLoginRequest());
-      const response = await ApiInstance.post('auth/login', {
+      const response = await ApiInstance.post('auth/admin-login', {
         ...data,
       });
       dispatch(setAdminLoginRequestSuccess(response.data));
