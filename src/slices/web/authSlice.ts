@@ -93,7 +93,7 @@ export const userLoginRequest = (data: TUserLogin) => {
   return async (dispatch: AppDispatch) => {
     try {
       dispatch(setLoginRequest());
-      const response = await ApiInstance.post('auth/login', {
+      const response = await ApiInstance.post('auth/user-login', {
         ...data,
       });
       dispatch(setLoginRequestSuccess(response.data));
