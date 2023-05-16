@@ -30,7 +30,7 @@ const ShopContainer = (): JSX.Element => {
             </select>
           </div>
           <span>
-            <i className="fa fa-angle-down" aria-hidden="true" />
+            <i className="fa fa-angle-down" />
           </span>
         </div>
         <div className="sort-wrapper pull-right">
@@ -51,7 +51,7 @@ const ShopContainer = (): JSX.Element => {
             </select>
           </div>
           <span>
-            <i className="fa fa-angle-down" aria-hidden="true" />
+            <i className="fa fa-angle-down" />
           </span>
         </div>
       </div>
