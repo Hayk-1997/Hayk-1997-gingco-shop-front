@@ -6,6 +6,7 @@ import {
 } from '../../../slices/web/productsSlice';
 import { useRouter } from 'next/router';
 import { TLanguageKeys } from '../../../type/language';
+import Image from 'next/image';
 
 const ProductItems: React.FC = (): JSX.Element => {
   const router = useRouter();
@@ -29,17 +30,18 @@ const ProductItems: React.FC = (): JSX.Element => {
             <div className="product-thumb clearfix mb_30">
               <div className="image product-imageblock">
                 <a href="product_detail_page.html">
-                  <img
-                    data-name="product_image"
-                    src="images/product/product3.jpg"
-                    alt="iPod Classic"
-                    title="iPod Classic"
+                  <Image
+                    src={product.images.length ? product.images[0].url : ''}
+                    width={233}
+                    height={57}
+                    alt="main image"
                     className="img-responsive"
                   />
-                  <img
-                    src="images/product/product3-1.jpg"
-                    alt="iPod Classic"
-                    title="iPod Classic"
+                  <Image
+                    src={product.images.length ? product.images[1].url : ''}
+                    width={233}
+                    height={57}
+                    alt="main image"
                     className="img-responsive"
                   />
                 </a>

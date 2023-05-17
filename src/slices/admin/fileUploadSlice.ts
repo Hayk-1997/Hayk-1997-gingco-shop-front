@@ -34,11 +34,11 @@ export const {
 
 export default fileUploadSlice.reducer;
 
-export const uploadFilesRequest = (files: FormData) => {
+export const uploadFilesRequest = (id: string, files: FormData) => {
   return async (dispatch: AppDispatch) => {
     try {
       dispatch(setUploadFilesRequest());
-      await ApiInstance.put('products/1/upload-images', files);
+      await ApiInstance.put(`products/${id}/upload-images`, files);
       setUploadFilesRequestSuccess();
     } catch (e) {
       dispatch(setUploadFilesRequestError());

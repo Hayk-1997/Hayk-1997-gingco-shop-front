@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import Input from '../../../../formElements/input';
 import SelectOption from '../../../../formElements/selectOption';
 import { TCategory } from '../../../../type/admin/category';
@@ -10,6 +10,10 @@ import {
   UseFormHandleSubmit,
   UseFormRegister,
 } from 'react-hook-form/dist/types/form';
+import { useDispatch } from 'react-redux';
+import { uploadFilesRequest } from '../../../../slices/admin/fileUploadSlice';
+import { wrapFormData } from '../../../../helpers/files';
+import { useRouter } from 'next/router';
 
 interface IForm {
   handleSubmit: UseFormHandleSubmit<any>;
@@ -30,6 +34,18 @@ const Form: React.FC<IForm> = ({
   colors,
   hasFIleUpload = false,
 }) => {
+  const router = useRouter();
+  const dispatch = useDispatch();
+
+  const handleFileChange = useCallback(
+    (files: FileList) => {
+      dispatch(
+        uploadFilesRequest(router.query.id as string, wrapFormData(files))
+      );
+    },
+    [dispatch, router.query.id]
+  );
+
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="card-body">
@@ -249,6 +265,7 @@ const Form: React.FC<IForm> = ({
                 <UploadFile
                   name="images"
                   images={control._defaultValues.images}
+                  handleFileChange={handleFileChange}
                 />
               </div>
             </div>
