@@ -49,7 +49,7 @@ const UpdateCategory = (): JSX.Element => {
     if (isCategoryUpdateSuccess && prevIsCategoryUpdateSuccess === false) {
       router.push('/admin/category/list');
     }
-  }, [isCategoryUpdateSuccess, router]);
+  }, [isCategoryUpdateSuccess, prevIsCategoryUpdateSuccess, router]);
 
   const categoryOptions = useMemo(
     () => categories.filter(({ id }) => id !== router.query.id),
@@ -58,10 +58,12 @@ const UpdateCategory = (): JSX.Element => {
 
   const onSubmit = useCallback(
     (data: TCreateCategoryForm): void => {
-      const { id, translations, parent, parentId, ...payload } = data;
-      payload.parentId = parentId ? Number(parentId) : null;
+      const { name } = data;
+      const parentId = data.parentId ? Number(data.parentId) : null;
 
-      dispatch(updateCategoryRequest(payload, Number(router.query.id)));
+      dispatch(
+        updateCategoryRequest({ name, parentId }, Number(router.query.id))
+      );
     },
     [dispatch, router.query.id]
   );

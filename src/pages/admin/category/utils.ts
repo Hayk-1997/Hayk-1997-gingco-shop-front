@@ -3,7 +3,6 @@ import { TCategory, TCreateCategoryForm } from '../../../type/admin/category';
 export const resolveCategoryFormValues = (
   category: TCategory
 ): TCreateCategoryForm => {
-  console.log(category);
   return {
     ...category,
     name: {
