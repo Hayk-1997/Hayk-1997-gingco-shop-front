@@ -50,6 +50,16 @@ export const productsSlice = createSlice({
       state.isGetProductSuccess = false;
       state.isGetProductFailure = false;
     },
+
+    setGetProductsRequest: (state) => {
+      state.products = [];
+    },
+    setGetProductsRequestSuccess: (state, action: { payload: TProduct[] }) => {
+      state.products = action.payload;
+    },
+    setGetProductsRequestFailure: (state) => {
+      state.products = [];
+    },
   },
 });
 
@@ -58,6 +68,10 @@ export const {
   setGetProductRequestSuccess,
   setGetProductRequestFailure,
   clearGetProductRequestStatus,
+
+  setGetProductsRequest,
+  setGetProductsRequestSuccess,
+  setGetProductsRequestFailure,
 } = productsSlice.actions;
 
 export default productsSlice.reducer;
@@ -72,6 +86,19 @@ export const useSelectGetProductSuccess = (state: AppState): boolean =>
 export const useSelectGetProductFailure = (state: AppState): boolean =>
   state.webProducts.isGetProductFailure;
 
+export const getProductsRequest = () => {
+  return async (dispatch: AppDispatch) => {
+    try {
+      dispatch(setGetProductsRequest());
+      const response = await ApiInstance.get(`products`);
+      dispatch(setGetProductsRequestSuccess(response.data.products));
+    } catch (e) {
+      // TODO: add needed cases for handling errors message or validator errors
+      const messages = catchApiError(e);
+      dispatch(setGetProductsRequestFailure(messages));
+    }
+  };
+};
 
 export const getProductRequest = (id: number) => {
   return async (dispatch: AppDispatch) => {

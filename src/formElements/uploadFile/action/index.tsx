@@ -1,20 +1,13 @@
-import React, { memo, useCallback } from 'react';
-import { useDispatch } from 'react-redux';
-import { uploadFilesRequest } from '../../../slices/admin/fileUploadSlice';
-import { wrapFormData } from '../../../helpers/files';
+import React, { memo } from 'react';
 import styles from './styles.module.scss';
 
-const FileAction = (): JSX.Element => {
-  const dispatch = useDispatch();
+interface IFileAction {
+  handleFileChange: (files: FileList) => void;
+}
 
-  const handleInputChange = useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      event.target.files &&
-        dispatch(uploadFilesRequest(wrapFormData(event.target.files!)));
-    },
-    [dispatch]
-  );
-
+const FileAction: React.FC<IFileAction> = ({
+  handleFileChange,
+}): JSX.Element => {
   return (
     <div id="actions" className="row">
       <div className="col-lg-6">
@@ -29,7 +22,9 @@ const FileAction = (): JSX.Element => {
               type="file"
               multiple
               className={styles.fileUpload}
-              onChange={handleInputChange}
+              onChange={(event) =>
+                handleFileChange(event.target.files as FileList)
+              }
             />
             <span>Add files</span>
           </label>

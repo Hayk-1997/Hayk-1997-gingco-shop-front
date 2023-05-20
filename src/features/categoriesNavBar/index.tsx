@@ -1,4 +1,23 @@
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import {
+  getCategoriesRequest,
+  useSelectCategories,
+} from '../../slices/web/categorySlice';
+import { useRouter } from 'next/router';
+import { TLanguageKeys } from '../../type/language';
+
 const CategoriesNavBar = (): JSX.Element => {
+  const router = useRouter();
+  const { locale: activeLocale } = router;
+
+  const dispatch = useDispatch();
+  const categories = useSelector(useSelectCategories);
+
+  useEffect(() => {
+    dispatch(getCategoriesRequest());
+  }, [dispatch]);
+
   return (
     <div id="column-left" className="col-sm-4 col-lg-3 hidden-xs">
       <div
@@ -13,45 +32,13 @@ const CategoriesNavBar = (): JSX.Element => {
             <h2 className="main_title">Top category</h2>
           </div>
           <ul className="nav  main-navigation collapse in">
-            <li>
-              <a href="#">Appliances</a>
-            </li>
-            <li>
-              <a href="#">Mobile Phones</a>
-            </li>
-            <li>
-              <a href="#">Tablet PC &amp; Accessories</a>
-            </li>
-            <li>
-              <a href="#">Consumer Electronics</a>
-            </li>
-            <li>
-              <a href="#">Computers &amp; Networking</a>
-            </li>
-            <li>
-              <a href="#">Electrical &amp; Tools</a>
-            </li>
-            <li>
-              <a href="#">Apparel</a>
-            </li>
-            <li>
-              <a href="#">Bags &amp; Shoes</a>
-            </li>
-            <li>
-              <a href="#">Toys &amp; Hobbies</a>
-            </li>
-            <li>
-              <a href="#">Watches &amp; Jewelry</a>
-            </li>
-            <li>
-              <a href="#">Home &amp; Garden</a>
-            </li>
-            <li>
-              <a href="#">Health &amp; Beauty</a>
-            </li>
-            <li>
-              <a href="#">Outdoors &amp; Sports</a>
-            </li>
+            {categories?.map((category, index) => (
+              <li key={index}>
+                <a href="#">
+                  {category.translations[activeLocale as TLanguageKeys].name}
+                </a>
+              </li>
+            ))}
           </ul>
         </div>
       </div>

@@ -7,12 +7,16 @@ import { TProductImage } from '../../type/web/products';
 interface IUploadFile extends UseControllerProps<any> {
   withError?: boolean;
   images: TProductImage[]; //@TODO need to check that images have the same structure
+  handleFileChange: (files: FileList) => void;
 }
 
-const UploadFile: React.FC<IUploadFile> = ({ images }): JSX.Element => {
+const UploadFile: React.FC<IUploadFile> = ({
+  images,
+  handleFileChange,
+}): JSX.Element => {
   return (
     <>
-      <FileAction />
+      <FileAction handleFileChange={handleFileChange} />
       <Previews images={images} />
     </>
   );
