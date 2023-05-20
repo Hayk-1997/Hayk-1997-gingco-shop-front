@@ -8,8 +8,10 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { CustomTable } from '../../../../features/customTable';
 import { categoriesColumns } from '../../../../features/customTable/columnConstants';
+import { useRouter } from 'next/router';
 
 const CategoryList = (): JSX.Element => {
+  const router = useRouter();
   const dispatch = useDispatch();
 
   const categories = useSelector(useSelectCategories);
@@ -22,14 +24,12 @@ const CategoryList = (): JSX.Element => {
     columns: categoriesColumns,
     data: categories,
     actions: {
-      onEdit: (id: number) => {
-        console.log('edit', id)
-      },
+      onEdit: (id: number) => router.push(`edit/${id}`),
       onDelete: (id: number) => {
         dispatch(deleteCategory(id));
       },
-    }
-  }
+    },
+  };
 
   return (
     <div className="content-wrapper">

@@ -8,8 +8,8 @@ export type TCreateCategoryForm = {
 };
 
 export type TCategory = {
-  id: string;
-  parentId: null;
+  id?: string;
+  parentId: number | null;
   createdAt: string;
   updatedAt: string;
   translations: {
