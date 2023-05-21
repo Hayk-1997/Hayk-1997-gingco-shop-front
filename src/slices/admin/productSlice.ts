@@ -3,12 +3,17 @@ import { AppDispatch, AppState } from '../../store';
 import ApiInstance from '../../services/axios';
 import { TCreateProductForm } from '../../type/product';
 import { TProduct } from '../../type/web/products';
+import { catchApiError, showMessage } from '../../helpers';
 
 type TInitialState = {
-  products: [];
+  products: TProduct[];
   createProductSuccess: boolean;
   createProductError: boolean;
   product: TProduct | null;
+
+  isDeleteProductSuccess: boolean;
+  isDeleteProductError: boolean;
+  successMessage: string;
 };
 
 const initialState: TInitialState = {
@@ -16,6 +21,9 @@ const initialState: TInitialState = {
   createProductSuccess: false,
   createProductError: false,
   product: null,
+  isDeleteProductSuccess: false,
+  isDeleteProductError: false,
+  successMessage: '',
 };
 
 export const adminProductSlice = createSlice({
@@ -52,6 +60,25 @@ export const adminProductSlice = createSlice({
     setGetProductByIdError: (state) => {
       state.product = null;
     },
+
+    setDeleteProductRequest: (state) => {
+      state.isDeleteProductSuccess = false;
+      state.isDeleteProductError = false;
+    },
+    setDeleteProductSuccess: (state, { payload }) => {
+      state.isDeleteProductSuccess = true;
+      state.isDeleteProductError = false;
+      state.products = state.products.filter(
+        (product) => product.id !== payload.id
+      );
+      state.successMessage = payload.message;
+      showMessage(payload.message, 'success');
+    },
+    setDeleteProductError: (state, { payload }) => {
+      state.isDeleteProductSuccess = false;
+      state.isDeleteProductError = true;
+      showMessage(payload, 'error');
+    },
   },
 });
 
@@ -67,6 +94,10 @@ export const {
   setGetProductByIdRequest,
   setGetProductByIdSuccess,
   setGetProductByIdError,
+
+  setDeleteProductRequest,
+  setDeleteProductSuccess,
+  setDeleteProductError,
 } = adminProductSlice.actions;
 
 export default adminProductSlice.reducer;
@@ -111,6 +142,19 @@ export const getProductsRequest = () => {
       dispatch(setGetProductsSuccess(response.data.products));
     } catch (e) {
       dispatch(setGetProductsError());
+    }
+  };
+};
+
+export const deleteProductRequest = (id: number) => {
+  return async (dispatch: AppDispatch) => {
+    try {
+      dispatch(setDeleteProductRequest());
+      const response = await ApiInstance.delete(`products/${id}`);
+      dispatch(setDeleteProductSuccess({ id, message: response.data.message }));
+    } catch (e) {
+      const messages = catchApiError(e);
+      dispatch(setDeleteProductError(messages));
     }
   };
 };

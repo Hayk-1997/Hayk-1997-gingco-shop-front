@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Table, Row, Col, Tooltip, Text } from '@nextui-org/react';
 import Swal from 'sweetalert2';
 import { IconButton } from '../icons/IconButton';
 import { EditIcon } from '../icons/EditIcon';
 import { DeleteIcon } from '../icons/DeleteIcon';
 
-export const CustomTable = ({ tableProps }: any) => {
+const CustomTable = ({ tableProps }: any): JSX.Element => {
   const { data = [], actions, columns } = tableProps;
 
   const renderCell = (item: any, columnKey: React.Key) => {
@@ -75,7 +75,7 @@ export const CustomTable = ({ tableProps }: any) => {
     }
   };
 
-  const tableColumns = Object.values(columns);
+  const tableColumns = useMemo(() => Object.values(columns), [columns]);
 
   return (
     <Table
@@ -114,3 +114,5 @@ export const CustomTable = ({ tableProps }: any) => {
     </Table>
   );
 };
+
+export default CustomTable;

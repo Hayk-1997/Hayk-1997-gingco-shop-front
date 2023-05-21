@@ -41,7 +41,7 @@ export const adminCategorySlice = createSlice({
     setGetCategoriesRequest: (state) => {
       state.categories = [];
     },
-    setGetCategoriesSuccess: (state, action: { payload: TCategory }) => {
+    setGetCategoriesSuccess: (state, action: { payload: TCategory[] }) => {
       state.categories = action.payload;
     },
     setGetCategoriesError: (state) => {
