@@ -1,6 +1,6 @@
 import React from 'react';
 import { Table, Row, Col, Tooltip, Text } from '@nextui-org/react';
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
 import { IconButton } from '../icons/IconButton';
 import { EditIcon } from '../icons/EditIcon';
 import { DeleteIcon } from '../icons/DeleteIcon';
@@ -15,27 +15,28 @@ export const CustomTable = ({ tableProps }: any) => {
       return (
         <Col>
           <Row>
-            <Text b size={14} css={{ tt: "capitalize" }}>
+            <Text b size={14} css={{ tt: 'capitalize' }}>
               {columns[columnKey].cell(item)}
             </Text>
           </Row>
-      </Col>
-      )
+        </Col>
+      );
     } else if (columnKey === 'actions') {
       return (
         <Row justify="center" align="center">
-          <Col css={{ d: "flex" }}>
+          <Col css={{ d: 'flex' }}>
             <Tooltip content="Edit">
               <IconButton onClick={() => actions.onEdit(item.id)}>
                 <EditIcon size={20} fill="#979797" />
               </IconButton>
             </Tooltip>
           </Col>
-          <Col css={{ d: "flex" }}>
+          <Col css={{ d: 'flex' }}>
             <Tooltip
               content="Delete"
               color="error"
-              onClick={() => onDelete(item.id)}>
+              onClick={() => onDelete(item.id)}
+            >
               <IconButton>
                 <DeleteIcon size={20} fill="#FF0080" />
               </IconButton>
@@ -47,7 +48,7 @@ export const CustomTable = ({ tableProps }: any) => {
       return (
         <Col>
           <Row>
-            <Text b size={14} css={{ tt: "capitalize" }}>
+            <Text b size={14} css={{ tt: 'capitalize' }}>
               {cellValue}
             </Text>
           </Row>
@@ -67,12 +68,12 @@ export const CustomTable = ({ tableProps }: any) => {
       confirmButtonText: 'Delete',
       confirmButtonAriaLabel: 'Thumbs up, great!',
       cancelButtonText: 'Cancel',
-      cancelButtonAriaLabel: 'Thumbs down'
-    })
+      cancelButtonAriaLabel: 'Thumbs down',
+    });
     if (isConfirmed) {
-      actions.onDelete(id)
+      actions.onDelete(id);
     }
-  }
+  };
 
   const tableColumns = Object.values(columns);
 
@@ -80,15 +81,15 @@ export const CustomTable = ({ tableProps }: any) => {
     <Table
       aria-label="Categories list"
       css={{
-        height: "auto",
-        minWidth: "100%",
+        height: 'auto',
+        minWidth: '100%',
       }}
     >
       <Table.Header columns={tableColumns}>
-        {(column: { key: string, label: string }) => (
+        {(column: { key: string; label: string }) => (
           <Table.Column
             key={column.key}
-            align={column.key === "actions" ? "center" : "start"}
+            align={column.key === 'actions' ? 'center' : 'start'}
           >
             {column.label}
           </Table.Column>
@@ -111,5 +112,5 @@ export const CustomTable = ({ tableProps }: any) => {
         onPageChange={(page) => {}}
       />
     </Table>
-  )
+  );
 };
