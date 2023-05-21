@@ -74,6 +74,9 @@ export default adminProductSlice.reducer;
 export const useSelectProduct = (state: AppState): TProduct =>
   state.adminProduct.product;
 
+export const useSelectProducts = (state: AppState): TProduct[] =>
+  state.adminProduct.products;
+
 export const createProductRequest = (data: TCreateProductForm) => {
   return async (dispatch: AppDispatch) => {
     try {
