@@ -1,14 +1,19 @@
+import React, { lazy, ReactElement, Suspense, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { ReactElement, useEffect } from 'react';
-import { deleteCategory } from '../../../../slices/admin/categorySlice';
 import { productsColumns } from '../../../../features/admin/product/adminCustomColumns';
 import { useRouter } from 'next/router';
-import { CustomTable } from '../../../../features/customTable';
 import {
+  deleteProductRequest,
   getProductsRequest,
   useSelectProducts,
 } from '../../../../slices/admin/productSlice';
 import AuthorizedAdminLayout from '../../../../layout/admin/authorizedAdminLayout';
+const CustomTable = lazy(
+  () =>
+    import(
+      /* webpackChunkName: "custom-table" */ '../../../../features/customTable'
+    )
+);
 
 const ProductsList = (): JSX.Element => {
   const dispatch = useDispatch();
@@ -25,7 +30,7 @@ const ProductsList = (): JSX.Element => {
     actions: {
       onEdit: (id: number) => router.push(`edit/${id}`),
       onDelete: (id: number) => {
-        dispatch(deleteCategory(id));
+        dispatch(deleteProductRequest(id));
       },
     },
   };
@@ -53,7 +58,9 @@ const ProductsList = (): JSX.Element => {
       <section className="content">
         <div className="card">
           <div className="card-body">
-            <CustomTable tableProps={tableProps} />
+            <Suspense fallback={<div>Loading</div>}>
+              <CustomTable tableProps={tableProps} />
+            </Suspense>
           </div>
         </div>
       </section>

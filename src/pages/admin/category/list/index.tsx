@@ -1,4 +1,4 @@
-import { ReactElement, useEffect } from 'react';
+import React, { lazy, ReactElement, Suspense, useEffect } from 'react';
 import AuthorizedAdminLayout from '../../../../layout/admin/authorizedAdminLayout';
 import {
   getCategoriesRequest,
@@ -6,10 +6,14 @@ import {
   deleteCategory,
 } from '../../../../slices/admin/categorySlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { CustomTable } from '../../../../features/customTable';
 import { categoriesColumns } from '../../../../features/customTable/columnConstants';
 import { useRouter } from 'next/router';
-
+const CustomTable = lazy(
+  () =>
+    import(
+      /* webpackChunkName: "custom-table" */ '../../../../features/customTable'
+    )
+);
 const CategoryList = (): JSX.Element => {
   const router = useRouter();
   const dispatch = useDispatch();
@@ -54,7 +58,9 @@ const CategoryList = (): JSX.Element => {
       <section className="content">
         <div className="card">
           <div className="card-body">
-            <CustomTable tableProps={tableProps} />
+            <Suspense fallback={<div>Loading</div>}>
+              <CustomTable tableProps={tableProps} />
+            </Suspense>
           </div>
         </div>
       </section>
