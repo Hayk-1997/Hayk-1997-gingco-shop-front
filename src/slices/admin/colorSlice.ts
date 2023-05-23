@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { TColor, TCreateColorForm } from '../../type/color';
 import { AppDispatch, AppState } from '../../store';
 import ApiInstance from '../../services/axios';
+import { catchApiError, showMessage } from '../../helpers';
 
 type TInitialState = {
   colors: TColor[];
@@ -11,6 +12,9 @@ type TInitialState = {
 
   createColorRequestSuccess: boolean;
   createColorRequestError: boolean;
+  isDeletingColor: boolean;
+  isDeletedColorSuccess: boolean;
+  isDeletedColorFailure: boolean;
 };
 
 const initialState: TInitialState = {
@@ -21,6 +25,9 @@ const initialState: TInitialState = {
 
   createColorRequestSuccess: false,
   createColorRequestError: false,
+  isDeletingColor: false,
+  isDeletedColorSuccess: false,
+  isDeletedColorFailure: false,
 };
 
 const colorSlice = createSlice({
@@ -54,6 +61,24 @@ const colorSlice = createSlice({
       state.createColorRequestSuccess = false;
       state.createColorRequestError = false;
     },
+    setDeleteColorRequest: (state) => {
+      state.isDeletingColor = true;
+      state.isDeletedColorSuccess = false;
+      state.isDeletedColorFailure = false;
+    },
+    setDeleteColorRequestSuccess: (state, { payload }) => {
+      state.isDeletingColor = false;
+      state.isDeletedColorSuccess = true;
+      state.isDeletedColorFailure = false;
+      state.colors = state.colors.filter(({ id }) => id !== payload.id);
+      showMessage(payload.message, 'success');
+    },
+    setDeleteColorRequestError: (state, { payload }) => {
+      state.isDeletingColor = false;
+      state.isDeletedColorSuccess = false;
+      state.isDeletedColorFailure = true;
+      showMessage(payload, 'error');
+    },
     setGetColorByIdRequest: (state) => {
       state.color = null;
     },
@@ -75,6 +100,10 @@ export const {
   setCreateColorRequestSuccess,
   setCreateColorRequestError,
 
+  setDeleteColorRequest,
+  setDeleteColorRequestSuccess,
+  setDeleteColorRequestError,
+
   setGetColorByIdRequest,
   setGetColorByIdSuccess,
   setGetColorByIdError,
@@ -88,6 +117,20 @@ export const useSelectColors = (state: AppState): TColor[] =>
 export const useSelectColor = (state: AppState): TColor =>
   state.adminColor.color;
 
+export const deleteColorRequest = (id: number) => {
+  return async (dispatch: AppDispatch) => {
+    try {
+      dispatch(setDeleteColorRequest);
+      const response = await ApiInstance.delete(`colors/${id}`);
+      dispatch(
+        setDeleteColorRequestSuccess({ id, message: response.data.message })
+      );
+    } catch (e) {
+      const messages = catchApiError(e);
+      dispatch(setDeleteColorRequestError(messages));
+    }
+  };
+};
 export const getColorsRequest = () => {
   return async (dispatch: AppDispatch) => {
     try {
