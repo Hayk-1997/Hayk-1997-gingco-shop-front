@@ -172,7 +172,6 @@ export const updateCategoryRequest = (
       dispatch(setUpdateCategorySuccess(response.data));
     } catch (e) {
       const messages = catchApiError(e);
-      console.log('messages', messages);
       dispatch(setUpdateCategoryError(messages));
     }
   };
