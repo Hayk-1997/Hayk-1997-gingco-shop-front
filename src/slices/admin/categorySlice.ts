@@ -75,14 +75,12 @@ export const adminCategorySlice = createSlice({
       state.isUpdateCategoryFailure = false;
     },
     setUpdateCategorySuccess: (state, { payload }) => {
-      console.log('update success payload', payload);
       state.isUpdatingCategory = true;
       state.isUpdateCategorySuccess = true;
       state.isUpdateCategoryFailure = false;
       showMessage(payload.message, 'success');
     },
     setUpdateCategoryError: (state, { payload }) => {
-      console.log('update error payload', payload);
       state.isUpdatingCategory = true;
       state.isUpdateCategorySuccess = false;
       state.isUpdateCategoryFailure = true;

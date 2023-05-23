@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { AppDispatch, AppState } from '../../store';
 import ApiInstance from '../../services/axios';
 import { TCreateProductForm } from '../../type/product';
-import { TProduct } from '../../type/web/products';
+import { TProduct, TProductImage } from '../../type/web/products';
 import { catchApiError, showMessage } from '../../helpers';
 
 type TInitialState = {
@@ -14,6 +14,10 @@ type TInitialState = {
   isDeleteProductSuccess: boolean;
   isDeleteProductError: boolean;
   successMessage: string;
+
+  isUpdatingProduct: boolean;
+  isUpdateProductSuccess: boolean;
+  isUpdateProductFailure: boolean;
 };
 
 const initialState: TInitialState = {
@@ -24,6 +28,10 @@ const initialState: TInitialState = {
   isDeleteProductSuccess: false,
   isDeleteProductError: false,
   successMessage: '',
+
+  isUpdatingProduct: false,
+  isUpdateProductSuccess: false,
+  isUpdateProductFailure: false,
 };
 
 export const adminProductSlice = createSlice({
@@ -60,6 +68,11 @@ export const adminProductSlice = createSlice({
     setGetProductByIdError: (state) => {
       state.product = null;
     },
+    setProductImages: (state, action: { payload: TProductImage[] }) => {
+      if (state.product) {
+        state.product.images = action.payload;
+      }
+    },
 
     setDeleteProductRequest: (state) => {
       state.isDeleteProductSuccess = false;
@@ -78,6 +91,24 @@ export const adminProductSlice = createSlice({
       state.isDeleteProductSuccess = false;
       state.isDeleteProductError = true;
       showMessage(payload, 'error');
+    },
+
+    setUpdateProductRequest: (state) => {
+      state.isUpdatingProduct = true;
+      state.isUpdateProductSuccess = false;
+      state.isUpdateProductFailure = false;
+    },
+
+    setUpdateProductSuccess: (state) => {
+      state.isUpdatingProduct = false;
+      state.isUpdateProductSuccess = true;
+      state.isUpdateProductFailure = false;
+    },
+
+    setUpdateProductError: (state) => {
+      state.isUpdatingProduct = false;
+      state.isUpdateProductSuccess = false;
+      state.isUpdateProductFailure = true;
     },
   },
 });
@@ -98,6 +129,12 @@ export const {
   setDeleteProductRequest,
   setDeleteProductSuccess,
   setDeleteProductError,
+
+  setProductImages,
+
+  setUpdateProductRequest,
+  setUpdateProductSuccess,
+  setUpdateProductError,
 } = adminProductSlice.actions;
 
 export default adminProductSlice.reducer;
@@ -155,6 +192,22 @@ export const deleteProductRequest = (id: number) => {
     } catch (e) {
       const messages = catchApiError(e);
       dispatch(setDeleteProductError(messages));
+    }
+  };
+};
+
+export const updateProductRequest = (data: TCreateProductForm, id: number) => {
+  return async (dispatch: AppDispatch) => {
+    try {
+      dispatch(setUpdateProductRequest());
+      const response = await ApiInstance.put(`products/${id}`, {
+        ...data,
+      });
+      dispatch(setUpdateProductSuccess(response.data));
+      showMessage(response.data.message, 'success');
+    } catch (e) {
+      const messages = catchApiError(e);
+      dispatch(setUpdateProductError(messages));
     }
   };
 };
