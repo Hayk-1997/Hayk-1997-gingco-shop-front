@@ -12,6 +12,7 @@ import {
 import { ReactElement, useCallback, useEffect } from 'react';
 import {
   getProductsByIdRequest,
+  updateProductRequest,
   useSelectProduct,
 } from '../../../../slices/admin/productSlice';
 import AuthorizedAdminLayout from '../../../../layout/admin/authorizedAdminLayout';
@@ -47,9 +48,21 @@ const EditProduct = (): JSX.Element => {
     }
   }, [categories, colors, product, reset]);
 
-  const onSubmit = useCallback((data: TUpdateProductForm): void => {
-    //
-  }, []);
+  const onSubmit = useCallback(
+    (data: TUpdateProductForm): void => {
+      const formData = {
+        countInStock: data.countInStock,
+        price: data.price,
+        categoryId: data.categoryId,
+        colorId: data.colorId,
+        name: data.name,
+        description: data.description,
+        title: data.title,
+      }
+      dispatch(updateProductRequest(formData, Number(router.query.id)));
+    },
+    [dispatch, router.query.id]
+  );
 
   return (
     <div className="content-wrapper">

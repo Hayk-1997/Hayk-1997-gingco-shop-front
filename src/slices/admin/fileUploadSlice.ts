@@ -1,6 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { AppDispatch } from '../../store';
 import ApiInstance from '../../services/axios';
+import { setProductImages } from './productSlice';
+import { showMessage } from '../../helpers';
 
 const initialState = {
   uploadFilesSuccess: false,
@@ -38,8 +40,13 @@ export const uploadFilesRequest = (id: string, files: FormData) => {
   return async (dispatch: AppDispatch) => {
     try {
       dispatch(setUploadFilesRequest());
-      await ApiInstance.put(`products/${id}/upload-images`, files);
-      setUploadFilesRequestSuccess();
+      const { data } = await ApiInstance.put(
+        `products/${id}/upload-images`,
+        files
+      );
+      dispatch(setUploadFilesRequestSuccess());
+      dispatch(setProductImages(data.productImages));
+      showMessage(data.message, 'success');
     } catch (e) {
       dispatch(setUploadFilesRequestError());
     }
