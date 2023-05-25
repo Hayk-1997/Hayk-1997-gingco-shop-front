@@ -25,6 +25,7 @@ export type TProductTranslations = {
 export type TProductImage = {
   url: string;
   main: boolean;
+  id: number;
 };
 
 export type TProductsState = {

@@ -104,11 +104,17 @@ export const adminProductSlice = createSlice({
       state.isUpdateProductSuccess = true;
       state.isUpdateProductFailure = false;
     },
-
     setUpdateProductError: (state) => {
       state.isUpdatingProduct = false;
       state.isUpdateProductSuccess = false;
       state.isUpdateProductFailure = true;
+    },
+    setFilteredProductImage: (state, action: { payload: string }) => {
+      if (state.product?.images) {
+        state.product.images = state.product?.images.filter(
+          (item) => item.id !== Number(action.payload)
+        );
+      }
     },
   },
 });
@@ -131,6 +137,7 @@ export const {
   setDeleteProductError,
 
   setProductImages,
+  setFilteredProductImage,
 
   setUpdateProductRequest,
   setUpdateProductSuccess,
