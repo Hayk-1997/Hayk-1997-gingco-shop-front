@@ -1,38 +1,24 @@
 import React from 'react';
 import { TProduct } from '../../../type/web/products';
-import Image from 'next/image';
-import { useMainEntityImage } from '../../../hooks/web/useMainEntityImage';
 import { TLanguageKeys } from '../../../type/language';
-import Thumbnail from '../thumbnail';
+import Slider from '../../admin/slider';
 
 interface TProductDetails {
   product: TProduct;
   lang: TLanguageKeys;
 }
 
-//@TODO need to separate this component
 const ProductDetails: React.FC<TProductDetails> = ({
   product,
   lang,
 }): JSX.Element => {
-  const getMainPhoto = useMainEntityImage(product.images);
+  // const getMainPhoto = useMainEntityImage(product.images);
 
   return (
     <div className="col-sm-8 col-lg-9 mtb_20">
       <div className="row mt_10">
         <div className="col-md-6">
-          <div>
-            <a className="thumbnails">
-              <Image
-                src={getMainPhoto}
-                alt="main_banner"
-                width={1903}
-                height={650}
-                data-name="product_image"
-              />
-            </a>
-          </div>
-          {product?.images && <Thumbnail images={product.images} />}
+          <Slider images={product?.images} />
         </div>
         <div className="col-md-6 prodetail caption product-thumb">
           <h4 data-name="product_name" className="product-name">
