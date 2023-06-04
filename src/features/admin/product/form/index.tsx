@@ -11,9 +11,15 @@ import {
   UseFormRegister,
 } from 'react-hook-form/dist/types/form';
 import { useDispatch } from 'react-redux';
-import { uploadFilesRequest } from '../../../../slices/admin/fileUploadSlice';
+import {
+  removeProductImageRequest,
+  uploadFilesRequest,
+} from '../../../../slices/admin/fileUploadSlice';
 import { wrapFormData } from '../../../../helpers/files';
 import { useRouter } from 'next/router';
+import { validateFiles } from '../../../../helpers/validators';
+import { ALLOWED_IMAGE_RULES } from '../../../../constants/file';
+import { showMessage } from '../../../../helpers';
 
 interface IForm {
   handleSubmit: UseFormHandleSubmit<any>;
@@ -39,11 +45,25 @@ const Form: React.FC<IForm> = ({
 
   const handleFileChange = useCallback(
     (files: FileList) => {
-      dispatch(
-        uploadFilesRequest(router.query.id as string, wrapFormData(files))
-      );
+      const filesPath = Array.from(files).map((file) => file.name);
+      validateFiles(ALLOWED_IMAGE_RULES, filesPath, ({ error }) => {
+        if (!error) {
+          dispatch(
+            uploadFilesRequest(router.query.id as string, wrapFormData(files))
+          );
+        } else {
+          showMessage('Incorrect file type', 'error');
+        }
+      });
     },
     [dispatch, router.query.id]
+  );
+
+  const handleRemoveImage = useCallback(
+    (id: number) => {
+      dispatch(removeProductImageRequest(String(id)));
+    },
+    [dispatch]
   );
 
   return (
@@ -266,6 +286,7 @@ const Form: React.FC<IForm> = ({
                   name="images"
                   images={control._defaultValues.images}
                   handleFileChange={handleFileChange}
+                  handleRemove={handleRemoveImage}
                 />
               </div>
             </div>
