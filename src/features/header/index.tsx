@@ -24,7 +24,7 @@ export const Header = (): JSX.Element => {
                 />
                 <span className="input-group-btn">
                   <button type="button" className="btn btn-default btn-lg">
-                    <i className="fa fa-search"></i>
+                    <i className="fa fa-search" />
                   </button>
                 </span>
               </div>
@@ -74,7 +74,7 @@ export const Header = (): JSX.Element => {
                           </td>
                           <td className="text-center">
                             <a className="close-cart">
-                              <i className="fa fa-times-circle"></i>
+                              <i className="fa fa-times-circle" />
                             </a>
                           </td>
                         </tr>
@@ -91,7 +91,7 @@ export const Header = (): JSX.Element => {
                           <td className="text-left product-name">
                             <a href="https://html.lionode.com/darklook/#">
                               MacBook Pro
-                            </a>{' '}
+                            </a>
                             <span className="text-left price">$20.00</span>
                             <input
                               className="cart-qty"
@@ -182,227 +182,19 @@ export const Header = (): JSX.Element => {
                     Home
                   </a>
                 </li>
-                <li className="dropdown mega-dropdown">
-                  <a
-                    href="https://html.lionode.com/darklook/#"
-                    className="dropdown-toggle"
-                    data-toggle="dropdown"
-                  >
-                    Collection{' '}
-                  </a>
-                  <ul className="dropdown-menu mega-dropdown-menu row">
-                    <li className="col-md-3">
-                      <ul>
-                        <li className="dropdown-header">Women's</li>
-                        <li>
-                          <a href="https://html.lionode.com/darklook/#">
-                            Unique Features
-                          </a>
-                        </li>
-                        <li>
-                          <a href="https://html.lionode.com/darklook/#">
-                            Image Responsive
-                          </a>
-                        </li>
-                        <li>
-                          <a href="https://html.lionode.com/darklook/#">
-                            Auto Carousel
-                          </a>
-                        </li>
-                        <li>
-                          <a href="https://html.lionode.com/darklook/#">
-                            Newsletter Form
-                          </a>
-                        </li>
-                        <li>
-                          <a href="https://html.lionode.com/darklook/#">
-                            Four columns
-                          </a>
-                        </li>
-                        <li>
-                          <a href="https://html.lionode.com/darklook/#">
-                            Four columns
-                          </a>
-                        </li>
-                        <li>
-                          <a href="https://html.lionode.com/darklook/#">
-                            Good Typography
-                          </a>
-                        </li>
-                      </ul>
-                    </li>
-                    <li className="col-md-3">
-                      <ul>
-                        <li className="dropdown-header">Man's</li>
-                        <li>
-                          <a href="https://html.lionode.com/darklook/#">
-                            Unique Features
-                          </a>
-                        </li>
-                        <li>
-                          <a href="https://html.lionode.com/darklook/#">
-                            Image Responsive
-                          </a>
-                        </li>
-                        <li>
-                          <a href="https://html.lionode.com/darklook/#">
-                            Four columns
-                          </a>
-                        </li>
-                        <li>
-                          <a href="https://html.lionode.com/darklook/#">
-                            Auto Carousel
-                          </a>
-                        </li>
-                        <li>
-                          <a href="https://html.lionode.com/darklook/#">
-                            Newsletter Form
-                          </a>
-                        </li>
-                        <li>
-                          <a href="https://html.lionode.com/darklook/#">
-                            Four columns
-                          </a>
-                        </li>
-                        <li>
-                          <a href="https://html.lionode.com/darklook/#">
-                            Good Typography
-                          </a>
-                        </li>
-                      </ul>
-                    </li>
-                    <li className="col-md-3">
-                      <ul>
-                        <li className="dropdown-header">Children's</li>
-                        <li>
-                          <a href="https://html.lionode.com/darklook/#">
-                            Unique Features
-                          </a>
-                        </li>
-                        <li>
-                          <a href="https://html.lionode.com/darklook/#">
-                            Four columns
-                          </a>
-                        </li>
-                        <li>
-                          <a href="https://html.lionode.com/darklook/#">
-                            Image Responsive
-                          </a>
-                        </li>
-                        <li>
-                          <a href="https://html.lionode.com/darklook/#">
-                            Auto Carousel
-                          </a>
-                        </li>
-                        <li>
-                          <a href="https://html.lionode.com/darklook/#">
-                            Newsletter Form
-                          </a>
-                        </li>
-                        <li>
-                          <a href="https://html.lionode.com/darklook/#">
-                            Four columns
-                          </a>
-                        </li>
-                        <li>
-                          <a href="https://html.lionode.com/darklook/#">
-                            Good Typography
-                          </a>
-                        </li>
-                      </ul>
-                    </li>
-                    <li className="col-md-3">
-                      <ul>
-                        <li
-                          id="myCarousel"
-                          className="carousel slide"
-                          data-ride="carousel"
-                        >
-                          <div className="carousel-inner">
-                            <div className="item active">
-                              <a href="https://html.lionode.com/darklook/#">
-                                <Image
-                                  src="/assets/images/menu-banner1.jpg"
-                                  alt="menu-banner"
-                                  width={295}
-                                  height={320}
-                                />
-                              </a>
-                            </div>
-                            <div className="item">
-                              <a href="https://html.lionode.com/darklook/#" />
-                              <Image
-                                src="/assets/images/menu-banner2.jpg"
-                                alt="menu-banner2.jpg"
-                                width={295}
-                                height={320}
-                              />
-                            </div>
-                            <div className="item">
-                              <a href="https://html.lionode.com/darklook/#">
-                                <Image
-                                  src="/assets/images/menu-banner3.jpg"
-                                  alt="menu-banner2.jpg"
-                                  width={295}
-                                  height={320}
-                                />
-                              </a>
-                            </div>
-                          </div>
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
-                </li>
                 <li>
-                  <a href="https://html.lionode.com/darklook/category_page.html">
-                    Shop
+                  <a href="https://html.lionode.com/darklook/index.html">
+                    Home
                   </a>
                 </li>
                 <li>
-                  <a href="https://html.lionode.com/darklook/blog_page.html">
-                    Blog
-                  </a>
-                </li>
-                <li className="dropdown">
-                  <a
-                    href="https://html.lionode.com/darklook/#"
-                    className="dropdown-toggle"
-                    data-toggle="dropdown"
-                  >
-                    Pages{' '}
-                  </a>
-                  <ul className="dropdown-menu">
-                    <li>
-                      <a href="https://html.lionode.com/darklook/cart_page.html">
-                        Cart
-                      </a>
-                    </li>
-                    <li>
-                      <a href="https://html.lionode.com/darklook/checkout_page.html">
-                        Checkout
-                      </a>
-                    </li>
-                    <li>
-                      <a href="https://html.lionode.com/darklook/product_detail_page.html">
-                        Product Detail Page
-                      </a>
-                    </li>
-                    <li>
-                      <a href="https://html.lionode.com/darklook/single_blog.html">
-                        Single Post
-                      </a>
-                    </li>
-                  </ul>
-                </li>
-                <li>
-                  <a href="https://html.lionode.com/darklook/about.html">
-                    About us
+                  <a href="https://html.lionode.com/darklook/index.html">
+                    Home
                   </a>
                 </li>
                 <li>
-                  <a href="https://html.lionode.com/darklook/contact_us.html">
-                    Contact us
+                  <a href="https://html.lionode.com/darklook/index.html">
+                    Home
                   </a>
                 </li>
               </ul>

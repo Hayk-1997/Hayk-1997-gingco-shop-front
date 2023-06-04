@@ -12,7 +12,7 @@ export const TopHeader = (): JSX.Element => {
         <div className="row">
           <div className="col-xs-12 col-sm-4">
             <div className="header-top-left">
-              <div className="contact"></div>
+              <div className="contact" />
             </div>
           </div>
           <div className="col-xs-12 col-sm-8">
