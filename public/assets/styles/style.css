@@ -433,14 +433,13 @@ h6 {
 .btn {
     background: #424242 none repeat scroll 0 0;
     border-radius: 0;
-    color: #fff;
     padding: 10px 20px;
     text-transform: uppercase;
     font-weight: 500;
 }
 .btn:hover, .btn:focus, .btn.focus {
     background: #808080 none repeat scroll 0 0;
-    color: #fff;
+    color: unset;
     text-decoration: none;
 }
 .btn-link-b, .btn-link-w {
@@ -1204,7 +1203,7 @@ label.checkme {
 #cart>.btn {
     background: url(../images/sprite.png) no-repeat scroll -15px -102px;
     line-height: 20px;
-    color: #fff;
+    /*color: #fff;*/
     padding: 0 0 0 48px;
     border: none;
     border-radius: 0;
