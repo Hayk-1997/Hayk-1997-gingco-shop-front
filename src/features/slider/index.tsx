@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { TProductImage } from '../../../type/web/products';
+import { TProductImage } from '../../type/web/products';
 
 import { Thumbs, FreeMode, Navigation } from 'swiper';
 import 'swiper/css';

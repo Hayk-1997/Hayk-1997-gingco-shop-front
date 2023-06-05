@@ -1,7 +1,7 @@
 import React from 'react';
 import { TProduct } from '../../../type/web/products';
 import { TLanguageKeys } from '../../../type/language';
-import Slider from '../../admin/slider';
+import Slider from '../../slider';
 
 interface TProductDetails {
   product: TProduct;
