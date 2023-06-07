@@ -1,18 +1,14 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
-import {
-  getCategoriesRequest,
-  useSelectCategories,
-} from '../../slices/web/categorySlice';
-import { useRouter } from 'next/router';
-import { TLanguageKeys } from '../../type/language';
+import { lazy, Suspense, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { getCategoriesRequest } from '../../slices/web/categorySlice';
+const PriceFilters = lazy(
+  () => import(/* webpackChunkName: "price-filters" */ '../priceFilters')
+);
+
+import CategoryItems from './categoryItems';
 
 const CategoriesNavBar = (): JSX.Element => {
-  const router = useRouter();
-  const { locale: activeLocale } = router;
-
   const dispatch = useDispatch();
-  const categories = useSelector(useSelectCategories);
 
   useEffect(() => {
     dispatch(getCategoriesRequest());
@@ -31,17 +27,12 @@ const CategoriesNavBar = (): JSX.Element => {
           <div className="heading-part">
             <h2 className="main_title">Top category</h2>
           </div>
-          <ul className="nav  main-navigation collapse in">
-            {categories?.map((category, index) => (
-              <li key={index}>
-                <a href="#">
-                  {category.translations[activeLocale as TLanguageKeys].name}
-                </a>
-              </li>
-            ))}
-          </ul>
+          <CategoryItems />
         </div>
       </div>
+      <Suspense fallback={<></>}>
+        <PriceFilters />
+      </Suspense>
       {/* TODO: Can be used for example as special product */}
       {/*<div className="left_banner left-sidebar-widget mt_30 mb_40">
         {' '}

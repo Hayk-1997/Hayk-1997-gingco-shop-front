@@ -39,17 +39,18 @@ export default function MainLayout({ children, title }: ILayout): JSX.Element {
       <Header />
       <main>{children}</main>
       <Footer />
-      <Script src="/assets/scripts/jQuery_v3.1.1.min.js" />
+      <script src="/assets/scripts/jQuery_v3.1.1.min.js" defer />
       <Script src="/assets/scripts/owl.carousel.min.js" />
-      <Script src="/assets/scripts/bootstrap.min.js" />
+      <script src="/assets/scripts/bootstrap.min.js" defer />
       <Script src="/assets/scripts/jquery.magnific-popup.js" />
       {/*@TODO need to resolve later*/}
-      <Script src="/assets/scripts/jquery.firstVisitPopup.js" />
-      <Script src="/assets/scripts/custom.js" />
-      <script
-        src="https://kit.fontawesome.com/356891cc24.js"
-        crossOrigin="anonymous"
-      />
+      {/*<Script src="/assets/scripts/jquery.firstVisitPopup.js" />*/}
+      {/*<Script src="/assets/scripts/custom.js" />*/}
+      {/*<script*/}
+      {/*  src="https://kit.fontawesome.com/356891cc24.js"*/}
+      {/*  crossOrigin="anonymous"*/}
+      {/*  async*/}
+      {/*/>*/}
       {/*<link rel="stylesheet" href="owl-carousel/owl.carousel.css" />*/}
       {/*<link rel="stylesheet" href="owl-carousel/owl.theme.css" />*/}
       {/*<script src="owl-carousel/owl.carousel.js"></script>*/}
