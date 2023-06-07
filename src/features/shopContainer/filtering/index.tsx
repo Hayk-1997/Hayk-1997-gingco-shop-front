@@ -1,19 +1,17 @@
+import GridSvgIcon from '../../../icons/GridSvgIcon';
+import HamburgerSvgIcon from '../../../icons/HamburgerSvgIcon';
+import cn from 'classnames';
+
+import styles from './styles.module.scss';
+
 const Filtering = (): JSX.Element => {
   return (
     <div className="category-page-wrapper mb_30">
-      <div className="list-grid-wrapper pull-left">
-        <div className="btn-group btn-list-grid">
-          <button
-            type="button"
-            id="grid-view"
-            className="btn btn-default grid-view active"
-          />
-          <button
-            type="button"
-            id="list-view"
-            className="btn btn-default list-view"
-          />
-        </div>
+      <div
+        className={cn('list-grid-wrapper pull-left', styles.filterGridIcons)}
+      >
+        <GridSvgIcon />
+        <HamburgerSvgIcon />
       </div>
       <div className="page-wrapper pull-right">
         <label className="control-label" htmlFor="input-limit">

@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { lazy } from 'react';
+import { lazy, Suspense } from 'react';
 
 const LanguageSwitcher = lazy(
   () => import(/* webpackChunkName: "language-switcher" */ './LanguageSwitcher')
@@ -20,7 +20,9 @@ export const TopHeader = (): JSX.Element => {
               <li className="account">
                 <Link href="/login">Login</Link>
               </li>
-              <LanguageSwitcher />
+              <Suspense fallback={<></>}>
+                <LanguageSwitcher />
+              </Suspense>
             </ul>
           </div>
         </div>

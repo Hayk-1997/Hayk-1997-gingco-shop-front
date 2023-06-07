@@ -549,7 +549,6 @@ i.right {
 }
 .nav>li>a:hover, .nav>li>a:focus {
     background: transparent;
-    color: #fa4251;
 }
 #product-tab .nav li {
     display: inline-block;
@@ -1117,7 +1116,6 @@ label.checkme {
     padding: 0 40px 0 10px;
     border-radius: 0;
     border: 1px solid #424242;
-    background-color: #000;
 }
 .main-search .btn-lg {
     font-size: 16px;

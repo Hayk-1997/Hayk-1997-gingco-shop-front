@@ -1,0 +1,7 @@
+@import '../../styles/variables';
+
+.activeItems {
+  a {
+    color: $color-red !important;
+  }
+}

@@ -1,10 +1,8 @@
 import Image from 'next/image';
 import { TopHeader } from './topHeader';
-import { useState } from 'react';
+import SearchInput from './searchInput';
 
 export const Header = (): JSX.Element => {
-  const [value, setValue] = useState<string>('');
-
   return (
     <header id="header">
       <TopHeader />
@@ -12,22 +10,7 @@ export const Header = (): JSX.Element => {
         <div className="container">
           <div className="row">
             <div className="col-xs-12 col-sm-4">
-              <div className="main-search">
-                <input
-                  id="search-input"
-                  value={value}
-                  placeholder="Search"
-                  className="form-control input-lg"
-                  autoComplete="off"
-                  type="text"
-                  onChange={(e) => setValue(e.target.value)}
-                />
-                <span className="input-group-btn">
-                  <button type="button" className="btn btn-default btn-lg">
-                    <i className="fa fa-search" />
-                  </button>
-                </span>
-              </div>
+              <SearchInput />
             </div>
             <div className="navbar-header col-xs-6 col-sm-4">
               <div className="navbar-brand">
@@ -104,7 +87,7 @@ export const Header = (): JSX.Element => {
                           </td>
                           <td className="text-center">
                             <a className="close-cart">
-                              <i className="fa fa-times-circle"></i>
+                              <i className="fa fa-times-circle" />
                             </a>
                           </td>
                         </tr>
@@ -172,7 +155,7 @@ export const Header = (): JSX.Element => {
               data-target=".js-navbar-collapse"
             >
               <span className="i-bar">
-                <i className="fa fa-bars"></i>
+                <i className="fa fa-bars" />
               </span>
             </button>
             <div className="collapse navbar-collapse js-navbar-collapse">
