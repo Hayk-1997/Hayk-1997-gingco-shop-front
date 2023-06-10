@@ -7,6 +7,11 @@ import {
 import { useRouter } from 'next/router';
 import { TLanguageKeys } from '../../../type/language';
 import Image from 'next/image';
+import { useSelectProductGridView } from '../../../slices/web/globalSlice';
+import Link from 'next/link';
+import cn from 'classnames';
+
+import styles from './styles.module.scss';
 
 const ProductItems: React.FC = (): JSX.Element => {
   const router = useRouter();
@@ -14,6 +19,7 @@ const ProductItems: React.FC = (): JSX.Element => {
 
   const dispatch = useDispatch();
   const products = useSelector(useSelectProducts);
+  const productGridView = useSelector(useSelectProductGridView);
 
   useEffect(() => {
     dispatch(getProductsRequest());
@@ -24,27 +30,38 @@ const ProductItems: React.FC = (): JSX.Element => {
       {products?.map((product, index) => (
         <div
           key={index}
-          className="product-layout product-grid col-md-4 col-xs-6 "
+          className={cn('product-layout', {
+            'product-grid col-md-4 col-xs-6': productGridView === 'grid',
+            'product-list col-xs-12': productGridView === 'horizontal',
+          })}
         >
           <div className="item">
-            <div className="product-thumb clearfix mb_30">
+            <div
+              className={cn('product-thumb clearfix mb_30', {
+                [styles.horizontalItem]: productGridView === 'horizontal',
+              })}
+            >
               <div className="image product-imageblock">
-                <a href="product_detail_page.html">
-                  <Image
-                    src={product.images.length ? product.images[0].url : ''}
-                    width={233}
-                    height={57}
-                    alt="main image"
-                    className="img-responsive"
-                  />
-                  <Image
-                    src={product.images.length ? product.images[1].url : ''}
-                    width={233}
-                    height={57}
-                    alt="main image"
-                    className="img-responsive"
-                  />
-                </a>
+                <Link href={`/product/${product.id}`}>
+                  {product.images[0] && product.images[0].url && (
+                    <Image
+                      src={product.images[0].url}
+                      width={233}
+                      height={57}
+                      alt="main image"
+                      className="img-responsive"
+                    />
+                  )}
+                  {product.images[1] && product.images[1] && (
+                    <Image
+                      src={product.images[1].url}
+                      width={233}
+                      height={57}
+                      alt="main image"
+                      className="img-responsive"
+                    />
+                  )}
+                </Link>
                 <div className="button-group text-center">
                   <div className="wishlist">
                     <a href="#">
@@ -74,40 +91,6 @@ const ProductItems: React.FC = (): JSX.Element => {
                     {product.translations[activeLocale as TLanguageKeys].name}
                   </a>
                 </h6>
-                <div className="rating">
-                  <span className="fa fa-stack">
-                    <i className="fa fa-star-o fa-stack-1x" />
-                    <i className="fa fa-star fa-stack-1x" />
-                  </span>
-                  <span className="fa fa-stack">
-                    <i className="fa fa-star-o fa-stack-1x" />
-                    <i className="fa fa-star fa-stack-1x" />
-                  </span>
-                  <span className="fa fa-stack">
-                    <i className="fa fa-star-o fa-stack-1x" />
-                    <i className="fa fa-star fa-stack-1x" />
-                  </span>
-                  <span className="fa fa-stack">
-                    <i className="fa fa-star-o fa-stack-1x" />
-                    <i className="fa fa-star fa-stack-1x" />
-                  </span>
-                  <span className="fa fa-stack">
-                    <i className="fa fa-star-o fa-stack-1x" />
-                    <i className="fa fa-star fa-stack-x" />
-                  </span>
-                </div>
-                <span className="price">
-                  <span className="amount">
-                    <span className="currencySymbol">$</span>70.00
-                  </span>
-                </span>
-                <p className="product-desc mt_20 mb_60">
-                  More room to move. With 80GB or 160GB of storage and up to 40
-                  hours of battery life, the new iPod classic lets you enjoy up
-                  to 40,000 songs or up to 200 hours of video or any combination
-                  wherever you go.Cover Flow. Browse through your music
-                  collection by flipping..
-                </p>
               </div>
             </div>
           </div>

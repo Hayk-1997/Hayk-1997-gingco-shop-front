@@ -1,10 +1,10 @@
 import ProductItems from './productItems';
-import Filtering from "./filtering";
+import Filtering from './filtering';
 
 const ShopContainer = (): JSX.Element => {
   return (
     <div className="col-sm-8 col-lg-9 mtb_20">
-      <Filtering/>
+      <Filtering />
       <div className="row">
         <ProductItems />
       </div>

@@ -1,7 +1,6 @@
-import GridSvgIcon from '../../../icons/GridSvgIcon';
-import HamburgerSvgIcon from '../../../icons/HamburgerSvgIcon';
-import { useCallback, useRef } from 'react';
+import { useCallback } from 'react';
 import useChangeRouter from '../../../hooks/useChangeRouter';
+import GridButtons from '../gridButtons';
 import cn from 'classnames';
 
 import styles from './styles.module.scss';
@@ -21,8 +20,7 @@ const Filtering = (): JSX.Element => {
       <div
         className={cn('list-grid-wrapper pull-left', styles.filterGridIcons)}
       >
-        <GridSvgIcon />
-        <HamburgerSvgIcon />
+        <GridButtons />
       </div>
       <div className="page-wrapper pull-right">
         <label className="control-label" htmlFor="input-limit">

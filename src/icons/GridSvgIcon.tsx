@@ -16,14 +16,10 @@ const GridSvgIcon = (): JSX.Element => {
         strokeLinejoin="round"
       ></g>
       <g id="SVGRepo_iconCarrier">
-        {' '}
-        <title></title>{' '}
+        <title></title>
         <g id="Complete">
-          {' '}
           <g id="grid">
-            {' '}
             <g>
-              {' '}
               <rect
                 fill="none"
                 height="7"
@@ -34,7 +30,7 @@ const GridSvgIcon = (): JSX.Element => {
                 width="7"
                 x="14.5"
                 y="2.5"
-              ></rect>{' '}
+              ></rect>
               <rect
                 fill="none"
                 height="7"
@@ -45,7 +41,7 @@ const GridSvgIcon = (): JSX.Element => {
                 width="7"
                 x="14.5"
                 y="14.5"
-              ></rect>{' '}
+              ></rect>
               <rect
                 fill="none"
                 height="7"
@@ -56,7 +52,7 @@ const GridSvgIcon = (): JSX.Element => {
                 width="7"
                 x="2.5"
                 y="2.5"
-              ></rect>{' '}
+              ></rect>
               <rect
                 fill="none"
                 height="7"
@@ -67,10 +63,10 @@ const GridSvgIcon = (): JSX.Element => {
                 width="7"
                 x="2.5"
                 y="14.5"
-              ></rect>{' '}
-            </g>{' '}
-          </g>{' '}
-        </g>{' '}
+              ></rect>
+            </g>
+          </g>
+        </g>
       </g>
     </svg>
   );
