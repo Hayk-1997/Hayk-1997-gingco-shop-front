@@ -10,6 +10,7 @@ import Image from 'next/image';
 import { useSelectProductGridView } from '../../../slices/web/globalSlice';
 import Link from 'next/link';
 import cn from 'classnames';
+import NoImage from './../../../../public/assets/images/no-image.svg';
 
 import styles from './styles.module.scss';
 
@@ -43,21 +44,45 @@ const ProductItems: React.FC = (): JSX.Element => {
             >
               <div className="image product-imageblock">
                 <Link href={`/product/${product.id}`}>
-                  {product.images[0] && product.images[0].url && (
+                  {product.images[0] && product.images[0].url ? (
                     <Image
                       src={product.images[0].url}
-                      width={233}
-                      height={57}
+                      width="0"
+                      height="0"
+                      sizes="100vw"
+                      style={{ width: '233px', height: '233px' }}
                       alt="main image"
                       className="img-responsive"
                     />
+                  ) : (
+                    <Image
+                      src={NoImage}
+                      width="0"
+                      height="0"
+                      sizes="100vw"
+                      style={{ width: '233px', height: '233px' }}
+                      alt="no-image"
+                      className="img-responsive"
+                    />
                   )}
-                  {product.images[1] && product.images[1] && (
+                  {product.images[1] && product.images[1] ? (
                     <Image
                       src={product.images[1].url}
-                      width={233}
-                      height={57}
+                      width="0"
+                      height="0"
+                      sizes="100vw"
+                      style={{ width: '233px', height: '233px' }}
                       alt="main image"
+                      className="img-responsive"
+                    />
+                  ) : (
+                    <Image
+                      src={NoImage}
+                      width="0"
+                      height="0"
+                      sizes="100vw"
+                      style={{ width: '233px', height: '233px' }}
+                      alt="no-image"
                       className="img-responsive"
                     />
                   )}

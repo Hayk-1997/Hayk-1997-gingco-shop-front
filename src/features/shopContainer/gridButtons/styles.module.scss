@@ -2,5 +2,7 @@
   cursor: pointer;
 }
 .activeItem {
-  
+  svg {
+    stroke: red;
+  }
 }

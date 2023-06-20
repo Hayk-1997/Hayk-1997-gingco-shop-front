@@ -20,7 +20,6 @@ const CategoriesNavBar = (): JSX.Element => {
         id="category-menu"
         className="navbar collapse in mb_40"
         aria-expanded="true"
-        style={{}}
         role="button"
       >
         <div className="nav-responsive">
@@ -30,7 +29,7 @@ const CategoriesNavBar = (): JSX.Element => {
           <CategoryItems />
         </div>
       </div>
-      <Suspense fallback={<></>}>
+      <Suspense fallback={<>...Loading</>}>
         <PriceFilters />
       </Suspense>
       {/* TODO: Can be used for example as special product */}
