@@ -1,17 +1,31 @@
 import ProductItems from './productItems';
 import Filtering from './filtering';
 import { Pagination } from '@nextui-org/react';
-import { useSelector } from 'react-redux';
-import { useSelectProducts } from '../../slices/web/productsSlice';
+import { useDispatch, useSelector } from 'react-redux';
 import useChangeRouter from '../../hooks/useChangeRouter';
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useRouter } from 'next/router';
+import {
+  getShopProductRequest,
+  useSelectShopProducts,
+} from '../../slices/web/shopSlice';
+import { splitPageURLWithSplitter } from '../../helpers/query';
 
 const ShopContainer = (): JSX.Element => {
   const router = useRouter();
-  const products = useSelector(useSelectProducts);
-  const { changeRouter } = useChangeRouter();
+  const dispatch = useDispatch();
   const { query } = router;
+
+  const products = useSelector(useSelectShopProducts);
+  const { changeRouter } = useChangeRouter();
+
+  useEffect(() => {
+    dispatch(
+      getShopProductRequest(
+        splitPageURLWithSplitter(router.asPath, router.pathname)
+      )
+    );
+  }, [dispatch, router.asPath, router.pathname]);
 
   const handleChange = useCallback(
     (value: string, key: string) => {
@@ -24,10 +38,10 @@ const ShopContainer = (): JSX.Element => {
     <div className="col-sm-8 col-lg-9 mtb_20">
       <Filtering />
       <div className="row">
-        <ProductItems />
+        <ProductItems products={products.products} />
       </div>
       <div className="pagination-nav text-center mt_50">
-        {products.length && (
+        {!!products.products.length && (
           <Pagination
             css={{
               '.nextui-pagination-highlight': {
@@ -43,7 +57,7 @@ const ShopContainer = (): JSX.Element => {
               },
             }}
             page={Number(query.page)}
-            total={products.length}
+            total={products.count}
             size="xl"
             onChange={(value) => handleChange(String(value), 'page')}
           />

@@ -1,30 +1,24 @@
-import React, { memo, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import {
-  getProductsRequest,
-  useSelectProducts,
-} from '../../../slices/web/productsSlice';
+import React, { memo } from 'react';
+import { useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import { TLanguageKeys } from '../../../type/language';
 import Image from 'next/image';
 import { useSelectProductGridView } from '../../../slices/web/globalSlice';
 import Link from 'next/link';
+import NoImage from './../../../../public/assets/images/no-image.png';
+import { TProduct } from '../../../type/web/products';
 import cn from 'classnames';
-import NoImage from './../../../../public/assets/images/no-image.svg';
 
 import styles from './styles.module.scss';
 
-const ProductItems: React.FC = (): JSX.Element => {
+interface IProductItems {
+  products: TProduct[];
+}
+
+const ProductItems: React.FC<IProductItems> = ({ products }): JSX.Element => {
   const router = useRouter();
   const { locale: activeLocale } = router;
-
-  const dispatch = useDispatch();
-  const products = useSelector(useSelectProducts);
   const productGridView = useSelector(useSelectProductGridView);
-
-  useEffect(() => {
-    dispatch(getProductsRequest());
-  }, [dispatch]);
 
   return (
     <>

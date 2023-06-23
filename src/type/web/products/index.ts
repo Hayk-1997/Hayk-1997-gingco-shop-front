@@ -41,3 +41,14 @@ export type TProductsState = {
   successMessage: string;
   errorMessage: string;
 };
+
+export type TShopProducts = {
+  count: number;
+  products: TProduct[];
+};
+
+export type TShopProductState = {
+  products: TShopProducts;
+  isGetProductsSuccess: boolean;
+  isGetProductsFailure: boolean;
+};

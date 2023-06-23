@@ -9,6 +9,7 @@ import webAuthReducer from './slices/web/authSlice';
 import webProductsReducer from './slices/web/productsSlice';
 import webCategoryReducer from './slices/web/categorySlice';
 import webGlobalSlice from './slices/web/globalSlice';
+import webShopSplice from './slices/web/shopSlice';
 
 import { ToolkitStore } from '@reduxjs/toolkit/src/configureStore';
 
@@ -23,6 +24,7 @@ export function makeStore(): ToolkitStore {
       webProducts: webProductsReducer,
       webCategory: webCategoryReducer,
       webGlobal: webGlobalSlice,
+      webShop: webShopSplice,
     },
   });
 }
