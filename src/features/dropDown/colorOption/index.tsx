@@ -7,7 +7,15 @@ import {
 import { useRouter } from 'next/router';
 import { TLanguageKeys } from '../../../type/language';
 
-const ColorOption = (): JSX.Element => {
+interface IColorOption {
+  setColor: (value: string) => void;
+  selectedColor: string;
+}
+
+const ColorOption: React.FC<IColorOption> = ({
+  setColor,
+  selectedColor,
+}): JSX.Element => {
   const router = useRouter();
   const dispatch = useDispatch();
   const colors = useSelector(useSelectColors);
@@ -24,9 +32,11 @@ const ColorOption = (): JSX.Element => {
         name="product_color"
         id="select-by-color"
         className="selectpicker form-control"
+        value={selectedColor}
+        onChange={(event) => setColor(event.target.value)}
       >
         {colors.map((color, index) => (
-          <option key={index}>
+          <option key={index} value={color.id}>
             {color.translations[activeLocale as TLanguageKeys].name}
           </option>
         ))}

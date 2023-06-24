@@ -3,7 +3,8 @@ import Image from 'next/image';
 import { TopHeader } from './topHeader';
 import SearchInput from './searchInput';
 const ShoppingCart = lazy(
-  () => import(/*shopping-cart*/ '../dropDown/shoppingCart')
+  () =>
+    import(/* webpackChunkName: "shopping-cart" */ '../dropDown/shoppingCart')
 );
 
 export const Header = (): JSX.Element => {

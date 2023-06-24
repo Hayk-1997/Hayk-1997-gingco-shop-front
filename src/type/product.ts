@@ -1,5 +1,5 @@
 import { TLanguageKeys } from './language';
-import { TProductImage } from './web/products';
+import { TProduct, TProductImage } from './web/products';
 
 export type TCreateProductForm = {
   countInStock: number | null;
@@ -20,3 +20,8 @@ export type TCreateProductForm = {
 export type TUpdateProductForm = {
   images: TProductImage[];
 } & TCreateProductForm;
+
+export type TProductShopCart = {
+  quantity: string;
+  color: string;
+} & TProduct;

@@ -1,6 +1,37 @@
-import React, { memo } from 'react';
+import React, { memo, useCallback, useEffect, useState } from 'react';
+import Image from 'next/image';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  setShopCart,
+  useSelectShopCart,
+} from '../../../slices/web/globalSlice';
+import { TLanguageKeys } from '../../../type/language';
+import { useRouter } from 'next/router';
+import { TProductShopCart } from '../../../type/product';
+import cn from 'classnames';
+
+import styles from './styles.module.scss';
 
 export const ShoppingCart = (): JSX.Element => {
+  const router = useRouter();
+  const dispatch = useDispatch();
+  const { locale: activeLocale } = router;
+  const shopCartData = useSelector(useSelectShopCart);
+
+  const [data, setData] = useState<TProductShopCart[]>([]);
+
+  useEffect(() => {
+    setData(shopCartData || []);
+  }, [shopCartData]);
+
+  const removeCart = useCallback(
+    (id: number) => {
+      const filteredData = shopCartData?.filter((item) => item.id !== id);
+      dispatch(setShopCart(JSON.stringify(filteredData)));
+    },
+    [dispatch, shopCartData]
+  );
+
   return (
     <div className="col-xs-6 col-sm-4 shopcart">
       <div id="cart" className="btn-group btn-block mtb_40">
@@ -17,110 +48,63 @@ export const ShoppingCart = (): JSX.Element => {
       </div>
       <div id="cart-dropdown" className="cart-menu collapse">
         <ul>
-          <li>
-            <table className="table table-striped">
-              <tbody>
-                <tr>
-                  <td className="text-left product-name">
-                    <a href="https://html.lionode.com/darklook/#">
-                      MacBook Pro
-                    </a>
-                    <span className="text-left price">$20.00</span>
-                    <input
-                      className="cart-qty"
-                      name="product_quantity"
-                      min="1"
-                      value="1"
-                      type="number"
-                      onChange={(e) => console.log(e.target.value)}
-                    />
-                  </td>
-                  <td className="text-center">
-                    <a className="close-cart">
-                      <i className="fa fa-times-circle" />
-                    </a>
-                  </td>
-                </tr>
-                <tr>
-                  <td className="text-center">
-                    <a href="https://html.lionode.com/darklook/#">
-                      <img
-                        src="./70x84.jpg"
-                        alt="iPod Classic"
-                        title="iPod Classic"
+          {data.map((cart, index: number) => (
+            <li key={index}>
+              <table className="table table-striped">
+                <tbody>
+                  <tr>
+                    <td className="text-center">
+                      <a href="https://html.lionode.com/darklook/#">
+                        <Image
+                          src={cart.images[0].url}
+                          alt="image"
+                          width={70}
+                          height={84}
+                        />
+                      </a>
+                    </td>
+                    <td className="text-left product-name">
+                      <a href="https://html.lionode.com/darklook/#">
+                        {cart.translations[activeLocale as TLanguageKeys].name}
+                      </a>
+                      <span className="text-left price">{cart.price}</span>
+                      <input
+                        className="cart-qty"
+                        name="product_quantity"
+                        min="1"
+                        value={cart.quantity}
+                        type="number"
+                        onChange={(e) => console.log(e.target.value)}
                       />
-                    </a>
-                  </td>
-                  <td className="text-left product-name">
-                    <a href="https://html.lionode.com/darklook/#">
-                      MacBook Pro
-                    </a>
-                    <span className="text-left price">$20.00</span>
-                    <input
-                      className="cart-qty"
-                      name="product_quantity"
-                      min="1"
-                      value="1"
-                      type="number"
-                      onChange={(e) => console.log(e.target.value)}
-                    />
-                  </td>
-                  <td className="text-center">
-                    <a className="close-cart">
-                      <i className="fa fa-times-circle" />
-                    </a>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </li>
+                    </td>
+                    <td className="text-center">
+                      <a
+                        role="presentation"
+                        className="close-cart"
+                        onClick={() => removeCart(cart.id)}
+                      >
+                        <i className="fa fa-times-circle" />
+                      </a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </li>
+          ))}
+
           <li>
-            <table className="table">
-              <tbody>
-                <tr>
-                  <td className="text-right">
-                    <strong>Sub-Total</strong>
-                  </td>
-                  <td className="text-right">$2,100.00</td>
-                </tr>
-                <tr>
-                  <td className="text-right">
-                    <strong>Eco Tax (-2.00)</strong>
-                  </td>
-                  <td className="text-right">$2.00</td>
-                </tr>
-                <tr>
-                  <td className="text-right">
-                    <strong>VAT (20%)</strong>
-                  </td>
-                  <td className="text-right">$20.00</td>
-                </tr>
-                <tr>
-                  <td className="text-right">
-                    <strong>Total</strong>
-                  </td>
-                  <td className="text-right">$2,122.00</td>
-                </tr>
-              </tbody>
-            </table>
-          </li>
-          <li>
-            <form action="https://html.lionode.com/darklook/cart_page.html">
-              <input
-                className="btn pull-left mt_10"
-                value="View cart"
-                type="submit"
-                onChange={(e) => console.log(e.target.value)}
-              />
-            </form>
-            <form action="https://html.lionode.com/darklook/checkout_page.html">
-              <input
-                className="btn pull-right mt_10"
-                value="Checkout"
-                type="submit"
-                onChange={(e) => console.log(e.target.value)}
-              />
-            </form>
+            <input
+              className={cn('btn pull-left mt_10', styles.buttons)}
+              value="View cart"
+              type="submit"
+              onChange={(e) => console.log(e.target.value)}
+            />
+            <input
+              className={cn('btn pull-right mt_10', styles.buttons)}
+              value="Checkout"
+              type="submit"
+              onChange={(e) => console.log(e.target.value)}
+            />
           </li>
         </ul>
       </div>
