@@ -10,6 +10,7 @@ import webProductsReducer from './slices/web/productsSlice';
 import webCategoryReducer from './slices/web/categorySlice';
 import webGlobalSlice from './slices/web/globalSlice';
 import webShopSplice from './slices/web/shopSlice';
+import webColorSlice from './slices/web/colorSlice';
 
 import { ToolkitStore } from '@reduxjs/toolkit/src/configureStore';
 
@@ -25,6 +26,7 @@ export function makeStore(): ToolkitStore {
       webCategory: webCategoryReducer,
       webGlobal: webGlobalSlice,
       webShop: webShopSplice,
+      webColor: webColorSlice,
     },
   });
 }

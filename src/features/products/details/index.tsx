@@ -2,6 +2,7 @@ import React from 'react';
 import { TProduct } from '../../../type/web/products';
 import { TLanguageKeys } from '../../../type/language';
 import Slider from '../../slider';
+import ColorOption from '../../dropDown/colorOption';
 
 interface TProductDetails {
   product: TProduct;
@@ -38,17 +39,7 @@ const ProductDetails: React.FC<TProductDetails> = ({
             <div className="form-group">
               <div className="row">
                 <div className="Color col-md-6">
-                  <label htmlFor="select-by-color">Color</label>
-                  <select
-                    name="product_color"
-                    id="select-by-color"
-                    className="selectpicker form-control"
-                  >
-                    <option>Blue</option>
-                    <option>Green</option>
-                    <option>Orange</option>
-                    <option>White</option>
-                  </select>
+                  <ColorOption />
                 </div>
               </div>
             </div>
