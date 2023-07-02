@@ -1204,13 +1204,12 @@ label.checkme {
     float: left;
 }
 #cart>.btn {
-    background: url(../images/sprite.png) no-repeat scroll -15px -102px;
+    background: var(--main-color);
     line-height: 20px;
-    /*color: #fff;*/
-    padding: 0 0 0 48px;
+    padding: 0;
     border: none;
     border-radius: 0;
-    float: right;
+    outline: none !important;
 }
 .btn:active, .btn.active{
     box-shadow: none;

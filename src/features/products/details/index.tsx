@@ -10,6 +10,8 @@ import {
 } from '../../../slices/web/globalSlice';
 import { TProductShopCart } from '../../../type/product';
 
+import styles from './styles.module.scss';
+
 interface TProductDetails {
   product: TProduct;
   lang: TLanguageKeys;
@@ -32,11 +34,13 @@ const ProductDetails: React.FC<TProductDetails> = ({
 
       filteredData = shopCartData.reduce((acc: any, item: TProductShopCart) => {
         if (item.id === product.id) {
-          return {
-            ...item,
-            color,
-            quantity,
-          };
+          return [
+            {
+              ...item,
+              color,
+              quantity,
+            },
+          ];
         } else {
           return [acc, item];
         }
@@ -91,17 +95,12 @@ const ProductDetails: React.FC<TProductDetails> = ({
               />
             </div>
             <div className="button-group mt_30">
-              <button onClick={addToShoppingCat}>Add to cart</button>
-              <div className="wishlist">
-                <a href="#">
-                  <span>wishlist</span>
-                </a>
-              </div>
-              <div className="compare">
-                <a href="#">
-                  <span>Compare</span>
-                </a>
-              </div>
+              <button
+                onClick={addToShoppingCat}
+                className={styles.addToCartButton}
+              >
+                Add to cart
+              </button>
             </div>
           </div>
         </div>

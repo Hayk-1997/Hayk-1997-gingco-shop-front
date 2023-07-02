@@ -1,5 +1,19 @@
 @import '../../../styles/variables';
 
+.dropDown {
+  display: flex !important;
+  justify-content: flex-end;
+  gap: 1rem;
+
+  .icon {
+    order: 1;
+  }
+
+  button {
+    order: 2;
+  }
+}
+
 .buttons {
   color: $color-white
 }

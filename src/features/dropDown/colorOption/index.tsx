@@ -25,6 +25,10 @@ const ColorOption: React.FC<IColorOption> = ({
     dispatch(getColorsRequest());
   }, [dispatch]);
 
+  useEffect(() => {
+    colors.length && setColor(colors[0].id);
+  }, [setColor, colors]);
+
   return (
     <>
       <label htmlFor="select-by-color">Color</label>
