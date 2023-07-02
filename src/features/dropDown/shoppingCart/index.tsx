@@ -8,6 +8,7 @@ import {
 import { TLanguageKeys } from '../../../type/language';
 import { useRouter } from 'next/router';
 import { TProductShopCart } from '../../../type/product';
+import ShoppingCartIcon from '../../../icons/ShoppingCartIcon';
 import cn from 'classnames';
 
 import styles from './styles.module.scss';
@@ -34,7 +35,10 @@ export const ShoppingCart = (): JSX.Element => {
 
   return (
     <div className="col-xs-6 col-sm-4 shopcart">
-      <div id="cart" className="btn-group btn-block mtb_40">
+      <div
+        id="cart"
+        className={cn('btn-group btn-block mtb_40', styles.dropDown)}
+      >
         <button
           type="button"
           className="btn"
@@ -45,6 +49,9 @@ export const ShoppingCart = (): JSX.Element => {
           <span id="shippingcart">Shopping cart</span>
           <span id="cart-total">items (0)</span>
         </button>
+        <div className={styles.icon}>
+          <ShoppingCartIcon />
+        </div>
       </div>
       <div id="cart-dropdown" className="cart-menu collapse">
         <ul>
