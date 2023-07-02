@@ -1,0 +1,10 @@
+@import '../../../styles/variables';
+
+.addToCartButton {
+  background: #424242 none repeat scroll 0 0;
+  border-radius: 0;
+  padding: 10px 20px;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: $color-white;
+}

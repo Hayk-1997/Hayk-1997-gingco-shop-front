@@ -20,9 +20,21 @@ export const ShoppingCart = (): JSX.Element => {
   const shopCartData = useSelector(useSelectShopCart);
 
   const [data, setData] = useState<TProductShopCart[]>([]);
+  const [count, setCount] = useState<number>(0);
 
   useEffect(() => {
     setData(shopCartData || []);
+  }, [shopCartData]);
+
+  useEffect(() => {
+    if (shopCartData) {
+      const data = shopCartData.reduce((acc, object) => {
+        return Number(acc) + Number(object.quantity);
+      }, 0);
+      setCount(data);
+    } else {
+      setCount(0);
+    }
   }, [shopCartData]);
 
   const removeCart = useCallback(
@@ -47,7 +59,7 @@ export const ShoppingCart = (): JSX.Element => {
           aria-expanded="true"
         >
           <span id="shippingcart">Shopping cart</span>
-          <span id="cart-total">items (0)</span>
+          <span id="cart-total">items ({count})</span>
         </button>
         <div className={styles.icon}>
           <ShoppingCartIcon />
