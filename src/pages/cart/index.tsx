@@ -5,7 +5,7 @@
 import MainLayout from '../../layout/web/mainLayout';
 import Breadcrumb from '../../features/breadcrumb';
 import { ReactElement } from 'react';
-import IndexPage from '../index';
+// import IndexPage from '../index';
 
 // export const getServerSideProps: GetServerSideProps<any> = async ({ locale}) => ({
 //     props: {
@@ -13,7 +13,7 @@ import IndexPage from '../index';
 //     },
 // })
 
-const Cart = () => {
+const Cart = (): JSX.Element => {
   // const { t } = useTranslation('common')
 
   return (
@@ -679,7 +679,9 @@ const Cart = () => {
                           size={1}
                           value="1"
                           name="quantity"
-                          onChange={() => {}}
+                          onChange={(event) => {
+                            console.log(event);
+                          }}
                         />
                         <span className="input-group-btn">
                           <button

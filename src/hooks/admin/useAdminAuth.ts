@@ -13,7 +13,7 @@ export const useAdminAuth = ({
   redirectIfAuthenticated,
 }: IUseAuth): any => {
   const router = useRouter();
-
+  console.log(middleware, redirectIfAuthenticated);
   const {
     data: user,
     // error,

@@ -34,7 +34,7 @@ const EditColor = (): JSX.Element => {
   }, [color, reset]);
 
   const onSubmit = useCallback((data: TCreateColorForm): void => {
-    //
+    console.log('data', data);
   }, []);
 
   return (
