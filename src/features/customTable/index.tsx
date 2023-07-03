@@ -8,7 +8,7 @@ import { DeleteIcon } from '../icons/DeleteIcon';
 const CustomTable = ({ tableProps }: any): JSX.Element => {
   const { data = [], actions, columns } = tableProps;
 
-  const renderCell = (item: any, columnKey: React.Key) => {
+  const renderCell = (item: any, columnKey: React.Key): JSX.Element => {
     const cellValue = item[columnKey];
 
     if ('cell' in columns[columnKey]) {
@@ -77,7 +77,7 @@ const CustomTable = ({ tableProps }: any): JSX.Element => {
 
   const tableColumns = useMemo(() => Object.values(columns), [columns]);
 
-  return (
+    return (
     <Table
       aria-label="Categories list"
       css={{
@@ -85,7 +85,7 @@ const CustomTable = ({ tableProps }: any): JSX.Element => {
         minWidth: '100%',
       }}
     >
-      <Table.Header columns={tableColumns}>
+      <Table.Header columns={tableColumns as any}>
         {(column: { key: string; label: string }) => (
           <Table.Column
             key={column.key}
