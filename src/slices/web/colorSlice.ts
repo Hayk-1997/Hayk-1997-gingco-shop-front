@@ -47,7 +47,6 @@ export default colorSlice.reducer;
 export const useSelectColors = (state: AppState): TColor[] =>
   state.webColor.colors;
 
-
 export const getColorsRequest = () => {
   return async (dispatch: AppDispatch) => {
     try {

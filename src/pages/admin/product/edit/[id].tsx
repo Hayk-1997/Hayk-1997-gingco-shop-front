@@ -58,7 +58,7 @@ const EditProduct = (): JSX.Element => {
         name: data.name,
         description: data.description,
         title: data.title,
-      }
+      };
       dispatch(updateProductRequest(formData, Number(router.query.id)));
     },
     [dispatch, router.query.id]

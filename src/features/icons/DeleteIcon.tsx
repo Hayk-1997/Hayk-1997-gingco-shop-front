@@ -6,7 +6,7 @@ type IconProps = {
   height?: string | number;
   width?: string | number;
   label?: string;
-}
+};
 
 export const DeleteIcon: React.FC<IconProps> = ({
   fill,

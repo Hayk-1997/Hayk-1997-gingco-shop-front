@@ -1,29 +1,30 @@
-import { toast } from 'react-toastify'
+import { toast } from 'react-toastify';
 
 export const catchApiError = (e: any) => {
   if (e?.response?.data) {
-    return !Array.isArray(e?.response?.data.message) ? [e?.response?.data.message] : e?.response?.data.message
+    return !Array.isArray(e?.response?.data.message)
+      ? [e?.response?.data.message]
+      : e?.response?.data.message;
   }
 
-  return []
-}
+  return [];
+};
 
 export const showMessage = (messages: string | string[], type: string) => {
   if (!Array.isArray(messages)) {
-    messages = [messages]
+    messages = [messages];
   }
   if (messages?.length) {
     messages.forEach((message) => {
       setTimeout(() => {
         if (type === 'success') {
-          toast.success(message)
+          toast.success(message);
         } else {
-
-          toast.error(message)
+          toast.error(message);
         }
-      }, 500)
-    })
+      }, 500);
+    });
   } else {
-    toast.error('Something went wrong')
+    toast.error('Something went wrong');
   }
-}
+};

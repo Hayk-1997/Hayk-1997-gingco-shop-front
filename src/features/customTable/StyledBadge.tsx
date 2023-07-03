@@ -19,19 +19,19 @@ export const StyledBadge = styled('span', {
     type: {
       active: {
         bg: '$successLight',
-        color: '$successLightContrast'
+        color: '$successLightContrast',
       },
       paused: {
         bg: '$errorLight',
-        color: '$errorLightContrast'
+        color: '$errorLightContrast',
       },
       vacation: {
         bg: '$warningLight',
-        color: '$warningLightContrast'
-      }
-    }
+        color: '$warningLightContrast',
+      },
+    },
   },
   defaultVariants: {
-    type: 'active'
-  }
+    type: 'active',
+  },
 });

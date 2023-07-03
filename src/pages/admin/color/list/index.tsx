@@ -13,7 +13,7 @@ const CustomTable = lazy(
   () =>
     import(
       /* webpackChunkName: "custom-table" */ '../../../../features/customTable'
-      )
+    )
 );
 
 const ColorList = (): JSX.Element => {

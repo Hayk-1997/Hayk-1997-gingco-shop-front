@@ -18,7 +18,6 @@ const Form: React.FC<IForm> = ({
   handleSubmit,
   onSubmit,
 }): JSX.Element => {
-
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="card-body">
