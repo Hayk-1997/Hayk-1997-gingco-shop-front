@@ -5,7 +5,12 @@
 import MainLayout from '../../layout/web/mainLayout';
 import Breadcrumb from '../../features/breadcrumb';
 import React, { ReactElement, useEffect, useMemo } from 'react';
-import { getCartProducts } from '../../slices/web/globalSlice';
+import {
+  getCartProducts,
+  updateCartProductQuantity,
+  useSelectIsUpdatingCartProduct,
+  deleterCartProductQuantity,
+} from '../../slices/web/globalSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import { useSelectCartProducts } from '../../slices/web/globalSlice';
@@ -29,6 +34,7 @@ const Cart = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   const cartProducts = useSelector(useSelectCartProducts);
+  const isUpdatingCartProduct = useSelector(useSelectIsUpdatingCartProduct);
 
   const lang = router.locale as TLanguageKeys;
 
@@ -37,11 +43,11 @@ const Cart = () => {
   }, [dispatch]);
 
   const deleteItemFromCart = (id: number) => {
-    console.log('Delete cart Product', id);
+    dispatch(deleterCartProductQuantity({ id }));
   };
 
-  const updateProductQuantity = (item: any) => {
-    console.log('Update cart product quantity', item);
+  const updateProductQuantity = (id: number, e: any) => {
+    dispatch(updateCartProductQuantity({ id, quantity: +e.target.value }));
   };
 
   const calcTotal = useMemo(() => {
@@ -105,13 +111,14 @@ const Cart = () => {
                           className="input-group btn-block"
                         >
                           <input
-                            type="text"
+                            type="number"
                             className="form-control quantity"
                             size={1}
                             min={1}
-                            value={item.quantity}
+                            defaultValue={item.quantity}
                             name="quantity"
-                            onChange={() => updateProductQuantity(item)}
+                            disabled={isUpdatingCartProduct}
+                            onChange={(e) => updateProductQuantity(item.id, e)}
                           />
                           <span className="input-group-btn">
                             <button
@@ -119,6 +126,7 @@ const Cart = () => {
                               title=""
                               data-toggle="tooltip"
                               type="button"
+                              disabled={isUpdatingCartProduct}
                               data-original-title="Remove"
                               onClick={() => deleteItemFromCart(item.id)}
                             >
