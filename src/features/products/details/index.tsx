@@ -1,9 +1,10 @@
-import React, { useCallback, useState } from 'react';
+import React, { useState } from 'react';
 import { TProduct } from '../../../type/web/products';
 import { TLanguageKeys } from '../../../type/language';
 import Slider from '../../slider';
 import ColorOption from '../../dropDown/colorOption';
-// import { useDispatch, useSelector } from 'react-redux';
+import { addProductsToCart } from '../../../slices/web/globalSlice';
+import { useDispatch } from 'react-redux';
 // import {
 // setShopCart,
 // getCartProducts,
@@ -20,13 +21,20 @@ const ProductDetails: React.FC<TProductDetails> = ({
   product,
   lang,
 }): JSX.Element => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   // const shopCartData = useSelector(useSelectShopCart);
 
   const [quantity, setQuantity] = useState<string>('1');
   const [color, setColor] = useState('');
 
-  const addToShoppingCat = useCallback(() => {
+  const addToShoppingCat = () => {
+    dispatch(
+      addProductsToCart({
+        id: product.id,
+        quantity: +quantity,
+        colorId: +color,
+      })
+    );
     // let filteredData;
     // if (shopCartData) {
     //   const dataIds = shopCartData.map((item: TProductShopCart) => item.id);
@@ -50,7 +58,7 @@ const ProductDetails: React.FC<TProductDetails> = ({
     // }
     //
     // dispatch(setShopCart(JSON.stringify(filteredData)));
-  }, []);
+  };
 
   return (
     <div className="col-sm-8 col-lg-9 mtb_20">
@@ -64,7 +72,7 @@ const ProductDetails: React.FC<TProductDetails> = ({
               {product?.translations?.[lang].title}
             </a>
           </h4>
-          <div className="rating"></div>
+          <div className="rating" />
           <span className="price mb_20">
             <span className="amount">֏‎{product.price}</span>
           </span>

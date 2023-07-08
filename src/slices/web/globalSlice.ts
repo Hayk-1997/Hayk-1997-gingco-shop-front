@@ -4,11 +4,6 @@ import { TProductGridView } from '../../type/web/global';
 import { TProductShopCart } from '../../type/product';
 import ApiInstance from '../../services/axios';
 import { catchApiError } from '../../helpers';
-import {
-  setGetProductsRequest,
-  setGetProductsRequestFailure,
-  setGetProductsRequestSuccess,
-} from './productsSlice';
 
 type TInitialState = {
   productGridView: TProductGridView;
@@ -165,15 +160,15 @@ export const getCartProducts = () => {
   };
 };
 
-export const addProductsToCart = () => {
+export const addProductsToCart = (payload: any) => {
   return async (dispatch: AppDispatch) => {
     try {
-      dispatch(setGetProductsRequest());
-      const response = await ApiInstance.get(`products`);
-      dispatch(setGetProductsRequestSuccess(response.data.products));
+      dispatch(setAddProductsToCartRequest());
+      const response = await ApiInstance.post('user/cart', payload);
+      dispatch(setAddProductsToCartSuccess(response.data));
     } catch (e) {
       const messages = catchApiError(e);
-      dispatch(setGetProductsRequestFailure(messages));
+      dispatch(setAddProductsToCartFailure(messages));
     }
   };
 };

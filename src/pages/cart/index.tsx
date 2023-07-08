@@ -68,102 +68,106 @@ const Cart = () => {
         />
         <CategoriesNavBar />
         <div className="col-sm-8 col-lg-9 mtb_20">
-          <form encType="multipart/form-data" method="post" action="#">
-            <div className="table-responsive">
-              <table className="table table-bordered">
-                <thead>
-                  <tr>
-                    <td className="text-center">Image</td>
-                    <td className="text-left">Product Name</td>
-                    <td className="text-left">Color</td>
-                    <td className="text-left">Quantity</td>
-                    <td className="text-right">Unit Price</td>
-                    <td className="text-right">Total</td>
-                  </tr>
-                </thead>
-                <tbody>
-                  {cartProducts.map((item) => (
-                    <tr key={item.id}>
-                      <td className="text-center">
-                        <a href="#">
-                          <img
-                            src={item.product.images?.[0]?.url}
-                            alt="iPod Classic"
-                            title="iPod Classic"
-                          />
-                        </a>
-                      </td>
-                      <td className="text-left">
-                        <a href="#">{item.product.translations[lang].name}</a>
-                      </td>
-                      <td className="text-left">
-                        <div
-                          style={{
-                            height: 30,
-                            width: 30,
-                            backgroundColor: item.color.code,
-                          }}
+          <div className="table-responsive">
+            <table className="table table-bordered">
+              <thead>
+                <tr>
+                  <td className="text-center">Image</td>
+                  <td className="text-left">Product Name</td>
+                  <td className="text-left">Color</td>
+                  <td className="text-left">Quantity</td>
+                  <td className="text-right">Unit Price</td>
+                  <td className="text-right">Total</td>
+                </tr>
+              </thead>
+              <tbody>
+                {cartProducts.map((item) => (
+                  <tr key={item.id}>
+                    <td className="text-center">
+                      <a href="#">
+                        <img
+                          src={item.product.images?.[0]?.url}
+                          alt="iPod Classic"
+                          title="iPod Classic"
                         />
-                      </td>
-                      <td className="text-left">
-                        <div
-                          style={{ maxWidth: 200 }}
-                          className="input-group btn-block"
-                        >
-                          <input
-                            type="number"
-                            className="form-control quantity"
-                            size={1}
-                            min={1}
-                            defaultValue={item.quantity}
-                            name="quantity"
-                            disabled={isUpdatingCartProduct}
-                            onChange={(e) => updateProductQuantity(item.id, e)}
-                          />
-                          <span className="input-group-btn">
-                            <button
-                              className="btn btn-danger"
-                              title=""
-                              data-toggle="tooltip"
-                              type="button"
-                              disabled={isUpdatingCartProduct}
-                              data-original-title="Remove"
-                              onClick={() => deleteItemFromCart(item.id)}
-                            >
-                              X
-                            </button>
-                          </span>
-                        </div>
-                      </td>
-                      <td className="text-right">֏‎{item.product.price}</td>
-                      <td className="text-right">
-                        ֏‎{item.product.price * item.quantity}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </form>
-          <h3 className="mtb_10">What would you like to do next?</h3>
-          <p>
-            Choose other products too or change selected products count or click
-            Checkout to make an order.
-          </p>
-          <div className="row">
-            <div className="col-sm-4 col-sm-offset-8">
-              <table className="table table-bordered">
-                <tbody>
-                  <tr>
-                    <td className="text-right">
-                      <strong>Total:</strong>
+                      </a>
                     </td>
-                    <td className="text-right">֏‎{calcTotal}</td>
+                    <td className="text-left">
+                      <a href="#">{item.product.translations[lang].name}</a>
+                    </td>
+                    <td className="text-left">
+                      <div
+                        style={{
+                          height: 30,
+                          width: 30,
+                          backgroundColor: item.color.code,
+                        }}
+                      />
+                    </td>
+                    <td className="text-left">
+                      <div
+                        style={{ maxWidth: 200 }}
+                        className="input-group btn-block"
+                      >
+                        <input
+                          type="number"
+                          className="form-control quantity"
+                          size={1}
+                          min={1}
+                          defaultValue={item.quantity}
+                          name="quantity"
+                          disabled={isUpdatingCartProduct}
+                          onChange={(e) => updateProductQuantity(item.id, e)}
+                        />
+                        <span className="input-group-btn">
+                          <button
+                            className="btn btn-danger"
+                            title=""
+                            data-toggle="tooltip"
+                            type="button"
+                            disabled={isUpdatingCartProduct}
+                            data-original-title="Remove"
+                            onClick={() => deleteItemFromCart(item.id)}
+                          >
+                            X
+                          </button>
+                        </span>
+                      </div>
+                    </td>
+                    <td className="text-right">֏‎{item.product.price}</td>
+                    <td className="text-right">
+                      ֏‎{item.product.price * item.quantity}
+                    </td>
                   </tr>
-                </tbody>
-              </table>
-            </div>
+                ))}
+              </tbody>
+            </table>
           </div>
+          {cartProducts?.length ? (
+            <>
+              <h3 className="mtb_10">What would you like to do next?</h3>
+              <p>
+                Choose other products too or change selected products count or
+                click Checkout to make an order.
+              </p>
+              <div className="row">
+                <div className="col-sm-4 col-sm-offset-8">
+                  <table className="table table-bordered">
+                    <tbody>
+                      <tr>
+                        <td className="text-right">
+                          <strong>Total:</strong>
+                        </td>
+                        <td className="text-right">֏‎{calcTotal}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </>
+          ) : (
+            <h4>Cart is empty</h4>
+          )}
           <input
             className={cn('btn pull-left mt_30', styles.buttons)}
             type="button"
@@ -174,6 +178,7 @@ const Cart = () => {
             className={cn('btn pull-right mt_30', styles.buttons)}
             type="button"
             value="Checkout"
+            disabled={!cartProducts?.length}
             onClick={() => {
               console.log('Route to checkout page');
             }}
