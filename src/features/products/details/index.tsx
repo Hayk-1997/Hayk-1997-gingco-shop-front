@@ -3,12 +3,13 @@ import { TProduct } from '../../../type/web/products';
 import { TLanguageKeys } from '../../../type/language';
 import Slider from '../../slider';
 import ColorOption from '../../dropDown/colorOption';
-import { useDispatch, useSelector } from 'react-redux';
-import {
-  setShopCart,
-  useSelectShopCart,
-} from '../../../slices/web/globalSlice';
-import { TProductShopCart } from '../../../type/product';
+// import { useDispatch, useSelector } from 'react-redux';
+// import {
+// setShopCart,
+// getCartProducts,
+// useSelectShopCart,
+// } from '../../../slices/web/globalSlice';
+// import { TProductShopCart } from '../../../type/product';
 
 interface TProductDetails {
   product: TProduct;
@@ -19,37 +20,37 @@ const ProductDetails: React.FC<TProductDetails> = ({
   product,
   lang,
 }): JSX.Element => {
-  const dispatch = useDispatch();
-  const shopCartData = useSelector(useSelectShopCart);
+  // const dispatch = useDispatch();
+  // const shopCartData = useSelector(useSelectShopCart);
 
   const [quantity, setQuantity] = useState<string>('1');
   const [color, setColor] = useState('');
 
   const addToShoppingCat = useCallback(() => {
-    let filteredData;
-    if (shopCartData) {
-      const dataIds = shopCartData.map((item: TProductShopCart) => item.id);
-
-      filteredData = shopCartData.reduce((acc: any, item: TProductShopCart) => {
-        if (item.id === product.id) {
-          return {
-            ...item,
-            color,
-            quantity,
-          };
-        } else {
-          return [acc, item];
-        }
-      }, [] as TProductShopCart[]);
-      if (!dataIds.includes(product.id)) {
-        filteredData = [{ ...product, color, quantity }, ...shopCartData];
-      }
-    } else {
-      filteredData = [{ ...product, color, quantity }];
-    }
-
-    dispatch(setShopCart(JSON.stringify(filteredData)));
-  }, [color, dispatch, product, quantity, shopCartData]);
+    // let filteredData;
+    // if (shopCartData) {
+    //   const dataIds = shopCartData.map((item: TProductShopCart) => item.id);
+    //
+    //   filteredData = shopCartData.reduce((acc: any, item: TProductShopCart) => {
+    //     if (item.id === product.id) {
+    //       return {
+    //         ...item,
+    //         color,
+    //         quantity,
+    //       };
+    //     } else {
+    //       return [acc, item];
+    //     }
+    //   }, [] as TProductShopCart[]);
+    //   if (!dataIds.includes(product.id)) {
+    //     filteredData = [{ ...product, color, quantity }, ...shopCartData];
+    //   }
+    // } else {
+    //   filteredData = [{ ...product, color, quantity }];
+    // }
+    //
+    // dispatch(setShopCart(JSON.stringify(filteredData)));
+  }, []);
 
   return (
     <div className="col-sm-8 col-lg-9 mtb_20">

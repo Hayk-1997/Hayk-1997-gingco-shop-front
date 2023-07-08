@@ -96,8 +96,10 @@ export const ShoppingCart = (): JSX.Element => {
             <input
               className={cn('btn pull-left mt_10', styles.buttons)}
               value="View cart"
-              type="submit"
-              onChange={(e) => console.log(e.target.value)}
+              type="button"
+              onClick={() => {
+                router.push('/cart');
+              }}
             />
             <input
               className={cn('btn pull-right mt_10', styles.buttons)}
